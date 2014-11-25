@@ -38,6 +38,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'newrelic_rpm'
+gem 'backbone-on-rails'
+gem 'bootstrap-sass'
+gem 'jquery-ui-rails'
 
 group :development do
 	gem 'better_errors'
