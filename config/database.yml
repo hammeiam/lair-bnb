@@ -78,8 +78,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: lairBnB_production
-  username: lairBnB
-  password: <%= ENV['LAIRBNB_DATABASE_PASSWORD'] %>
