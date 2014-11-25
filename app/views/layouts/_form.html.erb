@@ -1,0 +1,22 @@
+<form action="<%= users_url %>" method="POST">
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  <label for='first_name'>First Name</label>
+  <input id='first_name' type='text' name='user[first_name]' value='<%= @user.first_name %>'>
+  <br>
+
+  <label for='last_name'>Last Name</label>
+  <input id='last_name' type='text' name='user[last_name]' value='<%= @user.last_name %>'>
+  <br>
+  
+  <label for='email'>EMail</label>
+  <input id='email' type='text' name='user[email]' value='<%= @user.email %>'>
+  <br>
+  
+  <label for='password'>password</label>
+  <input id='password' type='password' name='user[password]'>
+  <br>
+  
+  <input type="submit" value="Create Your Profile">
+  
+</form>
