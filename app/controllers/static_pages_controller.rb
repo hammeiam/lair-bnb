@@ -4,7 +4,4 @@ class StaticPagesController < ApplicationController
 
 	def home
 	end
-
-	def lairs
-	end
 end

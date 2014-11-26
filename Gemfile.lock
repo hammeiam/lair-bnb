@@ -77,6 +77,7 @@ GEM
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.2.2)
+    geocoder (1.2.6)
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.5)
@@ -162,9 +163,11 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.0.0)
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
+  json
   newrelic_rpm
   pg
   rails (= 4.1.7)

@@ -41,6 +41,8 @@ gem 'newrelic_rpm'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass'
 gem 'jquery-ui-rails'
+gem 'json'
+gem 'geocoder'
 
 group :development do
 	gem 'better_errors'
