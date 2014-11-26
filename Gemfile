@@ -39,7 +39,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 gem 'newrelic_rpm'
 gem 'backbone-on-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails'
 gem 'jquery-ui-rails'
 gem 'json'
 gem 'geocoder'
@@ -50,4 +51,6 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'annotate'
 end
+
+gem 'rails_12factor', group: :production
 

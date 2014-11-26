@@ -1,0 +1,70 @@
+<%= flash.now[:errors] %>
+<% if signed_in? %>
+<%= current_user.first_name %>
+<%= button_to "Sign Out", session_url, method: :delete %>
+<% end %>
+<nav class="navbar navbar-default" role="navigation">
+<style type="text/css">
+	.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+	}
+
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	}
+</style>
+
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">lairbnb</a>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" name="location" id="location" placeholder="Where To?">
+      </div>
+      <!-- <input type="submit" value="Submit"> -->
+    </form>
+    <ul class="nav navbar-nav">
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-hover="dropdown" role="button" aria-expanded="false">Browse <span class="caret"></span></a>
+	      <ul class="dropdown-menu" role="menu">
+	        <li><a href="#">Action</a></li>
+	        <li><a href="#">Another action</a></li>
+	        <li><a href="#">Something else here</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">Separated link</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">One more separated link</a></li>
+	      </ul>
+	    </li>
+	    
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-hover="dropdown" role="button" aria-expanded="false">User <span class="caret"></span></a>
+	      <ul class="dropdown-menu" role="menu">
+	        <li><a href="#">Action</a></li>
+	        <li><a href="#">Another action</a></li>
+	        <li><a href="#">Something else here</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">Separated link</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">One more separated link</a></li>
+	      </ul>
+	    </li>
+
+	    <li><a href="#">M</a></li>
+
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-hover="dropdown" role="button" aria-expanded="false">Help <span class="caret"></span></a>
+	      <ul class="dropdown-menu" role="menu">
+	        <li><a href="#">Action</a></li>
+	        <li><a href="#">Another action</a></li>
+	        <li><a href="#">Something else here</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">Separated link</a></li>
+	        <li class="divider"></li>
+	        <li><a href="#">One more separated link</a></li>
+	      </ul>
+	    </li>
+	   <li><a href="#" class="btn btn-default">List Your Space</a></li> 
+	   </ul>
+    
+  </div><!-- /.container-fluid -->
+</nav>

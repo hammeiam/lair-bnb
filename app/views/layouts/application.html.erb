@@ -2,17 +2,13 @@
 <html>
 <head>
   <title>LairBnB</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 </head>
 <body>
-<%# fail %>
-<%= flash.now[:errors] %>
-<% if signed_in? %>
-<%= current_user.first_name %>
-<%= button_to "Sign Out", session_url, method: :delete %>
-<% end %>
+<%= render 'layouts/header' %> <!-- unless @disable_nav %> -->
 <%= yield %>
 
 </body>
