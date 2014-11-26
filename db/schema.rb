@@ -11,10 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125203134) do
+ActiveRecord::Schema.define(version: 20141126012433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: true do |t|
+    t.string   "url",          null: false
+    t.string   "alt_tag"
+    t.integer  "imageable_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
+
+  create_table "lairs", force: true do |t|
+    t.string   "title",          null: false
+    t.text     "description",    null: false
+    t.integer  "rate",           null: false
+    t.integer  "owner_id",       null: false
+    t.string   "lair_type",      null: false
+    t.string   "room_type",      null: false
+    t.string   "street_address", null: false
+    t.string   "city",           null: false
+    t.string   "state",          null: false
+    t.string   "country",        null: false
+    t.float    "latitude",       null: false
+    t.float    "longitude",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lairs", ["lair_type"], name: "index_lairs_on_lair_type", using: :btree
+  add_index "lairs", ["latitude"], name: "index_lairs_on_latitude", using: :btree
+  add_index "lairs", ["longitude"], name: "index_lairs_on_longitude", using: :btree
+  add_index "lairs", ["owner_id"], name: "index_lairs_on_owner_id", using: :btree
+  add_index "lairs", ["rate"], name: "index_lairs_on_rate", using: :btree
+  add_index "lairs", ["room_type"], name: "index_lairs_on_room_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",      null: false
