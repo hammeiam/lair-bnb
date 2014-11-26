@@ -2,12 +2,11 @@
 // Google autocomplete 
 function initialize() {
 	var input = /** @type {HTMLInputElement} */(
-      document.getElementById('location'));
+      document.getElementById('location-search'));
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.setTypes(['geocode']);
   var place = autocomplete.getPlace();
   var address = '';
-  
 
   google.maps.event.addListener(autocomplete, 'place_changed', function () {
         place = autocomplete.getPlace();
