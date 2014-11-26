@@ -4,7 +4,12 @@ window.LairBnB = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new LairBnB.Routers.Lairs({
+    	$rootEl: $('main')
+    });
+    Backbone.history.start({
+      root: '/s/'
+    });
   }
 };
 
