@@ -1,4 +1,5 @@
 LairBnB.Views.Map = Backbone.CompositeView.extend({
+  className: 'map-container',
   initialize: function() {
   	window.view = this;
     // var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
@@ -16,7 +17,7 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     }
   	var map = new google.maps.Map(this.$('#map-box')[0], mapOptions);
   },
-
+  // bug: JST['map'] always returns undefined
   template: JST['mappy'],
 
   render: function(){

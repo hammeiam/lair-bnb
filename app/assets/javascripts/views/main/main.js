@@ -9,7 +9,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 	},
 
   template: JST['main'],
-
+  id: 'main-content',
   render: function(){
   	var content = this.template({
   		query: this.query
