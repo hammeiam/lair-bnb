@@ -43,11 +43,8 @@ html, body{
 	display: inline-block;
 	float: left;
 }
-.map-container{
-	@extend .full-width-height;
 
-}
-#map-box{
+#map-element{
 	@extend .full-width-height;
 }
 

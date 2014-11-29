@@ -44,6 +44,7 @@ gem 'autoprefixer-rails'
 gem 'jquery-ui-rails'
 gem 'json'
 gem 'geocoder'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development do
 	gem 'better_errors'
