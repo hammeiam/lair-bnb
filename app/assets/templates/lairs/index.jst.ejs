@@ -1,0 +1,7 @@
+<% lairs.forEach(function(lair) { %>
+	<div style="height: 200; width: 200; border: 1px soild black;">
+		<%= lair.escape('title') %>
+		<%= lair.escape('rate') %>
+		<%= lair.escape('city') %>
+	</div>
+<% }); %>

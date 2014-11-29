@@ -24,7 +24,11 @@ class LairsController < ApplicationController
 	end
 
 	def index
-		@lairs = Lair.search(search_params)
+		if params[:search]
+			@lairs = Lair.search(search_params)
+		else
+			@lairs = Lair.search()
+		end
 		render json: @lairs
 	end
 
