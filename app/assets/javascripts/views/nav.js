@@ -1,4 +1,10 @@
 LairBnB.Views.Nav = Backbone.CompositeView.extend({
+	tagName: 'nav',
+	className: 'navbar navbar-default',
+	attributes: {
+		'role': 'navigation'
+	},
+
 	initialize: function(options){
 		this.router = options.router;
 		this.query = options.query;
@@ -24,7 +30,6 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	},
 
 	handleSubmit: function(event){
-		// prevent action, update url, update collection
 		event.preventDefault();
 	},
 
@@ -42,6 +47,4 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		var encodedLocation = urlEncodeLocation(locationStr);
 		this.router.navigate(encodedLocation, { trigger: false })
 	}
-
-
 });

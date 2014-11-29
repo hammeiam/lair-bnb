@@ -37,13 +37,33 @@ html, body{
 	@extend .full-width-height;
 }
 
-#map{
-	@extend .full-width-height;
+#map-container{
+	width: 45%;
+	height: 100%;
+	display: inline-block;
+	float: left;
 }
 .map-container{
-	width: 45%;
-	height: 100%
+	@extend .full-width-height;
+
 }
 #map-box{
 	@extend .full-width-height;
+}
+
+#sidebar-container{
+	width: 55%;
+	height: 100%;
+	display: inline-block;
+	float: left;
+	background-color: red;
+	overflow-y: scroll;
+}
+
+#filters{
+	height: 180px;
+}
+
+#lairs-index{
+	
 }

@@ -3,21 +3,23 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 		this.query = options.query;
 
 		var navView = new LairBnB.Views.Nav({
+      // el: '#main-content',
       router: options.router,
       query: options.query
     });
-    this.addSubview('nav', navView);
+    this.addSubview('#nav-container', navView);
 
 		var mapView = new LairBnB.Views.Map();
-		this.addSubview('#map', mapView);
+		this.addSubview('#map-container', mapView);
 
-		// var sidebarView = new LairBnB.Views.Sidebar();
-		// this.addSubview('#sidebar', sidebarView);
+		var sidebarView = new LairBnB.Views.Sidebar();
+		this.addSubview('#sidebar-container', sidebarView);
 	},
 
   template: JST['main'],
 
   id: 'main-content',
+  // tagName: 'main',
 
   render: function(){
   	var content = this.template({

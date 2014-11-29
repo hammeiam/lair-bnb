@@ -5,9 +5,8 @@ window.LairBnB = {
   Routers: {},
   initialize: function() {
     new LairBnB.Routers.Lairs({
-    	$rootEl: $('#content-wrapper')
+      $rootEl: $('#content-wrapper')
     });
-    
     Backbone.history.start({
       root: '/s/'
     });

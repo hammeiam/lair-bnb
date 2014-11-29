@@ -10,8 +10,14 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     var mapOptions = {
       zoom: 4,
       center: myLatlng
-    }
+    };
   	var map = new google.maps.Map(this.$('#map-box')[0], mapOptions);
+
+    // recenter map when window resizes
+    var getCen = map.getCenter();
+    google.maps.event.addDomListener(window, 'resize', function() {
+      map.setCenter(getCen);
+    });
   },
   
   // bug: JST['map'] always returns undefined
