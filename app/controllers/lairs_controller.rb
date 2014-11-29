@@ -23,9 +23,19 @@ class LairsController < ApplicationController
 	def update
 	end
 
+	def index
+		@lairs = Lair.search(search_params)
+		render json: @lairs
+	end
+
 	def lair_params
 		params.require(:lair).permit(:title, :description, :rate, :owner_id, 
 			:lair_type, :room_type, :street_address, :city, :state, :country, 
 			:latitude, :longitude)
+	end
+
+	def search_params
+		params.require(:search).permit(:title, :description, :rate,  
+			:lair_type, :room_type, :query, :price_min, :price_max)
 	end
 end

@@ -17,6 +17,7 @@
 #  longitude      :float            not null
 #  created_at     :datetime
 #  updated_at     :datetime
+#  max_guests     :integer          not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
