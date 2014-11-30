@@ -26,6 +26,7 @@ class Lair < ActiveRecord::Base
 	presence: true
 	geocoded_by :full_street_address   # can also be an IP address
 	after_validation :geocode          # auto-fetch coordinates
+	self.per_page = 2
 
 	def full_street_address
 		[street_address, city, state, country].compact.join(', ')
@@ -45,16 +46,17 @@ class Lair < ActiveRecord::Base
 
 		search_options = default_options.merge(input_options.symbolize_keys)
 
+
 		if search_options[:query]
-			Lair.near(search_options[:query]).where(lair_type: search_options[:lair_type],
+			Lair.near(search_options[:query], 100).where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
-				.paginate(per_page: 2, page: search_options[:page])
+				.page(search_options[:page])
 		else
 			Lair.where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
-				.paginate(per_page: 2, page: search_options[:page])
+				.page(search_options[:page])
 		end
 	end
 end

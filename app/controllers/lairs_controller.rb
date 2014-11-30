@@ -40,6 +40,6 @@ class LairsController < ApplicationController
 
 	def search_params
 		params.require(:search).permit(:title, :description, :rate,  
-			:lair_type, :room_type, :query, :price_min, :price_max)
+			:lair_type, :room_type, :query, :price_min, :price_max, :page)
 	end
 end
