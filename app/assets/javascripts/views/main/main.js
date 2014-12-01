@@ -25,12 +25,18 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 
   events: {
     // 'change input': 'updateCollection'
-    'change input': 'handleUpdate'
+    'change input': 'handleUpdate',
+    'change #slider': 'handleUpdate',
+    'select #guests': 'handleUpdate'
   },
 
   template: JST['main'],
 
   id: 'main-content',
+
+  sliderMove: function(event){
+    console.log($(event.currentTarget).val());
+  },
 
   render: function(){
     var content = this.template({
@@ -46,8 +52,30 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     // prevent default, update url, update filterparams, fetch collection
     event.preventDefault();
     var $field = $(event.currentTarget);
-    this.updateViewVariables($field);
+    var inputHash = this.inputParser($field);
+    this.updateViewVariables(inputHash);
+    this.updateURI();
     this.updateCollection();
+  },
+
+  inputParser: function($field){
+    // inputs: location, lair_type, price_range, checkin, checkout, guests
+    var key = $field.attr('name');
+    var output = {};
+
+    if(key === 'price_range'){
+      var pricesArr = $field.val();
+      output['price_min'] = parseInt(pricesArr[0], 10);
+      output['price_max'] = parseInt(pricesArr[1], 10);
+    } else if(key === 'lair_type'){
+       var val = $("[name='lair_type']:checked").map(function(){ 
+          return $(this).val()
+        }).get(); // array
+        output[key] = val;
+    } else if (!!key) {
+      output[key] = $field.val();
+    }
+    return output; 
   },
 
   updateCollection: function(){
@@ -57,7 +85,6 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
         search: collectionParams
       }
     })
-    
   },
 
   parseParams: function(params){
@@ -73,24 +100,21 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     return output;
   },
 
-  updateViewVariables: function($field){
-    var key = $field.attr('name');
-    var val = $field.val();
-
-    var locationStr;
-    if(key === 'location'){
-      var encodedLocation = urlEncodeLocation(val);
-      // this.collectionFilterParams[key] = encodedLocation;
-      locationStr = encodedLocation;
-    } else {
-      // this.collectionFilterParams[key] = val;
-      locationStr = urlEncodeLocation(this.collectionFilterParams['location']);
+  updateViewVariables: function(inputObj){
+    for(i in inputObj){
+      if(!!inputObj[i]){ 
+        this.collectionFilterParams[i] = inputObj[i];
+      } else {
+        delete this.collectionFilterParams[i];
+      }
     }
-    this.collectionFilterParams[key] = val;
-    this.updateURI(locationStr);
   },
 
-  updateURI: function(locationStr){
+  updateURI: function(){
+    var locationStr;
+    if(!!this.collectionFilterParams['location']){
+      locationStr = urlEncodeLocation(this.collectionFilterParams['location']);
+    } 
     // append all params except location
     var tempParams = jQuery.extend({}, this.collectionFilterParams);
     delete tempParams['location'];
@@ -98,7 +122,11 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     if(!!filterParamsStr){
       filterParamsStr = '?' + filterParamsStr;
     };
-    this.router.navigate(locationStr + filterParamsStr, { trigger: false });
+    if(!!locationStr){
+      this.router.navigate(locationStr + filterParamsStr, { trigger: false });
+    } else {
+      this.router.navigate(filterParamsStr, { trigger: false });
+    }
+    
   }
-
 });

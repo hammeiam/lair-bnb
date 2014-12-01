@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require backbone.googlemaps-min
 //= require lair_bn_b
+//= require jquery.nouislider.all.min.js
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models

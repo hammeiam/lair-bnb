@@ -1,32 +1,27 @@
 <div id="filters">
 	<label>Dates
-		<form>
-			<input type="date" id="check-in-date">
-			<input type="date" id="check-out-date">
-		</form>
-		<form>
+			<input type="date" id="check-in-date" name="checkin">
+			<input type="date" id="check-out-date" name="checkout">
 			<select id="guests">
 				<option value="1">1 Guest</option>
 				<option value="2">2 Guests</option>
 				<option value="3">3 Guests</option>
 			</select>
-		</form>
 	</label><br>
 	<label>Lair Type
-		<input type="checkbox" name="lair_type" value="entire-hq">
-		<input type="checkbox" name="lair_type" value="private-room">
-		<input type="checkbox" name="lair_type" value="shared-room">
+		<input type="checkbox" name="lair_type" value="underground" >
+		<input type="checkbox" name="lair_type" value="fortress">
+		<input type="checkbox" name="lair_type" value="office">
 	</label><br>
-	<label>Price Range
+	<!-- <label>Price Range
 		<input type="number" min="10" name="price_min" id="price-min" value="<%= fieldValues['price_min'] %>">
 		<input type="number" max="100" name="price_max" id="price-max" value="<%= fieldValues['price_max'] %>">
-	</label>
+	</label> -->
+	<div id="slider" name="price_range"></div>
+	<span id="min-price"></span>
+	<span id="max-price"></span>
+	
 	<p>filter summary, listing summary, more filters button</p>
 </div>
 <div id="lairs-index">
-	<!-- <div style="height:100px; width: 200px; border:2px solid black"></div>
-	<div style="height:100px; width: 200px; border:2px solid black"></div>
-	<div style="height:100px; width: 200px; border:2px solid black"></div>
-	<div style="height:100px; width: 200px; border:2px solid black"></div>
-	<div style="height:100px; width: 200px; border:2px solid black"></div> -->
 </div>

@@ -35,3 +35,28 @@ var urlEncodeLocation = function(location){
 var decodeLocationUrl = function(query){
 	return query.replace(/--/g, ', ').replace(/-/g, ' ');
 }
+
+$('#sidebar-container').ready(function() {
+	$("#slider").noUiSlider({
+		start: [10, 1000],
+		connect: true,
+		range: {
+			'min': 10,
+			'max': 1000
+		},
+		step: 10,
+		format: wNumb({
+		decimals: 0
+	}),
+	});
+
+	$('#slider').Link('lower').to($('#min-price'));
+	$('#slider').Link('upper').to($('#max-price'));
+
+	$('#check-in-date').change(function(){
+
+		$('#check-out-date').focus();
+	})
+});
+
+// window.onload = function(){ initialize() }

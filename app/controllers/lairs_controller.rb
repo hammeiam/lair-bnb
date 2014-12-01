@@ -30,8 +30,8 @@ class LairsController < ApplicationController
 			@lairs = Lair.search()
 		end
 		respond_to do |format|
-			format.html {render json: Lair.all}
-			format.json {render json: @lairs}
+			format.html { render json: Lair.all }
+			format.json { render json: @lairs } 
 		end
 	end
 
@@ -43,6 +43,6 @@ class LairsController < ApplicationController
 
 	def search_params
 		params.require(:search).permit(:title, :description, :rate,  
-			:lair_type, :room_type, :location, :price_min, :price_max, :page)
+			:room_type, :location, :price_min, :price_max, :page, lair_type: [])
 	end
 end
