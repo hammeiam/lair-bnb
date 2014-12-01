@@ -13,13 +13,13 @@
 		</form>
 	</label><br>
 	<label>Lair Type
-		<input type="checkbox" value="entire-hq">
-		<input type="checkbox" value="private-room">
-		<input type="checkbox" value="shared-room">
+		<input type="checkbox" name="lair_type" value="entire-hq">
+		<input type="checkbox" name="lair_type" value="private-room">
+		<input type="checkbox" name="lair_type" value="shared-room">
 	</label><br>
 	<label>Price Range
-		<input type="number" min="10" id="price-min">
-		<input type="number" max="100" id="price-max">
+		<input type="number" min="10" name="price_min" id="price-min" value="<%= fieldValues['price_min'] %>">
+		<input type="number" max="100" name="price_max" id="price-max" value="<%= fieldValues['price_max'] %>">
 	</label>
 	<p>filter summary, listing summary, more filters button</p>
 </div>

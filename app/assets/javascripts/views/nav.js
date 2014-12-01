@@ -7,15 +7,14 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	initialize: function(options){
 		this.router = options.router;
-		this.query = options.query;
-		
+		this.locationField = options.locationField;
 	},
 
 	initSearch: function(){
 		var input = this.$('#location-search');
-		if(this.query){
-			input.val(decodeLocationUrl(this.query));
-		}
+		// if(this.query){
+		// 	input.val(decodeLocationUrl(this.query));
+		// }
 		
   	autocomplete = new google.maps.places.Autocomplete(input[0], {types: ['geocode']});
   	var that = this;
@@ -28,7 +27,9 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	template: JST['nav'],
 
 	render: function(){
-		var content = this.template();
+		var content = this.template({
+			locationField: this.locationField
+		});
   	this.$el.html(content);
   	this.initSearch();
   	return this;
@@ -38,7 +39,7 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		var locationStr = locationObj.formatted_address || locationObj.name;
 		// change input text to trigger updateCollection event in main.js
 		$('#location-search').html(locationStr).trigger('change');
-		var encodedLocation = urlEncodeLocation(locationStr);
-		this.router.navigate(encodedLocation, { trigger: false })
+		// var encodedLocation = urlEncodeLocation(locationStr);
+		// this.router.navigate(encodedLocation, { trigger: false })
 	}
 });

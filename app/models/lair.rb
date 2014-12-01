@@ -36,7 +36,7 @@ class Lair < ActiveRecord::Base
 		# add checkin & checkout search. Also see if near is lazy
 
 		default_options = {
-			query: nil,
+			location: nil,
 			page: 1,
 			lair_type: ['underground', 'fortress', 'office'],
 			price_min: 10,
@@ -46,9 +46,8 @@ class Lair < ActiveRecord::Base
 
 		search_options = default_options.merge(input_options.symbolize_keys)
 
-
-		if search_options[:query]
-			Lair.near(search_options[:query], 100).where(lair_type: search_options[:lair_type],
+		if search_options[:location]
+			Lair.near(search_options[:location], 100).where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])

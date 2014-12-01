@@ -1,22 +1,16 @@
 LairBnB.Views.Sidebar = Backbone.CompositeView.extend({
-	initialize: function(){
+	initialize: function(options){
+		this.params = options.params;
 		var lairsIndexView = new LairBnB.Views.LairsIndex();
 		this.addSubview('#lairs-index', lairsIndexView);
 	},
 	template: JST['sidebar'],
 	render: function(){
-		var content = this.template();
+		var content = this.template({
+			fieldValues: this.params
+		});
 		this.$el.html(content);
 		this.attachSubviews();
 		return this;
-	},
-	// events:{
-	// 	'change input': 'handleSubmit'
-	// },
-
-	// handleSubmit: function(event){
-	// 	event.preventDefault();
-	// 	console.log('sup')
-	// },
-
+	}
 });

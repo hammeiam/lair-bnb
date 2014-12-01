@@ -12,8 +12,13 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 	},
 
 	main: function(locationQuery, params){
+		// if(!locationQuery){
+		// 	var locationVal = {};
+		// } else {
+		// 	var locationVal = { location: locationQuery };
+		// }
 		var view = new LairBnB.Views.Main({
-			location: {location: locationQuery},
+			location: locationQuery,
 			router: this,
 			params: params
 		});
