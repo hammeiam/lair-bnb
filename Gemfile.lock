@@ -79,6 +79,8 @@ GEM
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.2.2)
+    filepicker-rails (1.2.0)
+      rails (>= 3.2)
     geocoder (1.2.6)
     hike (1.2.3)
     i18n (0.6.11)
@@ -172,6 +174,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.1)
   byebug
   coffee-rails (~> 4.0.0)
+  filepicker-rails
   geocoder
   jbuilder (~> 2.0)
   jquery-rails

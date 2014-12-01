@@ -45,6 +45,7 @@ gem 'jquery-ui-rails'
 gem 'json'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.6'
+gem 'filepicker-rails'
 
 group :development do
 	gem 'better_errors'
