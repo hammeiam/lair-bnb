@@ -9,6 +9,14 @@ LairBnB.Views.Sidebar = Backbone.CompositeView.extend({
 		this.$el.html(content);
 		this.attachSubviews();
 		return this;
-	}
+	},
+	// events:{
+	// 	'change input': 'handleSubmit'
+	// },
+
+	// handleSubmit: function(event){
+	// 	event.preventDefault();
+	// 	console.log('sup')
+	// },
 
 });

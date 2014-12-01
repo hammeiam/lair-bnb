@@ -8,14 +8,14 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 	},
 
 	routes: {
-		'(:query)': 'main'
+		'(:locationQuery)': 'main'
 	},
 
-	main: function(query){
+	main: function(locationQuery, params){
 		var view = new LairBnB.Views.Main({
-			query: query,
-			router: this
-			// pass in router?
+			location: {location: locationQuery},
+			router: this,
+			params: params
 		});
 		this.$rootEl.html(view.render().$el);
 	}

@@ -18,10 +18,10 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     var map = this.map;
 
     // recenter map when window resizes
-    var getCen = map.getCenter();
-    google.maps.event.addDomListener(window, 'resize', function() {
-      map.setCenter(getCen);
-    });
+    // var getCen = map.getCenter();
+    // google.maps.event.addDomListener(window, 'resize', function() {
+    //   map.setCenter(getCen);
+    // });
   },
 
   renderMarkers: function(){

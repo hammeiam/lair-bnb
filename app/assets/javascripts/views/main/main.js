@@ -1,9 +1,10 @@
 LairBnB.Views.Main = Backbone.CompositeView.extend({
 	initialize: function(options){
-		this.query = options.query;
+    var filters = this.parseParams(options.params);
+		var location = options.location;
+    this.collectionFilterParams = $.extend({}, location, filters)
 
 		var navView = new LairBnB.Views.Nav({
-      // el: '#main-content',
       router: options.router,
       query: options.query
     });
@@ -16,10 +17,22 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 		this.addSubview('#sidebar-container', sidebarView);
 	},
 
+  events: {
+    'change input': 'updateCollection'
+  },
+
+  updateCollection: function(event){
+    // prevent default, update url, update filterparams, fetch collection
+    event.preventDefault();
+    var $field = $(event.currentTarget)
+    debugger
+    // this.router.navigate(, { trigger: false })
+    console.log($field.val())
+  },
+
   template: JST['main'],
 
   id: 'main-content',
-  // tagName: 'main',
 
   render: function(){
   	var content = this.template({
@@ -28,5 +41,18 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
   	this.$el.html(content);
   	this.attachSubviews();
   	return this;
+  },
+
+  parseParams: function(params){
+    var output = {};
+    // check if params is not null, undefined, or empty
+    if(!!params){
+      paramsArr = params.split('&');
+      for(var i = 0; i < paramsArr.length ; i++){
+        var paramPair = paramsArr[i].split('=');
+        output[paramPair[0]] = paramPair[1];
+      }
+    }
+    return output;
   }
 });
