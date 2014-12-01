@@ -1,7 +1,10 @@
 LairBnB.Views.Main = Backbone.CompositeView.extend({
 	initialize: function(options){
     var filters = this.parseParams(options.params);
-    var decodedLocation = decodeLocationUrl(options.location);
+    var decodedLocation = undefined;
+    if(options.location){
+      decodedLocation = decodeLocationUrl(options.location);
+    } 
     this.collectionFilterParams = $.extend({}, {location: decodedLocation}, filters);
     this.router = options.router;
 
@@ -21,7 +24,8 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 	},
 
   events: {
-    'change input': 'updateCollection'
+    // 'change input': 'updateCollection'
+    'change input': 'handleUpdate'
   },
 
   template: JST['main'],
@@ -34,14 +38,19 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     });
     this.$el.html(content);
     this.attachSubviews();
+    this.updateCollection();
     return this;
   },
 
-  updateCollection: function(event){
+  handleUpdate: function(event){
     // prevent default, update url, update filterparams, fetch collection
     event.preventDefault();
-    var $field = $(event.currentTarget)
+    var $field = $(event.currentTarget);
     this.updateViewVariables($field);
+    this.updateCollection();
+  },
+
+  updateCollection: function(){
     var collectionParams = this.collectionFilterParams;
     LairBnB.lairs.fetch({
       data: {
@@ -64,17 +73,6 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     return output;
   },
 
-  updateURI: function(locationStr){
-    // append all params except location
-    var tempParams = jQuery.extend({}, this.collectionFilterParams);
-    delete tempParams['location'];
-    var filterParamsStr = $.param(tempParams); 
-    if(!!filterParamsStr){
-      filterParamsStr = '?' + filterParamsStr;
-    };
-    this.router.navigate(locationStr + filterParamsStr, { trigger: false });
-  },
-
   updateViewVariables: function($field){
     var key = $field.attr('name');
     var val = $field.val();
@@ -86,9 +84,21 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
       locationStr = encodedLocation;
     } else {
       // this.collectionFilterParams[key] = val;
-      locationStr = this.collectionFilterParams['location']; //Backbone.history.fragment.split('?')[0];
+      locationStr = urlEncodeLocation(this.collectionFilterParams['location']);
     }
     this.collectionFilterParams[key] = val;
     this.updateURI(locationStr);
+  },
+
+  updateURI: function(locationStr){
+    // append all params except location
+    var tempParams = jQuery.extend({}, this.collectionFilterParams);
+    delete tempParams['location'];
+    var filterParamsStr = $.param(tempParams); 
+    if(!!filterParamsStr){
+      filterParamsStr = '?' + filterParamsStr;
+    };
+    this.router.navigate(locationStr + filterParamsStr, { trigger: false });
   }
+
 });
