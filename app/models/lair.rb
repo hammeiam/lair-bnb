@@ -21,6 +21,8 @@
 #
 
 class Lair < ActiveRecord::Base
+	has_many :images, as: :imageable, dependent: :destroy
+	accepts_nested_attributes_for :images
 	validates :title, :description, :rate, :owner_id, :lair_type, 
 	:room_type, :street_address, :city, :state, :country,
 	presence: true

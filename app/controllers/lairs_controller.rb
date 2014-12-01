@@ -6,9 +6,9 @@ class LairsController < ApplicationController
 	def create
 		@lair = Lair.new(lair_params)
 		if @lair.save
-			redirect_to lairs_url(@lair)
+			redirect_to lair_url(@lair)
 		else
-			flash.now[:errors] = @user.errors.full_messages
+			flash.now[:errors] = @lair.errors.full_messages
 			render :new
 		end
 	end	
@@ -29,13 +29,16 @@ class LairsController < ApplicationController
 		else
 			@lairs = Lair.search()
 		end
-		render json: @lairs
+		respond_to do |format|
+			format.html {render json: Lair.all}
+			format.json {render json: @lairs}
+		end
 	end
 
 	def lair_params
 		params.require(:lair).permit(:title, :description, :rate, :owner_id, 
-			:lair_type, :room_type, :street_address, :city, :state, :country, 
-			:latitude, :longitude)
+			:lair_type, :room_type, :max_guests, :street_address, :city, :state, :country, 
+			:latitude, :longitude, image_attributes: [:id, :filepicker_url, :alt_tag])
 	end
 
 	def search_params

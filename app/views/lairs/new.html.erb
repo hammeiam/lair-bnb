@@ -1,0 +1,57 @@
+<form action="<%= lairs_url %>" method="POST">
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  <label for='title'>Title</label>
+  <input id='title' type='text' name='lair[title]' value='<%= @lair.title %>'>
+  <br>
+
+  <label for='description'>Description</label>
+  <input id='description' type='text' name='lair[description]' value='<%= @lair.description %>'>
+  <br>
+  
+  <label for='rate'>Rate</label>
+  <input id='rate' type='number' name='lair[rate]' value='<%= @lair.rate %>'>
+  <br>
+  
+  <label for='max_guests'>max_guests</label>
+  <input id='max_guests' type='number' name='lair[max_guests]' value='<%= @lair.max_guests %>'>
+  <br>
+
+  <label for='owner_id'>owner_id</label>
+  <input id='owner_id' type='number' name='lair[owner_id]' value='<%= @lair.owner_id %>'>
+  <br>
+
+  <label for="lair_type">Room Type</label>
+    <input type="radio" name="lair[lair_type]" value="underground">underground
+    <input type="radio" name="lair[lair_type]" value="fortress">fortress
+    <input type="radio" name="lair[lair_type]" value="office">office
+  <br>
+
+  <label for="room_type">Room Type</label>
+    <input type="radio" name="lair[room_type]" value="entire-hq">Entire HQ
+    <input type="radio" name="lair[room_type]" value="private-room">Private
+    <input type="radio" name="lair[room_type]" value="shared-room">Shared
+  <br>
+
+  <label for='street_address'>street_address</label>
+  <input id='street_address' type='text' name='lair[street_address]' value='<%= @lair.street_address %>'>
+  <br>
+
+  <label for='city'>city</label>
+  <input id='city' type='text' name='lair[city]' value='<%= @lair.city %>'>
+  <br>
+
+  <label for='state'>state</label>
+  <input id='state' type='text' name='lair[state]' value='<%= @lair.state %>'>
+  <br>
+
+  <label for='country'>country</label>
+  <input id='country' type='text' name='lair[country]' value='<%= @lair.country %>'>
+  <br>
+
+  <label for='image'>Images</label>
+  <input type="filepicker" name="lair[filepicker_url]">
+  
+  <input type="submit" value="Create Your Lair">
+  
+</form>
