@@ -17,11 +17,13 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		// } else {
 		// 	var locationVal = { location: locationQuery };
 		// }
+		console.log(locationQuery)
 		var view = new LairBnB.Views.Main({
 			location: locationQuery,
 			router: this,
 			params: params
 		});
 		this.$rootEl.html(view.render().$el);
+		prepareSlider();
 	}
 });

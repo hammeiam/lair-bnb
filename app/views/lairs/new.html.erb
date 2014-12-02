@@ -21,7 +21,7 @@
   <input id='owner_id' type='number' name='lair[owner_id]' value='<%= @lair.owner_id %>'>
   <br>
 
-  <label for="lair_type">Room Type</label>
+  <label for="lair_type">Lair Type</label>
     <input type="radio" name="lair[lair_type]" value="underground">underground
     <input type="radio" name="lair[lair_type]" value="fortress">fortress
     <input type="radio" name="lair[lair_type]" value="office">office
@@ -49,8 +49,16 @@
   <input id='country' type='text' name='lair[country]' value='<%= @lair.country %>'>
   <br>
 
-  <label for='image'>Images</label>
-  <input type="filepicker" name="lair[filepicker_url]">
+  <label for='images'>Images</label>
+  <input type="filepicker" 
+    id="images"
+    name="lair[image_urls]"
+    data-fp-option-multiple="true">
+    <!-- <input type="filepicker" 
+    id="images"
+    name="images[filepicker_url][]"
+    data-fp-option-multiple="true"> -->
+
   
   <input type="submit" value="Create Your Lair">
   

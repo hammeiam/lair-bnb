@@ -28,7 +28,7 @@ class Lair < ActiveRecord::Base
 	presence: true
 	geocoded_by :full_street_address   # can also be an IP address
 	after_validation :geocode          # auto-fetch coordinates
-	self.per_page = 2
+	self.per_page = 4
 
 	def full_street_address
 		[street_address, city, state, country].compact.join(', ')
@@ -58,6 +58,15 @@ class Lair < ActiveRecord::Base
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
+		end
+	end
+
+	def image_urls=(image_params)
+		urls = image_params.split(',')
+		self.class.transaction do
+			urls.each do |url|
+	      self.images.new(filepicker_url: url) 
+			end
 		end
 	end
 end

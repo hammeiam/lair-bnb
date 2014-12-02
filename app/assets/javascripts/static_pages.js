@@ -28,6 +28,7 @@
 //     console.log('Input 1: ' + $('input[name="location"]').val()); // etc.
 //   });
 // });
+
 var urlEncodeLocation = function(location){
 	return location.replace(/[-]/g, '~').replace(/[ ,\/]/g, '-').replace(/[.]/g, '%252E');
 }
@@ -36,7 +37,7 @@ var decodeLocationUrl = function(query){
 	return query.replace(/--/g, ', ').replace(/-/g, ' ');
 }
 
-$('#sidebar-container').ready(function() {
+function prepareSlider () {
 	$("#slider").noUiSlider({
 		start: [10, 1000],
 		connect: true,
@@ -46,8 +47,8 @@ $('#sidebar-container').ready(function() {
 		},
 		step: 10,
 		format: wNumb({
-		decimals: 0
-	}),
+			decimals: 0
+		})
 	});
 
 	$('#slider').Link('lower').to($('#min-price'));
@@ -57,6 +58,4 @@ $('#sidebar-container').ready(function() {
 
 		$('#check-out-date').focus();
 	})
-});
-
-// window.onload = function(){ initialize() }
+}
