@@ -11,6 +11,7 @@
 #  num_guests     :integer          not null
 #  created_at     :datetime
 #  updated_at     :datetime
+#  accepted       :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

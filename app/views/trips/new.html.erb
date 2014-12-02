@@ -1,0 +1,15 @@
+<form action="<%= trips_url %>" method="POST">
+  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  <label>Dates
+    <input type="text" id="check-in-date" name="trip[check_in_date]" placeholder="Check In">
+    <input type="text" id="check-out-date" name="trip[check_out_date]" placeholder="Check Out">
+    <select id="guests" name="trip[num_guests]">
+      <option value="1">1 Guest</option>
+      <%# add guests until i = liar.max_guests %>
+    </select>
+  </label><br>
+  
+  <input type="submit" value="Request to Book">
+  
+</form>
