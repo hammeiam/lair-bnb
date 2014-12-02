@@ -1,3 +1,3 @@
 LairBnB.Models.Lair = Backbone.Model.extend({
-	url: 'lairs'
+	urlRoot: 'http://localhost:3000/lairs'
 });

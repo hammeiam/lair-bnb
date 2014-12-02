@@ -80,7 +80,7 @@ html, body{
 .slider-container{
 	width:100%;
 	height:500px;
-	background-color:pink;
+	background-color:rgba(0,0,0,0.9);
 	overflow: hidden;
 
 	img{
@@ -92,16 +92,9 @@ html, body{
 	  position:absolute;
     top:0;
     bottom:0;
-		// vertical-align: center;
-  //   display: block;
-  //   // width: auto;
-  //   max-width: 100%;
-  //   height: auto;
-  //   max-height: 100%;
     margin: auto;
-
-    
 	}
+
 	button{
 		text-transform: none;
 		background: none;
@@ -121,7 +114,7 @@ html, body{
 	}
 
 	.right{
-		right:0;
+		right:20px;
 		font-size: 75px;
 		color: white;
 		position: absolute;
