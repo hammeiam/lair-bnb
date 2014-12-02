@@ -125,7 +125,6 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
       this.router.navigate(locationStr + filterParamsStr, { trigger: false });
     } else {
       this.router.navigate(filterParamsStr, { trigger: false });
-    }
-    
+    }    
   }
 });

@@ -15,9 +15,9 @@
 //= require underscore
 //= require backbone
 //= require bootstrap-sprockets
-//= require backbone.googlemaps-min
 //= require lair_bn_b
 //= require jquery.nouislider.all.min.js
+//= require jquery.slick
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models

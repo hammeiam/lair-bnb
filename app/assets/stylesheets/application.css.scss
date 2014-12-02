@@ -18,6 +18,7 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "slick";
 
 html, body{
 	margin: 0;
@@ -69,3 +70,72 @@ html, body{
 	min-width: 200px;
 	float: left;
 }
+
+// SLIDESHOW //
+
+.slick-prev:before{
+
+}
+
+.slider-container{
+	width:100%;
+	height:500px;
+	background-color:pink;
+	overflow: hidden;
+
+	img{
+	  display: block;
+	  width:100%;
+	  max-width: 100%;
+	  height: auto !important;
+	  width: auto\9; /* ie8+9 */
+	  position:absolute;
+    top:0;
+    bottom:0;
+		// vertical-align: center;
+  //   display: block;
+  //   // width: auto;
+  //   max-width: 100%;
+  //   height: auto;
+  //   max-height: 100%;
+    margin: auto;
+
+    
+	}
+	button{
+		text-transform: none;
+		background: none;
+		outline-style: none;
+		border: none;
+	}
+
+	.left{
+		left:0;
+		font-size: 75px;
+		color: white;
+		position: absolute;
+		text-shadow: 0 0 10px rgba(0,0,0,0.8);
+		z-index: 10;
+		height: 100%;
+		width: 75px;
+	}
+
+	.right{
+		right:0;
+		font-size: 75px;
+		color: white;
+		position: absolute;
+		text-shadow: 0 0 10px rgba(0,0,0,0.8);
+		z-index: 10;
+		height: 100%;
+		width: 75px;
+	}
+	.slick-slider, .slick-track, .slick-list{
+		height: inherit;
+	}
+	.slick-slide{
+		position: relative;
+	}
+
+}
+

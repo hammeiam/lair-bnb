@@ -8,7 +8,6 @@ window.LairBnB = {
       $rootEl: $('#content-wrapper')
     });
     Backbone.history.start({
-      pushState: true,
       root: '/s/'
     });
   }
