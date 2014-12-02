@@ -41,12 +41,12 @@ gem 'newrelic_rpm'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5'
 gem 'json'
 gem 'geocoder'
 gem 'will_paginate', '~> 3.0.6'
 gem 'filepicker-rails'
-gem "jquery-slick-rails"
+gem 'jquery-slick-rails'
 
 group :development do
 	gem 'better_errors'

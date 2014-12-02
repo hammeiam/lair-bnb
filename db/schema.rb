@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201093921) do
+ActiveRecord::Schema.define(version: 20141202183411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,21 @@ ActiveRecord::Schema.define(version: 20141201093921) do
   add_index "lairs", ["owner_id"], name: "index_lairs_on_owner_id", using: :btree
   add_index "lairs", ["rate"], name: "index_lairs_on_rate", using: :btree
   add_index "lairs", ["room_type"], name: "index_lairs_on_room_type", using: :btree
+
+  create_table "trips", force: true do |t|
+    t.integer  "host_id",        null: false
+    t.integer  "guest_id",       null: false
+    t.integer  "lair_id",        null: false
+    t.date     "check_in_date",  null: false
+    t.date     "check_out_date", null: false
+    t.integer  "num_guests",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trips", ["guest_id"], name: "index_trips_on_guest_id", using: :btree
+  add_index "trips", ["host_id"], name: "index_trips_on_host_id", using: :btree
+  add_index "trips", ["lair_id"], name: "index_trips_on_lair_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",      null: false

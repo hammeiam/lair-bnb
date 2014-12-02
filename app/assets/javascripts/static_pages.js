@@ -54,8 +54,34 @@ function prepareSlider () {
 	$('#slider').Link('lower').to($('#min-price'));
 	$('#slider').Link('upper').to($('#max-price'));
 
-	$('#check-in-date').change(function(){
-
-		$('#check-out-date').focus();
-	})
 }
+
+function initDatePicker(view, dates) {
+	function restrictDates(date){
+		if(!dates){
+			dates = [];
+		}
+		// var array = ["2014-12-14","2014-12-15","2014-12-16"];
+		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+      return [ dates.indexOf(string) == -1 ]
+  };
+
+  view.$( "#check-in-date" ).datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    beforeShowDay: restrictDates,
+    onClose: function( selectedDate ) {
+      view.$( "#check-out-date" ).datepicker( "option", "minDate", selectedDate );
+    }
+  });
+  view.$( "#check-out-date" ).datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    beforeShowDay: restrictDates,
+    onClose: function( selectedDate ) {
+      view.$( "#check-in-date" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+};

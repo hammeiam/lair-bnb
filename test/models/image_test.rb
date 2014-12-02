@@ -8,6 +8,7 @@
 #  imageable_id   :integer          not null
 #  created_at     :datetime
 #  updated_at     :datetime
+#  imageable_type :string(255)
 #
 
 require 'test_helper'

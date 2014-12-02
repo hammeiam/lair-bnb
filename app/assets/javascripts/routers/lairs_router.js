@@ -15,5 +15,6 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		});
 		this.$rootEl.html(view.render().$el);
 		prepareSlider();
+		
 	}
 });

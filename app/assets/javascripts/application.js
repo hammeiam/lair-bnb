@@ -18,6 +18,7 @@
 //= require lair_bn_b
 //= require jquery.nouislider.all.min.js
 //= require jquery.slick
+//= require jquery-ui/datepicker
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models
