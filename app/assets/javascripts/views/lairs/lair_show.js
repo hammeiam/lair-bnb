@@ -1,7 +1,8 @@
-LairBnB.Views.LairShow = Backbone.View.extend({
+LairBnB.Views.LairShow = Backbone.CompositeView.extend({
+	initialize: function(){
+		this.listenTo(this.model, 'sync', this.render);
+	},
 	template: JST['lairs/show'],
-	tagName: 'li',
-	className: 'lair-result',
 	render: function(){
 		var content = this.template({
 			lair: this.model

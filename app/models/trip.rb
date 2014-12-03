@@ -31,7 +31,7 @@ class Trip < ActiveRecord::Base
 
 	def preprocess_fields
 		convert_dates
-		self.host_id = Lair.find(self.)
+		#self.host_id = Lair.find(self.)
 	end
 
 	def convert_dates

@@ -16,7 +16,7 @@ LairBnB.Views.LairsIndex = Backbone.CompositeView.extend({
   },
 
   addLair: function(lair){
-  	var view = new LairBnB.Views.LairShow({
+  	var view = new LairBnB.Views.LairIndexItem({
   		model: lair
   	});
   	this.addSubview('.lairs-list', view);

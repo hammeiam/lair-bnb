@@ -21,11 +21,14 @@
 #
 
 class Lair < ActiveRecord::Base
+	belongs_to :owner, class_name: 'User', foreign_key: :owner_id, primary_key: :id
+	has_many :trips, dependent: :destroy
+	has_many :guests, through: :trips, source: :guest
 	has_many :images, as: :imageable, dependent: :destroy
 	accepts_nested_attributes_for :images
+
 	validates :title, :description, :rate, :owner_id, :lair_type, 
-	:room_type, :street_address, :city, :state, :country,
-	presence: true
+		:room_type, :street_address, :city, :state, :country, presence: true
 	geocoded_by :full_street_address   # can also be an IP address
 	after_validation :geocode          # auto-fetch coordinates
 	self.per_page = 4

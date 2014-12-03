@@ -4,12 +4,17 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 	},
 
 	routes: {
-		'lairs/:lairId': 'lairShow',
+		'lairs/:lairId': 'lairShowAction',
 		'search/(:locationQuery)': 'main'
 	},
 
-	lairShow: function(lairId){
-		console.log('')
+	lairShowAction: function(lairId){
+		var lair = LairBnB.lairs.getOrFetch(lairId)
+		var view = new LairBnB.Views.LairShow({
+			model: lair
+		})
+		this.$rootEl.html(view.render().$el);
+		prepareSlider();
 	},
 
 	main: function(locationQuery, params){

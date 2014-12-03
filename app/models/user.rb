@@ -13,6 +13,11 @@
 #
 
 class User < ActiveRecord::Base
+	has_many :owned_lairs, class_name: 'Lair', foreign_key: :owner_id
+	has_many :trips, foreign_key: :guest_id
+	has_many :visited_lairs, through: :trips, source: :lair
+	#has_many :reservations, class_name: 'Trip', foreign_key: 
+
 	attr_reader :password
 	validates :first_name, :last_name, :email, :password_digest, 
 		:session_token, presence: true
