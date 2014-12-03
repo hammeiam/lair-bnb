@@ -61,22 +61,23 @@ function initDatePicker(view, dates) {
 		if(!dates){
 			dates = [];
 		}
-		// var array = ["2014-12-14","2014-12-15","2014-12-16"];
+		// var array = ["2014-12-14","2014-12-15","2014-12-16"]; this is the correct format.
 		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
       return [ dates.indexOf(string) == -1 ]
   };
 
   view.$( "#check-in-date" ).datepicker({
-    defaultDate: "+1w",
+    defaultDate: 0,
     changeMonth: true,
     numberOfMonths: 1,
+    minDate: 0,
     beforeShowDay: restrictDates,
     onClose: function( selectedDate ) {
       view.$( "#check-out-date" ).datepicker( "option", "minDate", selectedDate );
     }
   });
   view.$( "#check-out-date" ).datepicker({
-    defaultDate: "+1w",
+    defaultDate: "+1D",
     changeMonth: true,
     numberOfMonths: 1,
     beforeShowDay: restrictDates,

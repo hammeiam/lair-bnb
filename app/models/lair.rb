@@ -51,26 +51,32 @@ class Lair < ActiveRecord::Base
 		search_options = default_options.merge(input_options.symbolize_keys)
 
 		if search_options[:location]
-			Lair.near(search_options[:location], 100).where(lair_type: search_options[:lair_type],
+			result = Lair.near(search_options[:location], 100).where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 		else
-			Lair.where(lair_type: search_options[:lair_type],
+			result = Lair.where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 		end
+
+		if result.count == 0
+			return Lair.all.page(search_options[:page])
+		else
+			return result
+		end
 	end
 
 	def unavailable_dates
-		output = []
+		result = []
 		self.trips.each do |t| 
 			if t.accepted
-				 output += (t.check_in_date..t.check_out_date).to_a
+				 result += (t.check_in_date..t.check_out_date).to_a
 			end
 		end
-		return output
+		return result.map{ |date| date.to_s }
 	end
 
 	def image_urls=(image_params)
