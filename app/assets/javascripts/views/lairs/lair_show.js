@@ -17,8 +17,10 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 			owner: this.model.get(['owner'])
 		});
 		this.$el.html(content);
-		this.initSlider(this);
 		this.attachSubviews();
+		this.initSlider(this);
+		initDatePicker(this, this.model.escape(['unavailable_dates']));
+		debugger
 		return this;
 	},
 

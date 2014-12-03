@@ -2,30 +2,45 @@
 
 <div class="slider-container-main">
   <div class="lazy">
-  <% var images =  lair.get(['images']) %>
-  <% if(!!images){ %>
-  <% $.each(images , function(idx, image){ %>
-    <div><img data-lazy="<%= image.image_url %>"/></div>
-  <% }) %>
-  <% } %>
+    <% var images =  lair.get(['images']) %>
+    <% if(!!images){ %>
+      <% $.each(images , function(idx, image){ %>
+        <div><img data-lazy="<%= image.image_url %>"/></div>
+      <% }) %>
+    <% } %>
   </div>
 </div>
 <div class="info-bar">
   <div class="user-info">
-  <% if(!!owner){ %>
-  <div class="circle">
-    <img class="profile-img" src="<%= owner.profile_image_url %>"/>
-  </div>
-  <p><%= owner.first_name %> <%= owner.last_name %></p>
+    <% if(!!owner){ %>
+      <div class="circle">
+        <img class="profile-img" src="<%= owner.profile_image_url %>"/>
+      </div>
+      <p><%= owner.first_name %> <%= owner.last_name %></p>
     <% } %>
   </div>
   <div class="lair-info">
     <h3><%= lair.escape('title') %></h3>
     <p><%= lair.escape('city') %>, <%= lair.escape('state') %>, <%= lair.escape('country') %></p>
-
+    <p>Lair Type: <%= lair.escape(['lair_type']) %></p>
+  </div>
+  <div class="lair-description">
+    <h5>About This Lair</h5>
+    <p><%= lair.escape(['description']) %></p>
   </div>
 </div>
-
-<script>
-  
-</script>
+<div class="reservation-panel">
+    <div class="price-bar">
+      <p><%= lair.escape(['description']) %> Per Night</p>
+    </div>
+    <form>
+      <input type="text" id="check-in-date" name="check_in_date" placeholder="Check In">
+      <input type="text" id="check-out-date" name="check_out_date" placeholder="Check Out">
+      <select id="guests">
+        <option value="1">1 Guest</option>
+        <% for(var i = 2; i <= lair.escape(['max_guests']); i++){ %>
+        <option value="<%= i %>"><%= i %> Guests</option>
+        <% } %>
+      </select>      
+    </form>
+</div>
