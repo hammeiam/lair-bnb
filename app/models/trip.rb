@@ -19,10 +19,6 @@ class Trip < ActiveRecord::Base
 	validate :no_overlapping_trips
 	before_validation :preprocess_fields
 
-	belongs_to :host,
-	class_name: 'User',
-	foreign_key: :host_id
-
 	belongs_to :guest,
 	class_name: 'User',
 	foreign_key: :guest_id

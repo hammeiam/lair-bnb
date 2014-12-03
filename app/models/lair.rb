@@ -39,7 +39,6 @@ class Lair < ActiveRecord::Base
 
 	def self.search(input_options = {})
 		# add checkin & checkout search. Also see if near is lazy
-
 		default_options = {
 			location: nil,
 			page: 1,

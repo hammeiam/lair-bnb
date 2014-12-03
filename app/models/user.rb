@@ -13,16 +13,17 @@
 #
 
 class User < ActiveRecord::Base
+	attr_reader :password
+
 	has_many :owned_lairs, class_name: 'Lair', foreign_key: :owner_id
 	has_many :trips, foreign_key: :guest_id
 	has_many :visited_lairs, through: :trips, source: :lair
-	#has_many :reservations, class_name: 'Trip', foreign_key: 
+	has_many :reservations, through: :owned_lairs, source: :trips
 
-	attr_reader :password
+	before_validation :ensure_session_token
 	validates :first_name, :last_name, :email, :password_digest, 
 		:session_token, presence: true
 	validates :password, length: { minimum: 6, allow_nil: true }
-	before_validation :ensure_session_token
 
 	def password=(password)
 		@password = password
