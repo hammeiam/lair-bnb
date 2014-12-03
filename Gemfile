@@ -53,6 +53,7 @@ group :development do
 	gem 'byebug'
 	gem 'binding_of_caller'
 	gem 'annotate'
+	gem 'seed_dump'
 end
 
 gem 'rails_12factor', group: :production

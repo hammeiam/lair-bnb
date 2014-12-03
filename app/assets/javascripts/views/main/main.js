@@ -33,10 +33,6 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 
   id: 'main-content',
 
-  sliderMove: function(event){
-    console.log($(event.currentTarget).val());
-  },
-
   render: function(){
     var content = this.template({
       query: this.query
@@ -92,8 +88,20 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     if(!!params){
       paramsArr = params.split('&');
       for(var i = 0; i < paramsArr.length ; i++){
-        var paramPair = paramsArr[i].split('=');
-        output[paramPair[0]] = paramPair[1];
+        var urlDecodedParam = decodeURIComponent(paramsArr[i]);
+        var paramPair = urlDecodedParam.split('=');
+        // output[paramPair[0]] = paramPair[1];
+        var key = paramPair[0];
+        var val = paramPair[1];
+        if(key === 'lair_type[]'){
+          if(!!output['lair_type']){
+            output['lair_type'].push(val);
+          }else{
+            output['lair_type'] = [val];
+          }
+        }else{
+          output[key] = val;
+        }
       }
     }
     return output;

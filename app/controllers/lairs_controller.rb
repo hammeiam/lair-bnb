@@ -15,7 +15,9 @@ class LairsController < ApplicationController
 	end	
 
 	def show
-		@lair = Lair.find(params[:id]) #.includes(:trips)
+		@lair = Lair.find(params[:id])
+		# render "show"
+		render json: @lair.to_json(include: :images)
 	end
 
 	def edit
@@ -43,7 +45,8 @@ class LairsController < ApplicationController
 	end
 
 	def search_params
-		params.require(:search).permit(:title, :description, :rate,  
-			:room_type, :location, :price_min, :price_max, :page, lair_type: [])
+		params.require(:search).permit(:title, :description, 
+			:rate, :room_type, :location, :price_min, :price_max, 
+			:page, :check_in_date, :check_out_date, lair_type: [])
 	end
 end

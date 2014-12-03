@@ -37,8 +37,8 @@ var decodeLocationUrl = function(query){
 	return query.replace(/--/g, ', ').replace(/-/g, ' ');
 }
 
-function prepareSlider () {
-	$("#slider").noUiSlider({
+function prepareSlider (view) {
+	view.$("#slider").noUiSlider({
 		start: [10, 1000],
 		connect: true,
 		range: {
@@ -51,8 +51,8 @@ function prepareSlider () {
 		})
 	});
 
-	$('#slider').Link('lower').to($('#min-price'));
-	$('#slider').Link('upper').to($('#max-price'));
+	view.$('#slider').Link('lower').to(view.$('#min-price'));
+	view.$('#slider').Link('upper').to(view.$('#max-price'));
 
 }
 
@@ -86,3 +86,23 @@ function initDatePicker(view, dates) {
     }
   });
 };
+
+function fillFields(params, view){
+
+	var priceArr = [null, null];
+	$.each(params, function(key, val){
+		if(key === 'price_min'){
+			priceArr[0] = val;
+		}
+		else if(key === 'price_max'){
+			priceArr[1] = val;
+		}
+		else if(key === 'lair_type[]'){
+		view.$("[value=" + val + "]").prop('checked', true);
+		}
+		else{
+			view.$("[name=" + key + "]").val(val);
+		}
+	});
+	view.$('#slider').val(priceArr);
+}

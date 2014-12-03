@@ -13,6 +13,8 @@ LairBnB.Views.Sidebar = Backbone.CompositeView.extend({
 		});
 		this.$el.html(content);
 		this.attachSubviews();
+		prepareSlider(this);
+		fillFields(this.params, this);
 		initDatePicker(this);
 		return this;
 	}

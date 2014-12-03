@@ -61,6 +61,9 @@ class Lair < ActiveRecord::Base
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 		end
+		a = search_options[:check_out_date]
+
+		# byebug
 
 		if result.count == 0
 			return Lair.all.page(search_options[:page])
@@ -76,7 +79,11 @@ class Lair < ActiveRecord::Base
 				 result += (t.check_in_date..t.check_out_date).to_a
 			end
 		end
-		return result.map{ |date| date.to_s }
+		return result
+	end
+
+	def unavailable_dates_strings
+		unavailable_dates.map{ |date| date.to_s }
 	end
 
 	def image_urls=(image_params)
