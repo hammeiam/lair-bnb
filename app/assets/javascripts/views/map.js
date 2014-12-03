@@ -3,7 +3,8 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
 
   initialize: function() {
   	window.view = this;
-    this.listenTo(LairBnB.lairs, 'sync', this.renderMarkers)
+    this.listenTo(LairBnB.lairs, 'sync', this.renderMarkers);
+    this.markers = [];
   },
 
   initMap: function(){
@@ -25,6 +26,7 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
   },
 
   renderMarkers: function(){
+    this.removeMarkers();
     var that = this;
     var mapBounds = new google.maps.LatLngBounds();
     _.each(LairBnB.lairs.models, function(lair){
@@ -46,15 +48,22 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     var map = this.map;
     var marker = new google.maps.Marker({
       position: latlng,
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP
     });
     marker.setMap(map);
+    this.markers.push(marker);
+  },
+
+  removeMarkers: function(){
+    _.each(this.markers, function(marker){
+      marker.setMap(null);
+    });
+    
   },
 
   render: function(){
   	this.initMap();
-
-    // this.renderMarkers()
   	return this;
   }
 });

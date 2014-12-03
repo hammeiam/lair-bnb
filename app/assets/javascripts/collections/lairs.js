@@ -1,5 +1,5 @@
 LairBnB.Collections.Lairs = Backbone.Collection.extend({
-	url: 'http://localhost:3000/lairs',
+	url: 'lairs',
   model: LairBnB.Models.Lair,
   getOrFetch: function(id){
   	var model = this.get(id);

@@ -1,0 +1,22 @@
+<div id="nav-container"></div>
+
+<div class="slider-container-main">
+  <div class="lazy">
+  <% var images =  lair.get(['images']) %>
+  <% if(!!images){ %>
+  <% $.each(images , function(idx, image){ %>
+    <div><img data-lazy="<%= image.filepicker_url %>"/></div>
+  <% }) %>
+  <% } %>
+  </div>
+</div>
+
+<div class="user-info"></div>
+<div class="lair-info">
+  <h3><%= lair.escape('title') %></h3>
+  <p><%= lair.escape('full_street_address') %></p>
+</div>
+
+<script>
+  
+</script>

@@ -34,7 +34,7 @@ class LairsController < ApplicationController
 		end
 		respond_to do |format|
 			format.html { render json: Lair.all }
-			format.json { render json: @lairs } 
+			format.json { render json: @lairs.to_json(include: :images) } 
 		end
 	end
 

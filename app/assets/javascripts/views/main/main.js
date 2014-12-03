@@ -9,7 +9,6 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     this.router = options.router;
 
 		var navView = new LairBnB.Views.Nav({
-      router: options.router,
       locationField: decodedLocation
     });
     this.addSubview('#nav-container', navView);

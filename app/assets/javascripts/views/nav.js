@@ -6,7 +6,6 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	},
 
 	initialize: function(options){
-		this.router = options.router;
 		this.locationField = options.locationField;
 	},
 
