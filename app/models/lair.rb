@@ -63,6 +63,16 @@ class Lair < ActiveRecord::Base
 		end
 	end
 
+	def unavailable_dates
+		output = []
+		self.trips.each do |t| 
+			if t.accepted
+				 output += (t.check_in_date..t.check_out_date).to_a
+			end
+		end
+		return output
+	end
+
 	def image_urls=(image_params)
 		urls = image_params.split(',')
 		self.class.transaction do

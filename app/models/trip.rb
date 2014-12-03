@@ -17,7 +17,7 @@
 class Trip < ActiveRecord::Base
 	validates :check_in_date, :check_out_date, :num_guests, presence: true
 	validate :no_overlapping_trips
-	before_validation :preprocess_fields
+	before_create :convert_dates
 
 	belongs_to :guest,
 	class_name: 'User',
@@ -25,24 +25,25 @@ class Trip < ActiveRecord::Base
 
 	belongs_to :lair
 
-	def preprocess_fields
-		convert_dates
-		#self.host_id = Lair.find(self.)
-	end
-
 	def convert_dates
 		self.check_in_date = Date.strptime(@attributes['check_in_date'], '%m/%d/%Y')
 		self.check_out_date = Date.strptime(@attributes['check_out_date'], '%m/%d/%Y')
 	end
 
 	def no_overlapping_trips
-		Trip.where("
-			lair_id = :lair_id 
-			AND (trips.check_in_date BETWEEN :new_check_in AND :new_check_out
-			OR trips.check_out_date BETWEEN :new_check_in AND :new_check_out)",
-			{ lair_id: self.lair_id, new_check_in: self.check_in_date, 
-				new_check_out: self.check_out_date }
-		)
+		 if Trip.where("
+				trips.lair_id = :lair_id AND
+				trips.accepted = true AND
+				(trips.check_in_date BETWEEN :new_check_in AND :new_check_out
+				OR trips.check_out_date BETWEEN :new_check_in AND :new_check_out)",
+				{ lair_id: self.lair_id, new_check_in: self.check_in_date, 
+					new_check_out: self.check_out_date })
+			 .count() > 0
+			errors[:base] << "This lair is already reserved for some of those dates!"
+			else
+			true 
+		end
+
 	end
 
 		# Trip.find_by_sql("
