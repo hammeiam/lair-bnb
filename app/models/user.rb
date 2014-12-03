@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 	has_many :trips, foreign_key: :guest_id
 	has_many :visited_lairs, through: :trips, source: :lair
 	has_many :reservations, through: :owned_lairs, source: :trips
+	has_one  :profile_image, as: :imageable, class_name: 'Image', dependent: :destroy
+	accepts_nested_attributes_for :profile_image
 
 	before_validation :ensure_session_token
 	validates :first_name, :last_name, :email, :password_digest, 
@@ -52,5 +54,11 @@ class User < ActiveRecord::Base
 
 	def generate_session_token
 		SecureRandom.base64(32)
+	end
+
+	def image_url=(url)
+		self.class.transaction do
+	     self.build_profile_image(filepicker_url: url) 
+		end
 	end
 end

@@ -5,16 +5,25 @@
   <% var images =  lair.get(['images']) %>
   <% if(!!images){ %>
   <% $.each(images , function(idx, image){ %>
-    <div><img data-lazy="<%= image.filepicker_url %>"/></div>
+    <div><img data-lazy="<%= image.image_url %>"/></div>
   <% }) %>
   <% } %>
   </div>
 </div>
+<div class="info-bar">
+  <div class="user-info">
+  <% if(!!owner){ %>
+  <div class="circle">
+    <img class="profile-img" src="<%= owner.profile_image_url %>"/>
+  </div>
+  <p><%= owner.first_name %> <%= owner.last_name %></p>
+    <% } %>
+  </div>
+  <div class="lair-info">
+    <h3><%= lair.escape('title') %></h3>
+    <p><%= lair.escape('city') %>, <%= lair.escape('state') %>, <%= lair.escape('country') %></p>
 
-<div class="user-info"></div>
-<div class="lair-info">
-  <h3><%= lair.escape('title') %></h3>
-  <p><%= lair.escape('full_street_address') %></p>
+  </div>
 </div>
 
 <script>

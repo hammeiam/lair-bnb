@@ -17,7 +17,10 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     };
   	this.map = new google.maps.Map(this.$el[0], mapOptions);
     var map = this.map;
-
+    setTimeout(function(){ 
+      google.maps.event.trigger(map, "resize");
+    }, 0);
+    
     // recenter map when window resizes
     // var getCen = map.getCenter();
     // google.maps.event.addDomListener(window, 'resize', function() {

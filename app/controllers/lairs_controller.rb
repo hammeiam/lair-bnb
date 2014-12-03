@@ -16,8 +16,6 @@ class LairsController < ApplicationController
 
 	def show
 		@lair = Lair.find(params[:id])
-		# render "show"
-		render json: @lair.to_json(include: :images)
 	end
 
 	def edit

@@ -9,23 +9,26 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 	},
 
 	template: JST['lairs/show'],
+
 	render: function(){
 		console.log('changed', this.model)
 		var content = this.template({
-			lair: this.model
+			lair: this.model,
+			owner: this.model.get(['owner'])
 		});
 		this.$el.html(content);
 		this.initSlider(this);
 		this.attachSubviews();
 		return this;
 	},
+
 	initSlider: function(view){
 		view.$('.lazy').slick({
-    lazyLoad: 'ondemand',
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    prevArrow: '<button type="button" class="left-main glyphicon glyphicon-chevron-left">Previous</button>',
-    nextArrow: '<button type="button" class="right-main glyphicon glyphicon-chevron-right">Previous</button>'
-  });
+	    lazyLoad: 'ondemand',
+	    slidesToShow: 1,
+	    slidesToScroll: 1,
+	    prevArrow: '<button type="button" class="left-main glyphicon glyphicon-chevron-left">Previous</button>',
+	    nextArrow: '<button type="button" class="right-main glyphicon glyphicon-chevron-right">Previous</button>'
+	  });
 	}
 })
