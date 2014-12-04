@@ -31,6 +31,19 @@ html, body{
 input, button, a {
   outline: none; 
 }
+input[type="checkbox"]:focus {
+outline: none;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	border-radius: 3px;
+	border: 1px solid lightgrey;
+	height: 20px;
+	width: 20px;
+	padding: 0;
+	-webkit-appearance: none;
+}
 
 input[type=text], select {
 	border: 1px solid lightgrey;
@@ -121,38 +134,12 @@ nav ul li input {
 	left: 10px;
 }
 
-
-// .container-fluid{
-// 	height: 100%;
-// 	padding: 0;
-// }
-#map-container{
-	height: 100%;
-	width: 45%;
-	padding: 0;
-	float: left;
-	display: inline-block;
-}
-
-
-#sidebar-container{
-	padding:30px;
-	height: 100%;
-	width: 55%;
-	overflow-y: scroll;
-	float: left;
-	display: inline-block;
-}
-
-#filters{
-	height: 180px;
-}
-
-.lair-result{
-	list-style: none;
-	width: 50%;
-	min-width: 200px;
-	float: left;
+.logo{
+	width: 120px;
+	height: 35px;
+	display: block;
+	background-image: url(<%= asset_path 'lairbnb-main-logo.png' %>);
+	background-size: 100% auto;
 }
 
 // SLIDESHOW //
@@ -225,7 +212,10 @@ nav ul li input {
 	.slick-slide{
 		position: relative;
 	}
+}
 
+#slider{
+	margin: 0 20px 15px 20px;
 }
 
 // profile image //
@@ -269,6 +259,92 @@ nav ul li input {
 	}
 }
 
+// Lair Results Page //
+
+
+// search //
+
+#map-container{
+	height: 100%;
+	width: 45%;
+	padding: 0;
+	float: left;
+	display: inline-block;
+}
+
+
+#sidebar-container{
+	padding:30px;
+	height: 100%;
+	width: 55%;
+	overflow-y: scroll;
+	float: left;
+	display: inline-block;
+	-webkit-box-shadow: -5px 1px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: -5px 1px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: -5px 1px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+
+.lair-result{
+	list-style: none;
+	width: 50%;
+	min-width: 200px;
+	float: left;
+}
+
+
+// search filters //
+.filter{
+	padding: 20px;
+}
+
+.filter-icon{
+	min-height: 100px;
+	min-width: 100px;
+	float: left;
+	background-size: 85% auto;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+input[type="checkbox"].filter-icon{
+	border: none;
+}
+input[type="checkbox"]:checked.filter-icon {
+	border: 3px solid #c0392b;
+}
+
+.filter-icon:hover{
+	cursor: pointer;
+}
+
+.filter-input-item{
+	width: 100%;
+}
+
+#fortress{
+	background-image: url(<%= asset_path 'fortress-icon.png' %>);
+}
+#office{
+	background-image: url(<%= asset_path 'office-icon.png' %>);
+}
+
+#underground{
+	background-image: url(<%= asset_path 'underground-icon.png' %>);
+}
+.dollar-value:before{
+	content: "$";
+}
+#max-price{
+	float:right;
+}
+.input-container{
+	width: 100%;
+	float: left;
+	clear: both;
+}
 
 
 
