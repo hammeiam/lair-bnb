@@ -22,7 +22,7 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		});
 		this.$el.html(content);
 		this.attachSubviews();
-		this.initSlider(this);
+		initImageCarousel(this,'main');
 		initDatePicker(this, this.model.escape(['unavailable_dates']));
 		return this;
 	},
@@ -41,13 +41,13 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		})
 	},
 
-	initSlider: function(view){
-		view.$('.lazy').slick({
-	    lazyLoad: 'ondemand',
-	    slidesToShow: 1,
-	    slidesToScroll: 1,
-	    prevArrow: '<button type="button" class="left-main glyphicon glyphicon-chevron-left">Previous</button>',
-	    nextArrow: '<button type="button" class="right-main glyphicon glyphicon-chevron-right">Previous</button>'
-	  });
-	}
+	// initSlider: function(view){
+	// 	view.$('.lazy').slick({
+	//     lazyLoad: 'ondemand',
+	//     slidesToShow: 1,
+	//     slidesToScroll: 1,
+	//     prevArrow: '<button type="button" class="left-main glyphicon glyphicon-chevron-left">Previous</button>',
+	//     nextArrow: '<button type="button" class="right-main glyphicon glyphicon-chevron-right">Previous</button>'
+	//   });
+	// }
 })

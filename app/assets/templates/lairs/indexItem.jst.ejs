@@ -1,7 +1,14 @@
-
-<div class="col-xs-12 col-lg-4"> 
+<div class="slider-container-mini">
+  <div class="lazy">
+    <% var images =  lair.get(['images']) %>
+    <% if(!!images){ %>
+      <% $.each(images , function(idx, image){ %>
+        <div><img data-lazy="<%= image.filepicker_url %>"/></div>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
 	<h4><a href='#<%= lair.url() %>'><%= lair.escape('title') %></a></h4><br>
 	Rate: <%= lair.escape('rate') %><br>
 	Type: <%= lair.escape('lair_type') %><br>
 	City: <%= lair.escape('city') %>
-</div>

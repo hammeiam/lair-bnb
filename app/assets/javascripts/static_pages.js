@@ -88,7 +88,6 @@ function initDatePicker(view, dates) {
 };
 
 function fillFields(params, view){
-
 	var priceArr = [null, null];
 	$.each(params, function(key, val){
 		if(key === 'price_min'){
@@ -105,4 +104,14 @@ function fillFields(params, view){
 		}
 	});
 	view.$('#slider').val(priceArr);
+};
+
+function initImageCarousel(view, size){
+	view.$('.lazy').slick({
+    lazyLoad: 'ondemand',
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: '<button type="button" class="left-' + size + ' glyphicon glyphicon-chevron-left"></button>',
+    nextArrow: '<button type="button" class="right-' + size + ' glyphicon glyphicon-chevron-right"></button>'
+  });
 }

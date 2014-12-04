@@ -1,80 +1,54 @@
-<!-- <div id="filters">
-	<label>Dates
-			<input type="text" id="check-in-date" name="check_in_date" placeholder="Check In">
-			<input type="text" id="check-out-date" name="check_out_date" placeholder="Check Out">
-			<select id="guests">
+
+<div class="row" id="filters">
+	<div class="row filter" id="dates-filter">
+  	<div class="col-sm-3"><label>Dates</label></div>
+  	<div class="col-sm-3">
+  		<input type="text" id="check-in-date" name="check_in_date" 
+  			placeholder="Check In" class="filter-input-item">
+  	</div>
+  	<div class="col-sm-3">
+  		<input type="text" id="check-out-date" name="check_out_date" 
+  			placeholder="Check Out" class="filter-input-item">
+  	</div>
+  	<div class="col-sm-3">
+  		<select id="guests" class="filter-input-item">
 				<option value="1">1 Guest</option>
-				<option value="2">2 Guests</option>
-				<option value="3">3 Guests</option>
+				<% for(var i = 2; i < 11; i++){ %>
+					<option value="<%= i %>"><%= i %> Guests</option>
+				<% } %>
 			</select>
-	</label><br>
-	<label>Lair Type
-		<input type="checkbox" name="lair_type" value="underground" >
-		<input type="checkbox" name="lair_type" value="fortress">
-		<input type="checkbox" name="lair_type" value="office">
-	</label><br>
-	<label>Price Range
-		<input type="number" min="10" name="price_min" id="price-min" value="<%= fieldValues['price_min'] %>">
-		<input type="number" max="100" name="price_max" id="price-max" value="<%= fieldValues['price_max'] %>">
-	</label>
-	<div id="slider" name="price_range"></div>
-	<span id="min-price"></span>
-	<span id="max-price"></span>
-	
-	<p>filter summary, listing summary, more filters button</p>
+  	</div>
+	</div>
+
+	<div class="row filter" id="lair-type-filter">
+		<div class="col-sm-3"><label>Lair Type</label></div>
+		<div class="col-sm-3 filter-option">
+		<div class="input-container">
+			<input type="checkbox" name="lair_type" value="underground" id="underground" class="filter-icon">
+			</div>
+			<p>Underground</p>
+		</div>
+		<div class="col-sm-3 filter-option">
+			<div class="input-container">
+				<input type="checkbox" name="lair_type" value="fortress" id="fortress" class="filter-icon">
+			</div>
+			<p>Fortress</p>
+		</div>
+		<div class="col-sm-3 filter-option">
+			<div class="input-container">
+				<input type="checkbox" name="lair_type" value="office" id="office" class="filter-icon">
+			</div>
+			<p>Office</p>
+		</div>
+	</div>
+
+	<div class="row filter" id="price-filter">
+  	<div class="col-sm-3"><label>Price Range</label></div>
+  	<div class="col-sm-9">
+  		<div id="slider" name="price_range"></div>
+			<span class="dollar-value" id="min-price"></span>
+			<span class="dollar-value" id="max-price"></span>
+  	</div>
+	</div>
 </div>
-<div id="lairs-index">
-</div>  -->
-  <div class="row" id="filters">
-  	<div class="row filter" id="dates-filter">
-	  	<div class="col-sm-3"><label>Dates</label></div>
-	  	<div class="col-sm-3">
-	  		<input type="text" id="check-in-date" name="check_in_date" 
-	  			placeholder="Check In" class="filter-input-item">
-	  	</div>
-	  	<div class="col-sm-3">
-	  		<input type="text" id="check-out-date" name="check_out_date" 
-	  			placeholder="Check Out" class="filter-input-item">
-	  	</div>
-	  	<div class="col-sm-3">
-	  		<select id="guests" class="filter-input-item">
-					<option value="1">1 Guest</option>
-					<% for(var i = 2; i < 11; i++){ %>
-						<option value="<%= i %>"><%= i %> Guests</option>
-					<% } %>
-				</select>
-	  	</div>
-  	</div>
-
-  	<div class="row filter" id="lair-type-filter">
-  		<div class="col-sm-3"><label>Lair Type</label></div>
-  		<div class="col-sm-3 filter-option">
-  		<div class="input-container">
-  			<input type="checkbox" name="lair_type" value="underground" id="underground" class="filter-icon">
-  			</div>
-  			<p>Underground</p>
-  		</div>
-  		<div class="col-sm-3 filter-option">
-  			<div class="input-container">
-  				<input type="checkbox" name="lair_type" value="fortress" id="fortress" class="filter-icon">
-  			</div>
-  			<p>Fortress</p>
-  		</div>
-  		<div class="col-sm-3 filter-option">
-  			<div class="input-container">
-  				<input type="checkbox" name="lair_type" value="office" id="office" class="filter-icon">
-  			</div>
-  			<p>Office</p>
-  		</div>
-  	</div>
-
-  	<div class="row filter" id="price-filter">
-	  	<div class="col-sm-3"><label>Price Range</label></div>
-	  	<div class="col-sm-9">
-	  		<div id="slider" name="price_range"></div>
-				<span class="dollar-value" id="min-price"></span>
-				<span class="dollar-value" id="max-price"></span>
-	  	</div>
-  	</div>
-  </div>
-  <div class="row" id="lairs-index"></div>
+<div class="row" id="lairs-index"></div>
