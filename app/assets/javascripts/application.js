@@ -16,6 +16,7 @@
 //= require backbone
 //= require bootstrap-sprockets
 //= require lair_bn_b
+//= require jquery.serializejson.min.js
 //= require jquery.nouislider.all.min.js
 //= require jquery.slick
 //= require jquery-ui/datepicker

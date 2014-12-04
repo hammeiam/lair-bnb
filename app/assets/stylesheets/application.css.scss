@@ -161,3 +161,33 @@ html, body{
 .profile-img{
 	width:100%;
 }
+
+// Lair Reservation Form //
+
+.page-container{
+	width: 1050px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+.lair-reservation{
+	width: 315px;
+	height: 500px;
+	margin: -40px;
+	padding: 0 20px;
+	.price-bar{
+		height: 40px;
+		color: white;
+		background: rgba(0,0,0,0.8);
+	}
+	.date-input{
+		width: 85px;
+		margin-right: 10px;
+	}
+}
+
+
+
+
+

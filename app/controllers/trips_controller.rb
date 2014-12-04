@@ -5,6 +5,8 @@ class TripsController < ApplicationController
 
 	def create
 		@trip = Trip.new(trip_params)
+		@trip.guest_id = current_user.id
+		byebug
 		if @trip.save
 			redirect_to lair_url(@trip.lair_id)
 		else
@@ -25,6 +27,6 @@ class TripsController < ApplicationController
 	end
 
 	def trip_params
-		params.require(:trip).permit(:host_id, :guest_id, :lair_id, :check_in_date, :check_out_date, :num_guests)
+		params.require(:trip).permit(:guest_id, :lair_id, :check_in_date, :check_out_date, :num_guests)
 	end
 end

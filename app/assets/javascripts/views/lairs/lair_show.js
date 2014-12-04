@@ -10,6 +10,10 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 
 	template: JST['lairs/show'],
 
+	events: {
+		'submit form': 'submitReservation'
+	},
+
 	render: function(){
 		console.log('changed', this.model)
 		var content = this.template({
@@ -20,8 +24,21 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		this.initSlider(this);
 		initDatePicker(this, this.model.escape(['unavailable_dates']));
-		debugger
 		return this;
+	},
+
+	submitReservation: function(event){
+		event.preventDefault();
+		var formData = $(event.currentTarget).serializeJSON();
+		formData['trip']['lair_id'] = this.model.id;
+		var newReservation = new LairBnB.Models.Trip(formData['trip']);
+		newReservation.save({}, {
+			success: function(){
+				// Backbone.history.navigate( user trips. { trigger: true })
+				// alert of success?
+				console.log('win!')
+			}
+		})
 	},
 
 	initSlider: function(view){

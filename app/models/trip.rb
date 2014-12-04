@@ -3,7 +3,6 @@
 # Table name: trips
 #
 #  id             :integer          not null, primary key
-#  host_id        :integer          not null
 #  guest_id       :integer          not null
 #  lair_id        :integer          not null
 #  check_in_date  :date             not null
@@ -17,7 +16,7 @@
 class Trip < ActiveRecord::Base
 	validates :check_in_date, :check_out_date, :num_guests, presence: true
 	validate :no_overlapping_trips
-	before_create :convert_dates
+	before_validation :convert_dates
 
 	belongs_to :guest,
 	class_name: 'User',
@@ -26,8 +25,13 @@ class Trip < ActiveRecord::Base
 	belongs_to :lair
 
 	def convert_dates
-		self.check_in_date = Date.strptime(@attributes['check_in_date'], '%m/%d/%Y')
-		self.check_out_date = Date.strptime(@attributes['check_out_date'], '%m/%d/%Y')
+		check_in, check_out = @attributes['check_in_date'], @attributes['check_out_date']
+		if check_in.is_a?(String)
+			self.check_in_date = Date.strptime(check_in, '%m/%d/%Y')
+		end
+		if check_out.is_a?(String)
+			self.check_out_date = Date.strptime(check_out, '%m/%d/%Y')
+		end
 	end
 
 	def no_overlapping_trips
