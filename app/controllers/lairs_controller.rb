@@ -30,10 +30,10 @@ class LairsController < ApplicationController
 		else
 			@lairs = Lair.search()
 		end
-		respond_to do |format|
-			format.html { render json: Lair.all }
-			format.json { render json: @lairs.to_json(include: :images) } 
-		end
+		# respond_to do |format|
+		# 	format.html { render json: Lair.all }
+		# 	format.json { render json: @lairs.to_json(include: :images) } 
+		# end
 	end
 
 	def lair_params

@@ -1,0 +1,1 @@
+json.partial! 'lairs/show', collection: @lairs, as: :lair

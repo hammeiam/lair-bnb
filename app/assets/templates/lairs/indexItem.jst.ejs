@@ -1,14 +1,22 @@
 <div class="slider-container-mini">
+  <div class="result-price dollar-value"><%= lair.escape('rate') %></div>
   <div class="lazy">
     <% var images =  lair.get(['images']) %>
     <% if(!!images){ %>
       <% $.each(images , function(idx, image){ %>
-        <div><img data-lazy="<%= image.filepicker_url %>"/></div>
+        <div><div class="media-cover"><img data-lazy="<%= image.image_url %>"/></div></div>
       <% }) %>
     <% } %>
   </div>
 </div>
-	<h4><a href='#<%= lair.url() %>'><%= lair.escape('title') %></a></h4><br>
-	Rate: <%= lair.escape('rate') %><br>
-	Type: <%= lair.escape('lair_type') %><br>
-	City: <%= lair.escape('city') %>
+<div class="result-text">
+	<p><a href='#<%= lair.url() %>'><%= lair.escape('title') %></a></p>
+		<p><%= lair.escape('lair_type') %> · <%= lair.escape('city') %></p>
+	<% if(!!owner){ %>
+    <div class="circle result-profile-image">
+      <img class="profile-img" src="<%= owner.profile_image_url %>"/>
+    </div>
+  <% } %>
+
+</div>
+	

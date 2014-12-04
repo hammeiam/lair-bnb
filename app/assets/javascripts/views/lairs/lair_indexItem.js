@@ -4,10 +4,11 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 	},
 	template: JST['lairs/indexItem'],
 	tagName: 'li',
-	className: 'lair-result col-xs-12 col-sm-6',
+	className: 'lair-result col-xs-12 col-md-6',
 	render: function(){
 		var content = this.template({
-			lair: this.model
+			lair: this.model,
+			owner: this.model.get(['owner'])
 		});
 		this.$el.html(content);
 		initImageCarousel(this, 'mini');
