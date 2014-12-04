@@ -35,6 +35,7 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     _.each(LairBnB.lairs.models, function(lair){
       var lat = lair.escape('latitude');
       var lng = lair.escape('longitude');
+      // var markerView = new LairBnB.Views.IndexItem(lair);
       var latlng = new google.maps.LatLng(lat, lng);
       that.addMarker(latlng);
       mapBounds.extend(latlng);

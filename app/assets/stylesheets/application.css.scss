@@ -33,10 +33,14 @@ input, button, a {
 }
 
 input[type=text], select {
-	border:solid 1px lightgrey;
-	border-radius:2px;
+	border: 1px solid lightgrey;
+	border-radius: 2px;
 	height: 32px;
 	padding: 0 10px;
+}
+
+.hasDatepicker{
+	width: 100px;
 }
 
 .full-width-height{
@@ -64,6 +68,7 @@ input[type=text], select {
 	border-bottom: 1px solid lightgrey;
 }
 #nav-container{
+	position: absolute;
 	min-height: 45px;
 	display: block;
 	width: 100%;
@@ -71,6 +76,13 @@ input[type=text], select {
 
 #nav-container:after{
 	clear:both;
+}
+
+.inner-wrapper{
+	width: 100%;
+	position: absolute;
+	top: 45px;
+	bottom: 0;
 }
 
 // nav //
@@ -90,10 +102,23 @@ nav ul li input {
 
 .left-nav{
 	float: left;
+	margin-right: 20px;
 }
 
 .right-nav{
 	float: right;
+}
+
+#location-search{
+	padding-left: 30px;
+}
+.lairbnb-form-group{
+	position: relative;
+}
+.input-icon{
+	position:absolute;
+	top: 10px;
+	left: 10px;
 }
 
 
