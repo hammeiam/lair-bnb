@@ -1,6 +1,6 @@
 LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	tagName: 'nav',
-	className: 'navbar navbar-default',
+	className: 'lairbnb-nav',
 	attributes: {
 		'role': 'navigation'
 	},
