@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		fail
 		# if current_user.id == params[:id]
 		@user = User.find(params[:id])
 	end
