@@ -29,7 +29,6 @@ LairBnB.Views.LairsIndex = Backbone.CompositeView.extend({
     var len = LairBnB.lairs.length;
     var perPage = LairBnB.lairs.per_page;
     var currentPage = LairBnB.lairs.currentPage || 1;
-    debugger
     var lairsSeen = ((currentPage - 1) * perPage) + len;
     if(currentPage > 1){
       var prevAllowed = '';

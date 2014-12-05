@@ -11,7 +11,8 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 	template: JST['lairs/show'],
 
 	events: {
-		'submit form': 'submitReservation'
+		'submit form': 'submitReservation',
+		'change input.location': 'submitNewSearch'
 	},
 
 	render: function(){
@@ -25,6 +26,13 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		initImageCarousel(this,'main');
 		initDatePicker(this, this.model.escape(['unavailable_dates']));
 		return this;
+	},
+
+	submitNewSearch: function(event){
+		event.preventDefault();
+    var $field = $(event.currentTarget);
+    var location = urlEncodeLocation($field.val());
+    Backbone.history.navigate('/search/' + location, { trigger: true });
 	},
 
 	submitReservation: function(event){

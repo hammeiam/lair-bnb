@@ -14,10 +14,10 @@
 <div class="container-fluid lair-details-header">
   <div class="page-container">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-lg-8"> 
+      <div class="col-xs-8"> 
         <div class="panel-body">
           <div class="row">
-            <div class="col-lg-3">
+            <div class="col-xs-3">
               <% if(!!owner){ %>
                 <div class="circle">
                   <img class="profile-img" src="<%= owner.profile_image_url %>"/>
@@ -25,7 +25,7 @@
                 <p><%= owner.first_name %> <%= owner.last_name %></p>
               <% } %>
             </div>
-            <div class="col-lg-9">
+            <div class="col-xs-9">
                 <h3><%= lair.escape('title') %></h3>
                 <p><%= lair.escape('city') %>, <%= lair.escape('state') %>, <%= lair.escape('country') %></p>
                 <p>Lair Type: <%= lair.escape(['lair_type']) %></p>
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-      <div class="col-xs-6 col-lg-4">
+      <div class="col-xs-4">
         <form class="lair-reservation">
           <div class="price-bar">
             <p><%= lair.escape(['description']) %> Per Night</p>
@@ -57,7 +57,7 @@
 <div class="container-fluid lair-body-content">
   <div class="page-container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-xs-8">
       <div class="panel-body">
          <h5>About This Lair</h5>
         <p><%= lair.escape(['description']) %></p>
