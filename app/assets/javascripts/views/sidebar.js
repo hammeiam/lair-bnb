@@ -6,6 +6,7 @@ LairBnB.Views.Sidebar = Backbone.CompositeView.extend({
 	},
 
 	template: JST['sidebar'],
+	
 	className: 'container-fluid',
 
 	render: function(){

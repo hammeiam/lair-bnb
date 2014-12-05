@@ -57,6 +57,15 @@ input[type=text], select {
 	padding: 0 10px;
 }
 
+#alerts-container{
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+}
+.alert{
+	margin: 0;
+}
+
 .hasDatepicker{
 	width: 100px;
 }
@@ -86,8 +95,7 @@ input[type=text], select {
 	border-bottom: 1px solid lightgrey;
 }
 #nav-container{
-	position: absolute;
-	min-height: 45px;
+	height: 45px;
 	display: block;
 	width: 100%;
 }
@@ -312,6 +320,16 @@ nav ul li input {
 	}
 }
 
+// General Lair Page //
+.lair-details-header{
+	height: 160px;
+	border-bottom: 1px solid lightgrey;
+}
+.lair-body-content{
+	background: #f5f5f5;
+
+}
+
 // Lair Results Page //
 
 
@@ -335,8 +353,6 @@ nav ul li input {
 	display: inline-block;
 	border-left: 1px solid lightgrey;
 }
-
-
 
 .lair-result{
 	list-style: none;
@@ -393,6 +409,11 @@ input[type="checkbox"]:checked.filter-icon {
 #max-price{
 	float:right;
 }
+
+#lairs-index{
+	border-top: 1px solid lightgrey;
+	padding-top: 20px;
+}
 .input-container{
 	width: 100%;
 	float: left;
@@ -426,6 +447,23 @@ input[type="checkbox"]:checked.filter-icon {
 .result-text{
 	position: relative;
 }
+
+// ul.lairs-list{
+// 	display: -webkit-flex;
+//   display: -ms-flexbox;
+//   display: flex;
+
+//   -webkit-flex-wrap: wrap;
+//   -ms-flex-wrap: wrap;
+//   flex-wrap: wrap;
+// }
+
+// ul.lairs-list li{
+// 	 display: -webkit-flex;
+//         display: -ms-flexbox;
+//         display: flex;
+// }
+
 
 
 

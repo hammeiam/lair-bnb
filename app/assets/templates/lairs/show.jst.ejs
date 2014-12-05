@@ -1,3 +1,4 @@
+<div id="alerts-container"></div>
 <div id="nav-container"></div>
 
 <div class="slider-container-main">
@@ -10,48 +11,51 @@
     <% } %>
   </div>
 </div>
-<div class="page-container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-lg-8"> 
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-lg-3">
-            <% if(!!owner){ %>
-              <div class="circle">
-                <img class="profile-img" src="<%= owner.profile_image_url %>"/>
-              </div>
-              <p><%= owner.first_name %> <%= owner.last_name %></p>
-            <% } %>
-          </div>
-          <div class="col-lg-9">
-              <h3><%= lair.escape('title') %></h3>
-              <p><%= lair.escape('city') %>, <%= lair.escape('state') %>, <%= lair.escape('country') %></p>
-              <p>Lair Type: <%= lair.escape(['lair_type']) %></p>
+<div class="container-fluid lair-details-header">
+  <div class="page-container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-lg-8"> 
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-3">
+              <% if(!!owner){ %>
+                <div class="circle">
+                  <img class="profile-img" src="<%= owner.profile_image_url %>"/>
+                </div>
+                <p><%= owner.first_name %> <%= owner.last_name %></p>
+              <% } %>
+            </div>
+            <div class="col-lg-9">
+                <h3><%= lair.escape('title') %></h3>
+                <p><%= lair.escape('city') %>, <%= lair.escape('state') %>, <%= lair.escape('country') %></p>
+                <p>Lair Type: <%= lair.escape(['lair_type']) %></p>
+            </div>
           </div>
         </div>
-      </div>
-  </div>
+    </div>
 
-    <div class="col-xs-6 col-lg-4">
-      <form class="lair-reservation">
-        <div class="price-bar">
-          <p><%= lair.escape(['description']) %> Per Night</p>
-        </div>
-        <input type="text" class="date-input" id="check-in-date" name="trip[check_in_date]" placeholder="Check In">
-        <input type="text" class="date-input" id="check-out-date" name="trip[check_out_date]" placeholder="Check Out">
-        <select id="guests" name="trip[num_guests]">
-          <option value="1">1 Guest</option>
-          <% for(var i = 2; i <= lair.escape(['max_guests']); i++){ %>
-          <option value="<%= i %>"><%= i %> Guests</option>
-          <% } %>
-        </select>  
-        <button type="submit">Request this Lair</button>    
-      </form>
+      <div class="col-xs-6 col-lg-4">
+        <form class="lair-reservation">
+          <div class="price-bar">
+            <p><%= lair.escape(['description']) %> Per Night</p>
+          </div>
+          <input type="text" class="date-input" id="check-in-date" name="trip[check_in_date]" placeholder="Check In">
+          <input type="text" class="date-input" id="check-out-date" name="trip[check_out_date]" placeholder="Check Out">
+          <select id="guests" name="trip[num_guests]">
+            <option value="1">1 Guest</option>
+            <% for(var i = 2; i <= lair.escape(['max_guests']); i++){ %>
+            <option value="<%= i %>"><%= i %> Guests</option>
+            <% } %>
+          </select>  
+          <button type="submit">Request this Lair</button>    
+        </form>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="page-container">
+<div class="container-fluid lair-body-content">
+  <div class="page-container">
   <div class="row">
     <div class="col-8">
       <div class="panel-body">
@@ -61,4 +65,6 @@
     </div>
   </div>
 </div>
+</div>
+
 

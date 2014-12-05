@@ -6,12 +6,10 @@ class TripsController < ApplicationController
 	def create
 		@trip = Trip.new(trip_params)
 		@trip.guest_id = current_user.id
-		byebug
 		if @trip.save
 			redirect_to lair_url(@trip.lair_id)
 		else
-			flash.now[:errors] = @trip.errors.full_messages
-			render :new
+			render json: { errors: @trip.errors.full_messages }
 		end
 	end
 

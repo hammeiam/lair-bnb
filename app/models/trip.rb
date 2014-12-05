@@ -14,7 +14,7 @@
 #
 
 class Trip < ActiveRecord::Base
-	validates :check_in_date, :check_out_date, :num_guests, presence: true
+	validates :check_in_date, :check_out_date, :num_guests, presence: true, allow_blank: false
 	validate :no_overlapping_trips
 	before_validation :convert_dates
 
@@ -26,26 +26,26 @@ class Trip < ActiveRecord::Base
 
 	def convert_dates
 		check_in, check_out = @attributes['check_in_date'], @attributes['check_out_date']
-		if check_in.is_a?(String)
+		if check_in.is_a?(String) && !check_in.empty?
 			self.check_in_date = Date.strptime(check_in, '%m/%d/%Y')
 		end
-		if check_out.is_a?(String)
+		if check_out.is_a?(String) && !check_in.empty?
 			self.check_out_date = Date.strptime(check_out, '%m/%d/%Y')
 		end
 	end
 
 	def no_overlapping_trips
-		 if Trip.where("
+		if !!self.check_in_date && !!self.check_out_date
+		  if Trip.where("
 				trips.lair_id = :lair_id AND
 				trips.accepted = true AND
 				(trips.check_in_date BETWEEN :new_check_in AND :new_check_out
 				OR trips.check_out_date BETWEEN :new_check_in AND :new_check_out)",
 				{ lair_id: self.lair_id, new_check_in: self.check_in_date, 
 					new_check_out: self.check_out_date })
-			 .count() > 0
-			errors[:base] << "This lair is already reserved for some of those dates!"
-			else
-			true 
+			  .count() > 0
+				errors[:base] << "This lair is already reserved for some of those dates!"
+			end
 		end
 
 	end

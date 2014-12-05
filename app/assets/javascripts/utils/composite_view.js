@@ -33,6 +33,7 @@ Backbone.CompositeView = Backbone.View.extend({
       view.$(selector).empty();
       _(subviews).each(function (subview) {
         view.attachSubview(selector, subview);
+        subview.render(); // temporary (?) fix for slider init
       });
     });
   },
