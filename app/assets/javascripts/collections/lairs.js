@@ -13,6 +13,11 @@ LairBnB.Collections.Lairs = Backbone.Collection.extend({
       model.fetch();
     }
   	return model;
+  },
+  parse: function(resp){
+    this.per_page = resp.per_page;
+    this.total_entries = resp.total_entries;
+    return resp.lairs;
   }
 
 });

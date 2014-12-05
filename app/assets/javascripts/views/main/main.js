@@ -25,7 +25,8 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
   events: {
     'change input': 'handleUpdate',
     'change #slider': 'handleUpdate',
-    'select #guests': 'handleUpdate'
+    'select #guests': 'handleUpdate',
+    'click .pagination': 'handleUpdate'
   },
 
   template: JST['main'],
@@ -53,7 +54,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
   },
 
   inputParser: function($field){
-    // inputs: location, lair_type, price_range, checkin, checkout, guests
+    // inputs: location, lair_type, price_range, checkin, checkout, guests, page
     var key = $field.attr('name');
     var output = {};
 
@@ -61,14 +62,27 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
       var pricesArr = $field.val();
       output['price_min'] = parseInt(pricesArr[0], 10);
       output['price_max'] = parseInt(pricesArr[1], 10);
+
     } else if(key === 'lair_type'){
        var val = $("[name='lair_type']:checked").map(function(){ 
           return $(this).val()
         }).get(); // array
         output[key] = val;
+
+    } else if(key === 'pagination'){
+      var currentPage = parseInt(this.collectionFilterParams['page'], 10) || 1;
+      var val = $field.val();
+      var lairsSeen = ((currentPage - 1) * LairBnB.lairs.per_page) + LairBnB.lairs.length
+      if(val === 'prev' && currentPage > 1){
+        output['page'] = currentPage - 1;
+      } else if (val === 'next' && (lairsSeen < LairBnB.lairs.total_entries)) {
+        output['page'] = currentPage + 1;
+      };
+
     } else if (!!key) {
       output[key] = $field.val();
     }
+
     return output; 
   },
 
@@ -79,6 +93,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
         search: collectionParams
       }
     })
+    LairBnB.lairs.currentPage = this.collectionFilterParams['page'];
   },
 
   parseParams: function(params){
