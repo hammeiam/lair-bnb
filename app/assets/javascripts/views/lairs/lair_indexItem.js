@@ -17,6 +17,7 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 		});
 		this.$el.html(content);
 		initImageCarousel(this, 'mini');
+		this.$('.lazy').slickGoTo(0);
 		return this;
 	}
 })
