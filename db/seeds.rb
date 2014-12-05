@@ -34,21 +34,6 @@ Lair.create!([
   {title: "Cozy Urban Dwelling", description: "All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.All work and no play makes Jack a dull boy.", rate: 10, owner_id: 9, lair_type: "underground", room_type: "shared-room", street_address: "183 Lorraine St", city: "Brooklyn", state: "NY", country: "USA", latitude: 40.6732938, longitude: -74.001732, max_guests: 10},
   {title: "The Matrix", description: "My house is just like any other house. But one day I realized that it was perhaps too much like the other houses. My neighbors look and act like me, but I can't get over this feeling that there's a bigger, unexplored world that I truly belong in. You can crash at my place while I search for answers. Free thinkers only, no suits.", rate: 30, owner_id: 13, lair_type: "underground", room_type: "entire-hq", street_address: "76 9th Ave", city: "New York", state: "NY", country: "USA", latitude: 40.7417806, longitude: -74.0045012, max_guests: 2}
 ])
-Trip.create!([
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-10", check_out_date: "2014-12-11", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-09", check_out_date: "2014-12-10", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-09", check_out_date: "2014-12-10", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-09", check_out_date: "2014-12-10", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-09", check_out_date: "2014-12-17", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-09", check_out_date: "2014-12-17", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-29", check_out_date: "2014-12-30", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-15", check_out_date: "2014-12-23", num_guests: 1, approval_status: "pending"},
-  {guest_id: 13, lair_id: 2, check_in_date: "2014-12-08", check_out_date: "2014-12-09", num_guests: 2, approval_status: "pending"},
-  {guest_id: 1, lair_id: 4, check_in_date: "2014-12-24", check_out_date: "2014-12-25", num_guests: 1, approval_status: "pending"},
-  {guest_id: 1, lair_id: 2, check_in_date: "2014-12-19", check_out_date: "2014-12-21", num_guests: 1, approval_status: "pending"},
-  {guest_id: 4, lair_id: 1, check_in_date: "2014-12-31", check_out_date: "2015-01-01", num_guests: 3, approval_status: "pending"},
-  {guest_id: 4, lair_id: 2, check_in_date: "2014-12-12", check_out_date: "2014-12-14", num_guests: 2, approval_status: "pending"}
-])
 User.create!([
   {first_name: "Bruce", last_name: "Wayne", email: "bwayne@aol.com", password_digest: "$2a$10$pJ1I5ckDMqnR/BWUTENFQOMMHrVxjGOi3tx3HU2rRS9PWBLbu87T2", session_token: "WDa+QJeKV/zA5XldjinUOHcV7S/O2EPMSVV8/w1znr0="},
   {first_name: "Clark", last_name: "Kent", email: "ckent@aol.com", password_digest: "$2a$10$CsEJduYFmkWJf8xrGBP4y./QnAwnBCkDuP/Uo7BVH0paxV.yxNUDe", session_token: "PzERDPYCaFa22ZTvwW/sLb39cUAt4pG7hzlfDjnHBwo="},
