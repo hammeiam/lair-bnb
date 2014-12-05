@@ -105,6 +105,9 @@ GEM
     newrelic_rpm (3.9.7.266)
     pg (0.17.1)
     rack (1.5.2)
+    rack-google-analytics (1.2.0)
+      actionpack
+      activesupport
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.7)
@@ -190,6 +193,7 @@ DEPENDENCIES
   json
   newrelic_rpm
   pg
+  rack-google-analytics
   rails (= 4.1.7)
   rails_12factor
   sass-rails (~> 4.0.3)

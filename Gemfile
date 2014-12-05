@@ -57,5 +57,9 @@ group :development do
 	gem 'seed_dump'
 end
 
+group :production do
+	gem 'rack-google-analytics'
+end
+
 gem 'rails_12factor', group: :production
 
