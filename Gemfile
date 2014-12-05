@@ -47,6 +47,7 @@ gem 'geocoder'
 gem 'will_paginate', '~> 3.0.6'
 gem 'filepicker-rails'
 gem 'jquery-slick-rails'
+gem 'figaro'
 
 group :development do
 	gem 'better_errors'

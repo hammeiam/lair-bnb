@@ -22,7 +22,7 @@
                 <div class="circle">
                   <img class="profile-img" src="<%= owner.profile_image_url %>"/>
                 </div>
-                <p><%= owner.first_name %> <%= owner.last_name %></p>
+                <p><a href='#/users/<%= owner.id %>'><%= owner.first_name %> <%= owner.last_name %></a></p>
               <% } %>
             </div>
             <div class="col-xs-9">

@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
 	def new
 		@user = User.new
+		# temporary hack until I get json forms working
+		respond_to do |format|
+			format.html { render :show }
+			format.json do
+				render 'new.html.erb', {
+      :content_type => 'text/html',
+      :layout       => 'application'
+    }
+			end
+		end
 	end
 
 	def create

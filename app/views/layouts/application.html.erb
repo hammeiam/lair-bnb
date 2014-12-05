@@ -14,7 +14,7 @@
 <!-- nav is commented out for now. Remove if backbone nav works -->
 <%# render 'layouts/header' unless @disable_nav %> 
 <%= yield %>
-  <script type="text/javascript">filepicker.setKey("AHe6OD89pRPCqYyEzPoY9z")
+  <script type="text/javascript">filepicker.setKey("<%= ENV['FILEPICKER_API_KEY'] %>")
 	</script>
 
 </body>
