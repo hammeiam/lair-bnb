@@ -10,6 +10,7 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 	className: 'lair-result col-xs-12 col-md-6',
 
 	render: function(){
+		console.log('model rendered')
 		var content = this.template({
 			lair: this.model,
 			owner: this.model.get(['owner'])

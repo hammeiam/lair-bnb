@@ -4,7 +4,7 @@
     <% var images =  lair.get(['images']) %>
     <% if(!!images){ %>
       <% $.each(images, function(idx, image){ %>
-        <div><div class="media-cover"><img data-lazy="<%= image.image_url %>"/></div></div>
+        <div><div class="media-cover"><img data-lazy="<%= image.image_url %>/convert?w=510&h=300&fit=crop"/></div></div>
       <% }) %>
     <% } %>
   </div>
