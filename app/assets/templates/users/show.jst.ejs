@@ -1,69 +1,101 @@
 <div id="nav-container"></div>
-<div class="container-fluid">
-	<div class="page-container">
-    <div class="row">
-    	<div class="col-xs-5"> 
-    	<!-- bio info, pic -->
-    	<% debugger %>
-    	<%= user.get(['first_name']) %>
-    	<%= user.get(['last_name']) %>
-    	<img src="<%= user.get(['profile_image_url']) %>" />
-    	</div>
-    	<div class="col-xs-5"> 
-    	<!-- owner lairs (slideshow?) -->
-    	</div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid">
-  <div class="page-container">
-  <% if(user.get(['logged_in'])){ %>
-		  <div class="row">
-		    <div class="col-xs-12">
-		    Pending
-		    </div>
-		    <div class="col-xs-12">
-		    	<% var pending = user.get(['reservations']).filter(function(el){ return el.status === 'pending' }) %>
-		    	<% if(pending.length > 0){ %>
-		    	<% } else { %>
-		    		no pending reservations
-		    	<% } %>
-		    </div>
-		  </div>
-		
-		  <div class="row">
-		    <div class="col-xs-12">
-		    Approved
-		    </div>
-		    <div class="col-xs-12">
-			    <% var approved = user.get(['reservations']).filter(function(el){ return el.status === 'approved' }) %>
-			    <% if(approved.length > 0){ %>
-			    <% } else { %>
-			    no approved reservations
-		    	<% } %>
-		    </div>
-	  	</div>
+<div class="user-show-wrapper">
+	<div class="container-fluid lair-details-header">
+		<div class="page-container">
+	    <div class="row panel-body">
+	    	<div class="col-xs-5"> 
+	    	<!-- bio info, pic -->
+		    	<div class="circle">
+		    		<img src="<%= user.get(['profile_image_url']) %>" class="profile-img"/>
+		    	</div>
+		    	<%= user.get(['first_name']) %>
+		    	<%= user.get(['last_name']) %>
+	    	</div>
+	    	<div class="col-xs-7"> 
+	    	<!-- owner lairs (slideshow?) -->
+	    	</div>
+	    </div>
+	  </div>
+	</div>
+	<div class="container-fluid">
+	  <div class="page-container">
+	  <% if(user.get(['logged_in'])){ %>
+			  <div class="row panel-body">
+			    <div class="col-xs-12">
+			    <h2>Pending</h2>
+			    </div>
+			    <div class="col-xs-12">
+			    	<% var pending = user.get(['reservations']).filter(function(el){ return el.approval_status === 'pending' }) %>
+			    	<% if(pending.length > 0){ %>
+			    		<ul class="lairs-list">
+								<% $.each(pending, function(i, res){ %>
+					    		<li class="lair-result col-xs-2 col-md-4">
+					    			<div class="center">
+					    				<div class="circle">
+					    					<img src="<%= res.guest.guest_image_url %>" class="profile-img" />
+						    			</div>
+						    			<p><a href="#/users/<%= res.guest.id %>"><%= res.guest.first_name %> <%= res.guest.last_name %></a></p>
+						    			<p><%= res.title %></p>
+						    			<p>Check In: <%= res.check_in_date %></p>
+						    			<p>Check Out: <%= res.check_out_date %></p>
+						    			<p>Status: <%= res.approval_status %></p>
+					    			</div> 
+					    			
+					    			<% if(res.approval_status === 'pending'){ %>
+					    				<div class="col-xs-12"><button class="btn pagination">Approve</button></div>
+					    				<div class="col-xs-12"><button class="btn pagination">Reject</button></div>
+					    			<% } %>
 
-	  	<div class="row">
-		    <div class="col-xs-12">
-		    Trips
-		    </div>
-		    <div class="col-xs-12">
-		    	<% var trips = user.get(['trips']) %>
-			    <% if(trips.length > 0){ %>
-			    	<% $.each(trips, function(i, trip){ %>
-			    	<% debugger %>
-			    	<%= trip.check_in_date %>
-			    	<%= trip.check_out_date %>
-			    	<img src="<%= trip.trip_lair.lair_image_url %>" />
-			    	<% }) %>
-			    <% } else { %>
-			    no trips :(
-			    <% } %>
-		    </div>
-	  	</div>
-	 
-	  <% } %>
+					    			
+					    			
+					    		</li>
+					    	<% }) %>
+					    </ul>
+			    	<% } else { %>
+			    		no pending reservations
+			    	<% } %>
+			    </div>
+			  </div>
+			
+			  <div class="row panel-body">
+			    <div class="col-xs-12">
+			    <h2>Approved</h2>
+			    </div>
+			    <div class="col-xs-12">
+				    <% var approved = user.get(['reservations']).filter(function(el){ return el.approval_status === 'approved' }) %>
+				    <% if(approved.length > 0){ %>
+				    <% } else { %>
+				    no approved reservations
+			    	<% } %>
+			    </div>
+		  	</div>
+
+		  	<div class="row panel-body">
+			    <div class="col-xs-12">
+			    <h2>Trips</h2>
+			    </div>
+			    <div class="col-xs-12">
+			    	<% var trips = user.get(['trips']) %>
+				    <% if(trips.length > 0){ %>
+					    <ul class="lairs-list">
+								<% $.each(trips, function(i, trip){ %>
+					    		<li class="lair-result col-xs-2 col-md-4"> 
+					    			<img src="<%= trip.trip_lair.lair_image_url %>/convert?w=300&h=175&fit=crop" />
+					    			<p><a href="#lairs/<%= trip.lair_id %>"><%= trip.trip_lair.title %></a></p>
+					    			<p><%= trip.trip_lair.city %>, <%= trip.trip_lair.state %></p>
+					    			<p>Check In: <%= trip.check_in_date %></p>
+					    			<p>Check Out: <%= trip.check_out_date %></p>
+					    			<p>Status: <%= trip.approval_status %></p>
+					    		</li>
+					    	<% }) %>
+					    </ul>
+				    <% } else { %>
+				    no trips :(
+				    <% } %>
+			    </div>
+		  	</div>
+		 
+		  <% } %>
+		</div>
 	</div>
 </div>
-<%= user %>

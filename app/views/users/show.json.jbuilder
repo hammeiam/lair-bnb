@@ -15,5 +15,15 @@ if @user.id == current_user.id
 		end
 		
 	end
-	json.reservations @user.reservations
+	json.reservations @user.reservations do |reservation|
+		json.(reservation, :approval_status, :check_in_date, :check_out_date, :num_guests)
+		json.(reservation.lair, :id, :title, :city, :state)
+		
+		
+		json.guest do |guest|
+			json.(reservation.guest, :first_name, :last_name, :id)
+			json.guest_image_url reservation.guest.profile_image.filepicker_url
+		end
+			
+	end
 end

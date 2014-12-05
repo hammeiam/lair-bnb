@@ -48,10 +48,8 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		var formData = $(event.currentTarget).serializeJSON();
 		formData['trip']['lair_id'] = this.model.id;
 		var newReservation = new LairBnB.Models.Trip(formData['trip']);
-		debugger
 		newReservation.save({}, {
 			success: function(resp){
-				debugger
 				var $alerts = that.$('#alerts-container');
 				if(!!resp.get(['success'])){
 					$("<div class='alert alert-success' role='alert' style='display:none;'>Reservation Requested!</div>").hide().appendTo($alerts).slideDown();

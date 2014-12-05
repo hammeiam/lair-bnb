@@ -24,7 +24,8 @@ Image.create!([
   {filepicker_url: "https://www.filepicker.io/api/file/7I1mg3kSSW7Icho1Nxbk", alt_tag: nil, imageable_id: 4, imageable_type: "Lair"},
   {filepicker_url: "https://www.filepicker.io/api/file/Fqdi0AqmRPSnEuNw0tHl", alt_tag: nil, imageable_id: 9, imageable_type: "User"},
   {filepicker_url: "https://www.filepicker.io/api/file/sR8VlBbVRTyskyuXjtaB", alt_tag: nil, imageable_id: 5, imageable_type: "Lair"},
-  {filepicker_url: "https://www.filepicker.io/api/file/FEBhpaSZaUpBAeoM9ZGg", alt_tag: nil, imageable_id: 13, imageable_type: "User"}
+  {filepicker_url: "https://www.filepicker.io/api/file/FEBhpaSZaUpBAeoM9ZGg", alt_tag: nil, imageable_id: 13, imageable_type: "User"},
+  {filepicker_url: "https://www.filepicker.io/api/file/R0Yle4KKTyy7RwxxFLrJ", alt_tag: nil, imageable_id: 5, imageable_type: "Lair"}
 ])
 Lair.create!([
   {title: "Wayne Manor/ Batcave", description: "Join me in my cozy, 36 bedroom/ 20 bath manor. Wayne Manor has been in my family for generations, and is easily accessible from Gotham city via any mode of transportation, including but not limited to car, submarine, and invisible jet. If all the rooms in the main house are booked, I have a couch in the Batcave that you could probably use for a few days. ", rate: 150, owner_id: 1, lair_type: "underground", room_type: "private-room", street_address: "135 West Gate Drive", city: "Huntington", state: "NY", country: "USA", latitude: 40.8289666, longitude: -73.4484497, max_guests: 10},

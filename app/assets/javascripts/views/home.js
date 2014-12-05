@@ -5,6 +5,7 @@ LairBnB.Views.Home = Backbone.CompositeView.extend({
 		});
     this.addSubview('#nav-container', navView);
 	},
+	className: 'front-page',
 
 	template: JST['home'],
 
