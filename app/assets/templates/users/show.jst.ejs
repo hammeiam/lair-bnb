@@ -1,0 +1,69 @@
+<div id="nav-container"></div>
+<div class="container-fluid">
+	<div class="page-container">
+    <div class="row">
+    	<div class="col-xs-5"> 
+    	<!-- bio info, pic -->
+    	<% debugger %>
+    	<%= user.get(['first_name']) %>
+    	<%= user.get(['last_name']) %>
+    	<img src="<%= user.get(['profile_image_url']) %>" />
+    	</div>
+    	<div class="col-xs-5"> 
+    	<!-- owner lairs (slideshow?) -->
+    	</div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="page-container">
+  <% if(user.get(['logged_in'])){ %>
+		  <div class="row">
+		    <div class="col-xs-12">
+		    Pending
+		    </div>
+		    <div class="col-xs-12">
+		    	<% var pending = user.get(['reservations']).filter(function(el){ return el.status === 'pending' }) %>
+		    	<% if(pending.length > 0){ %>
+		    	<% } else { %>
+		    		no pending reservations
+		    	<% } %>
+		    </div>
+		  </div>
+		
+		  <div class="row">
+		    <div class="col-xs-12">
+		    Approved
+		    </div>
+		    <div class="col-xs-12">
+			    <% var approved = user.get(['reservations']).filter(function(el){ return el.status === 'approved' }) %>
+			    <% if(approved.length > 0){ %>
+			    <% } else { %>
+			    no approved reservations
+		    	<% } %>
+		    </div>
+	  	</div>
+
+	  	<div class="row">
+		    <div class="col-xs-12">
+		    Trips
+		    </div>
+		    <div class="col-xs-12">
+		    	<% var trips = user.get(['trips']) %>
+			    <% if(trips.length > 0){ %>
+			    	<% $.each(trips, function(i, trip){ %>
+			    	<% debugger %>
+			    	<%= trip.check_in_date %>
+			    	<%= trip.check_out_date %>
+			    	<img src="<%= trip.trip_lair.lair_image_url %>" />
+			    	<% }) %>
+			    <% } else { %>
+			    no trips :(
+			    <% } %>
+		    </div>
+	  	</div>
+	 
+	  <% } %>
+	</div>
+</div>
+<%= user %>

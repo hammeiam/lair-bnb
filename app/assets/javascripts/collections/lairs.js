@@ -1,6 +1,7 @@
 LairBnB.Collections.Lairs = Backbone.Collection.extend({
-	url: 'lairs',
+	url: '/lairs',
   model: LairBnB.Models.Lair,
+
   getOrFetch: function(id){
   	var model = this.get(id);
   	var that = this;
@@ -19,6 +20,5 @@ LairBnB.Collections.Lairs = Backbone.Collection.extend({
     this.total_entries = resp.total_entries;
     return resp.lairs;
   }
-
 });
 LairBnB.lairs = new LairBnB.Collections.Lairs();

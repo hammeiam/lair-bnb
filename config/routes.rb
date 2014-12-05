@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 	resources :lairs
 	resources :trips, :defaults => { :format => :json }
   resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :users, :defaults => { :format => :json }
 end

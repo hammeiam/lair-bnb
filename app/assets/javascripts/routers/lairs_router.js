@@ -6,12 +6,13 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 	routes: {
 		'': 'home',
 		'lairs/:lairId': 'lairShowAction',
-		'search/(:locationQuery)': 'main'
+		'search/(:locationQuery)': 'mainShowAction',
+		'users/:userId': 'userShowAction'
 	},
 
 	home: function(){
 		var view = new LairBnB.Views.Home();
-		this.$rootEl.html(view.render().$el);
+		this._swapView(view);
 	},
 
 	lairShowAction: function(lairId){
@@ -19,15 +20,31 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		var view = new LairBnB.Views.LairShow({
 			model: lair
 		})
-		this.$rootEl.html(view.render().$el);
+		this._swapView(view);
 	},
 
-	main: function(locationQuery, params){
+	mainShowAction: function(locationQuery, params){
 		var view = new LairBnB.Views.Main({
 			location: locationQuery,
 			router: this,
 			params: params
 		});
-		this.$rootEl.html(view.render().$el);
-	}
+		this._swapView(view);
+	},
+
+	userShowAction: function(userId){
+		var user = LairBnB.users.getOrFetch(userId);
+		var view = new LairBnB.Views.UserShow({	
+			model: user
+		});
+		this._swapView(view);
+	},
+
+	_swapView: function (view) {
+    this._currentView && this._currentView.remove();
+    this._currentView = view;
+    this.$rootEl.html(view.render().$el);
+  }
+
+
 });
