@@ -36,19 +36,36 @@
 
       <div class="col-xs-4">
         <form class="lair-reservation">
-          <div class="price-bar">
-            <p><%= lair.escape(['description']) %> Per Night</p>
-          </div>
-          <input type="text" class="date-input" id="check-in-date" name="trip[check_in_date]" placeholder="Check In">
-          <input type="text" class="date-input" id="check-out-date" name="trip[check_out_date]" placeholder="Check Out">
-          <select id="guests" name="trip[num_guests]">
-            <option value="1">1 Guest</option>
-            <% for(var i = 2; i <= lair.escape(['max_guests']); i++){ %>
-            <option value="<%= i %>"><%= i %> Guests</option>
-            <% } %>
-          </select>  
-          <button type="submit">Request this Lair</button>    
-        </form>
+          <div class="col-xs-12">
+            <div class="price-bar">
+                  <p class="dollar-value"><%= lair.escape(['rate']) %> Per Night</p>
+                </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="col-xs-4">Check In</div>
+              <div class="col-xs-4">Check Out</div>
+              <div class="col-xs-4">Guests</div>
+            </div>
+            <div class="col-xs-12">
+              <div class="col-xs-4">
+                 <input type="text" class="date-input" id="check-in-date" name="trip[check_in_date]" placeholder="mm/dd/yyyy">
+              </div>
+              <div class="col-xs-4">
+                <input type="text" class="date-input" id="check-out-date" name="trip[check_out_date]" placeholder="mm/dd/yyyy">
+              </div>
+              <div class="col-xs-4">
+                <select id="guests" name="trip[num_guests]">
+                    <option value="1">1 </option>
+                    <% for(var i = 2; i <= lair.escape(['max_guests']); i++){ %>
+                    <option value="<%= i %>"><%= i %> </option>
+                    <% } %>
+                </select>  
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <button type="submit" class="btn">Request this Lair</button>   
+            </div>
+          </form>
       </div>
     </div>
   </div>

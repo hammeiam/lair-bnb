@@ -38,7 +38,7 @@ class Trip < ActiveRecord::Base
 		if !!self.check_in_date && !!self.check_out_date
 		  if Trip.where("
 				trips.lair_id = :lair_id AND
-				trips.accepted = true AND
+				trips.approval_status = 'approved' AND
 				(trips.check_in_date BETWEEN :new_check_in AND :new_check_out
 				OR trips.check_out_date BETWEEN :new_check_in AND :new_check_out)",
 				{ lair_id: self.lair_id, new_check_in: self.check_in_date, 

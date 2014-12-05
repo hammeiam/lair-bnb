@@ -54,7 +54,7 @@ input[type=text], select {
 	border: 1px solid lightgrey;
 	border-radius: 2px;
 	height: 32px;
-	padding: 0 10px;
+	padding: 0 5px;
 }
 
 #alerts-container{
@@ -298,7 +298,7 @@ nav ul li input {
 // Lair Reservation Form //
 
 .page-container{
-	width: 1050px;
+	width: 1100px;
 	min-width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
@@ -306,18 +306,30 @@ nav ul li input {
 	padding-right: 25px;
 }
 .lair-reservation{
-	width: 315px;
+	width: 100%;
 	height: 500px;
 	margin: -40px 0 0 0;
-	padding: 0 20px;
 	.price-bar{
 		height: 40px;
 		color: white;
-		background: rgba(0,0,0,0.8);
+		background: rgba(60,60,60,0.8);
+		padding: 10px 25px;
 	}
 	.date-input{
 		width: 85px;
 		margin-right: 10px;
+	}
+
+	.col-xs-12{
+		margin: 0 0 20px 0;
+	}
+
+	.btn{
+		color: white;
+		background: #c0392b;
+		padding: 5px 20%;
+		width: 100%;
+		height: 45px;
 	}
 }
 
@@ -376,6 +388,14 @@ nav ul li input {
 	background-repeat: no-repeat;
 }
 
+.noUi-horizontal {
+	height: 8px;
+}
+
+.noUi-connect{
+	background: #c0392b;
+}
+
 input[type="checkbox"].filter-icon{
 	border: none;
 }
@@ -389,6 +409,10 @@ input[type="checkbox"]:checked.filter-icon {
 
 .filter-input-item{
 	width: 100%;
+}
+
+.noUi-handle .noUi-handle-lower{
+	top: -12px;
 }
 
 #fortress{

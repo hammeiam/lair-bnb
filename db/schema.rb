@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205055813) do
+ActiveRecord::Schema.define(version: 20141205092131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 20141205055813) do
   add_index "lairs", ["room_type"], name: "index_lairs_on_room_type", using: :btree
 
   create_table "trips", force: true do |t|
-    t.integer  "guest_id",                           null: false
-    t.integer  "lair_id",                            null: false
-    t.date     "check_in_date",                      null: false
-    t.date     "check_out_date",                     null: false
-    t.integer  "num_guests",                         null: false
+    t.integer  "guest_id",                            null: false
+    t.integer  "lair_id",                             null: false
+    t.date     "check_in_date",                       null: false
+    t.date     "check_out_date",                      null: false
+    t.integer  "num_guests",                          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "accepted",       default: "pending"
+    t.string   "approval_status", default: "pending"
   end
 
   add_index "trips", ["guest_id"], name: "index_trips_on_guest_id", using: :btree

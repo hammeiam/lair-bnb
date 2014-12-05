@@ -12,7 +12,8 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 
 	events: {
 		'submit form': 'submitReservation',
-		'change input.location': 'submitNewSearch'
+		'change input.location': 'submitNewSearch',
+		'keypress input.location': 'checkForEnterSubmit'
 	},
 
 	render: function(){
@@ -28,6 +29,12 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		return this;
 	},
 
+	checkForEnterSubmit: function(event){
+		if(event.which == 13){
+			this.submitNewSearch(event);
+		}
+	},
+
 	submitNewSearch: function(event){
 		event.preventDefault();
     var $field = $(event.currentTarget);
@@ -38,12 +45,13 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 	submitReservation: function(event){
 		event.preventDefault();
 		var that = this;
-		debugger
 		var formData = $(event.currentTarget).serializeJSON();
 		formData['trip']['lair_id'] = this.model.id;
 		var newReservation = new LairBnB.Models.Trip(formData['trip']);
+		debugger
 		newReservation.save({}, {
 			success: function(resp){
+				debugger
 				var $alerts = that.$('#alerts-container');
 				if(!!resp.get(['success'])){
 					$("<div class='alert alert-success' role='alert' style='display:none;'>Reservation Requested!</div>").hide().appendTo($alerts).slideDown();

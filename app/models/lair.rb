@@ -75,7 +75,7 @@ class Lair < ActiveRecord::Base
 	def unavailable_dates
 		result = []
 		self.trips.each do |t| 
-			if t.accepted
+			if t.approval_status == 'approved'
 				 result += (t.check_in_date..t.check_out_date).to_a
 			end
 		end

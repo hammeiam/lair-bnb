@@ -7,7 +7,7 @@ class TripsController < ApplicationController
 		@trip = Trip.new(trip_params)
 		@trip.guest_id = current_user.id
 		if @trip.save
-			redirect_to lair_url(@trip.lair_id)
+			render json: {success: 'Reservation request placed'}
 		else
 			render json: { errors: @trip.errors.full_messages }
 		end
