@@ -59,7 +59,6 @@ end
 
 group :production do
 	gem 'rack-google-analytics'
+	gem 'rails_12factor'
 end
-
-gem 'rails_12factor', group: :production
 
