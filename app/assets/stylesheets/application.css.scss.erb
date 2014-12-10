@@ -140,10 +140,11 @@ nav ul li input {
 }
 .lairbnb-form-group{
 	position: relative;
+	float: left;
 }
 .input-icon{
 	position:absolute;
-	top: 10px;
+	top: 30%;
 	left: 10px;
 }
 
@@ -517,33 +518,46 @@ video{
 	width: 100%;
 	height: 105px;
 	padding: 30px;
-	// position: absolute;
-	// bottom: 0;
-	background: rgba(0,0,0, 0.65);
+	float: left;
+	position: relative;
+	background: rgba(0,0,0, 0.6);
 }
 
 .main-form-collection{
-	margin: 0 auto;
+	position: relative; 
+  float: left;
+  margin: 0 18%;
+	min-width: 800px;
 }
 
 .main-form-collection > input{
 	position: relative; 
   float: left;
 	height: 50px;
+	width: 120px;
 	border-radius: 0;
 	// border-left: 2px solid lightgrey;
 }
 
-input.first{
+input#location-search.first{
+	float: left;
+	height: 50px;
+	width: 250px;
 	-webkit-border-top-left-radius: 2px;
 	-webkit-border-bottom-left-radius: 2px;
 	-moz-border-radius-topleft: 2px;
 	-moz-border-radius-bottomleft: 2px;
 	border-top-left-radius: 2px;
 	border-bottom-left-radius: 2px;
+	-webkit-border-top-right-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-radius-topright: 0;
+	-moz-border-radius-bottomright: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
-button.last, select {
+button.last  {
 	float: left;
 	height: 50px;
 	padding: 0;
