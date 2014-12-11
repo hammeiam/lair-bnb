@@ -20,6 +20,7 @@
 //= require jquery.nouislider.all.min.js
 //= require jquery.slick
 //= require jquery-ui/datepicker
+//= require jquery-ui/tooltip
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models
