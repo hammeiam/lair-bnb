@@ -76,6 +76,14 @@ input[type=text], select {
 	padding: 0;
 }
 
+.v-center{
+	position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 #content-wrapper{
 	@extend .full-width-height;
 }
@@ -511,9 +519,14 @@ video{
 	margin: 0 auto;
 	height: 445px;
 	color: white;
-	font-size: 3em;
 	text-align: center;
+	text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
+
+.main-overlay h1 {
+	font-size: 80px;
+}
+
 .main-form-wrapper{
 	width: 100%;
 	height: 105px;
@@ -526,8 +539,7 @@ video{
 .main-form-collection{
 	position: relative; 
   float: left;
-  margin: 0 18%;
-	min-width: 800px;
+	min-width: 750px;
 }
 
 .main-form-collection > input{
@@ -542,7 +554,7 @@ video{
 input#location-search.first{
 	float: left;
 	height: 50px;
-	width: 250px;
+	width: 550px;
 	-webkit-border-top-left-radius: 2px;
 	-webkit-border-bottom-left-radius: 2px;
 	-moz-border-radius-topleft: 2px;

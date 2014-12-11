@@ -64,10 +64,10 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
       output['price_max'] = parseInt(pricesArr[1], 10);
 
     } else if(key === 'lair_type'){
-       var val = $("[name='lair_type']:checked").map(function(){ 
-          return $(this).val()
-        }).get(); // array
-        output[key] = val;
+     var val = $("[name='lair_type']:checked").map(function(){ 
+        return $(this).val()
+      }).get(); // array
+      output[key] = val;
 
     } else if(key === 'pagination'){
       var currentPage = parseInt(this.collectionFilterParams['page'], 10) || 1;
@@ -78,10 +78,9 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
       } else if (val === 'next' && (lairsSeen < LairBnB.lairs.total_entries)) {
         output['page'] = currentPage + 1;
       };
-
     } else if (!!key) {
       output[key] = $field.val();
-    }
+    };
 
     return output; 
   },
