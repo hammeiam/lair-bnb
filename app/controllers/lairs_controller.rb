@@ -15,7 +15,7 @@ class LairsController < ApplicationController
 	end	
 
 	def show
-		@lair = Lair.find(params[:id])
+		@lair = Lair.includes(:images, { owner: :profile_image }).find(params[:id])
 	end
 
 	def edit
@@ -26,9 +26,10 @@ class LairsController < ApplicationController
 
 	def index
 		if params[:search]
-			@lairs = Lair.search(search_params)
+			@lairs = Lair.includes(:images, { owner: :profile_image }).search(search_params)
 		else
-			@lairs = Lair.search()
+			# it's necessary to use search instead of all here for the results count for pagination
+			@lairs = Lair.includes(:images, { owner: :profile_image }).search()
 		end
 		# respond_to do |format|
 		# 	format.html { render json: Lair.all }

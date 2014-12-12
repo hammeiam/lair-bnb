@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 		@user = User.includes(
 			:profile_image, 
 			owned_lairs: :images, 
-			reservations: [:lair, { guest: :profile_image}], 
+			reservations: [:lair, { guest: :profile_image }], 
 			trips: { lair: :images }
 		).find(params[:id])
 	end
