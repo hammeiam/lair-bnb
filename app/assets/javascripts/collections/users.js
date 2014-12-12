@@ -14,6 +14,26 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
       model.fetch();
     }
   	return model;
+  },
+
+  logout: function(){
+    var currentUser = this.currentUser();
+    if(!!currentUser){
+      $.ajax({
+        url: "/session",
+        type: "DELETE",
+        success: function(resp){
+          currentUser.set( {logged_in: false });
+          currentUser.fetch();
+        }
+      });
+    } else {
+      return "You are already signed out!"
+    }
+  },
+
+  currentUser: function(){
+    return this.findWhere({ logged_in: true }) || null;
   }
 });
 LairBnB.users = new LairBnB.Collections.Users();

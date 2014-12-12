@@ -33,7 +33,13 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 	},
 
 	userShowAction: function(userId){
-		var user = LairBnB.users.getOrFetch(userId);
+		var user;
+		debugger
+		if(LairBnB.currentUser && LairBnB.currentUser.id === parseInt(userId, 10)){
+			user = LairBnB.currentUser
+		} else {
+			user = LairBnB.users.getOrFetch(userId);
+		}
 		var view = new LairBnB.Views.UserShow({	
 			model: user
 		});

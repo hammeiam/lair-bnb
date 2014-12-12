@@ -114,4 +114,16 @@ function initImageCarousel(view, size){
     prevArrow: '<button type="button" class="left-' + size + ' glyphicon glyphicon-chevron-left"></button>',
     nextArrow: '<button type="button" class="right-' + size + ' glyphicon glyphicon-chevron-right"></button>'
   });
-}
+};
+
+function showAlert(alertClass, alertMessage){
+	var $alertsContainer = $('#alerts-container');
+	var $content = $("<div class='alert " + alertClass + "' role='alert' style='display:none;'>" + alertMessage + "</div>");
+
+	$content.hide().appendTo($alertsContainer).slideDown();
+	setTimeout(function() {
+	  $content.slideUp(1500, function(){
+	  	$content.remove();
+	  });
+	}, 4000);
+};

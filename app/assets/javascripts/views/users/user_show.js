@@ -5,7 +5,7 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
     });
     this.addSubview('#nav-container', navView);
 
-		this.listenTo(this.model, 'sync', this.render);
+		this.listenTo(this.model, 'sync change', this.render);
 	},
 
 	template: JST['users/show'],

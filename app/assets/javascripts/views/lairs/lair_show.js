@@ -50,24 +50,19 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		var newReservation = new LairBnB.Models.Trip(formData['trip']);
 		newReservation.save({}, {
 			success: function(resp){
-				var $alerts = that.$('#alerts-container');
+				var $alerts = $('#alerts-container');
 				if(!!resp.get(['success'])){
-					$("<div class='alert alert-success' role='alert' style='display:none;'>Reservation Requested!</div>").hide().appendTo($alerts).slideDown();
+					var alertClass = 'alert-success';
+					var alertMessage = 'Reservation Requested!';
+					showAlert(alertClass, alertMessage);
 				} else {
 					$.each(resp.get(['errors']), function(idx, message){
-						$("<div class='alert alert-danger' role='alert' style='display:none;'>"+ message + "</div>").hide().appendTo($alerts).slideDown();
+						var alertClass = 'alert-danger';
+						showAlert(alertClass, message);
 					});
 				}
-				that.removeErrors();
 			}
 		})
-	},
-
-	removeErrors: function(){
-		var that = this;
-		setTimeout(function() {
-		  that.$("#alerts-container").slideUp(1500).empty();
-		}, 4000);
 	}
 
 	// initSlider: function(view){
