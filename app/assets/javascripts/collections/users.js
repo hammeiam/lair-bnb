@@ -25,10 +25,11 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
         success: function(resp){
           currentUser.set( {logged_in: false });
           currentUser.fetch();
+          showAlert('alert-success', 'Successfully Logged Out')
         }
       });
     } else {
-      return "You are already signed out!"
+      showAlert('alert-warning', 'You are already signed out!')
     }
   },
 

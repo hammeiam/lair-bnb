@@ -11,6 +11,13 @@
 
 </head>
 <body>
+	<script type="text/javascript">
+		<% if current_user %>
+			var currentUser = new LairBnB.Models.User({ id: <%= current_user.id %> })
+			LairBnB.users.add(currentUser);
+			currentUser.fetch();
+		<% end %>
+	</script>
 <!-- nav is commented out for now. Remove if backbone nav works -->
 <%# render 'layouts/header' unless @disable_nav %> 
 <%= yield %>

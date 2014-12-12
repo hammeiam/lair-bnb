@@ -17,7 +17,6 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 	},
 
 	render: function(){
-		console.log('changed', this.model)
 		var content = this.template({
 			lair: this.model,
 			owner: this.model.get(['owner'])

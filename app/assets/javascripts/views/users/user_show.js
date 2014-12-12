@@ -16,7 +16,6 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
 	},
 
 	render: function(){
-		console.log('changed', this.model)
 		var content = this.template({
 			user: this.model
 		});

@@ -117,12 +117,13 @@ function initImageCarousel(view, size){
 };
 
 function showAlert(alertClass, alertMessage){
+	// alertClasses are 'alert-success', 'alert-info', 'alert-warning', and 'alert-danger'
 	var $alertsContainer = $('#alerts-container');
 	var $content = $("<div class='alert " + alertClass + "' role='alert' style='display:none;'>" + alertMessage + "</div>");
 
 	$content.hide().appendTo($alertsContainer).slideDown();
 	setTimeout(function() {
-	  $content.slideUp(1500, function(){
+	  $content.slideUp(1000, function(){
 	  	$content.remove();
 	  });
 	}, 4000);

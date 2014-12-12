@@ -18,9 +18,12 @@ LairBnB.Views.Home = Backbone.CompositeView.extend({
 		this.$el.html(content);
 		initDatePicker(this);
 		this.initSearch();
-	  $(document).tooltip({
-	  	position: { my: "left top+15", at: "left bottom", collision: "flipfit" }
-	  });
+	  // $(document).tooltip({
+	  // 	position: { my: "left top+15", at: "left bottom", collision: "flipfit" }
+	  // });
+	$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 		return this;
 	},
 

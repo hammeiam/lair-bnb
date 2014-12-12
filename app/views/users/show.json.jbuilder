@@ -1,4 +1,4 @@
-json.(@user, :id, :first_name, :last_name)
+json.(@user, :id, :first_name, :last_name, :session_token)
 json.profile_image_url @user.profile_image.filepicker_url
 json.owned_lairs @user.owned_lairs do |lair|
 	json.(lair, :id, :title, :city, :state)

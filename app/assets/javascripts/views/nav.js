@@ -7,6 +7,7 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	initialize: function(options){
 		this.locationField = options.locationField;
+		this.listenTo(LairBnB.users, 'sync add remove change', this.render)
 	},
 
 	initSearch: function(){
@@ -27,7 +28,8 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	render: function(){
 		var content = this.template({
-			locationField: this.locationField
+			locationField: this.locationField,
+			user: LairBnB.users.currentUser()
 		});
   	this.$el.html(content);
   	this.initSearch();
