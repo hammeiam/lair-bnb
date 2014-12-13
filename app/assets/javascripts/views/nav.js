@@ -1,6 +1,7 @@
 LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	tagName: 'nav',
 	className: 'lairbnb-nav',
+	template: JST['nav'],
 	attributes: {
 		'role': 'navigation'
 	},
@@ -8,6 +9,10 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	initialize: function(options){
 		this.locationField = options.locationField;
 		this.listenTo(LairBnB.users, 'sync add remove change', this.render)
+	},
+
+	events: {
+		'click #logout': 'logout'
 	},
 
 	initSearch: function(){
@@ -24,12 +29,16 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
   	});
 	},
 
-	template: JST['nav'],
+	logout: function(){
+		LairBnB.users.logout();
+	},
+
+	
 
 	render: function(){
 		var content = this.template({
 			locationField: this.locationField,
-			user: LairBnB.users.currentUser()
+			currentUser: LairBnB.users.currentUser()
 		});
   	this.$el.html(content);
   	this.initSearch();

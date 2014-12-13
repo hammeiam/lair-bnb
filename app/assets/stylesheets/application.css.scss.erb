@@ -127,13 +127,15 @@ input[type=text], select {
 
 // nav //
 nav ul{
-margin: 0;
-padding: 0;
-list-style-type: none;
-text-align: center;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
 }
 nav ul li {
-	display: inline;
+	vertical-align: text-top;
+	display: inline-block;
+	padding: 0 10px;
 }
 
 nav ul li input {
@@ -145,8 +147,9 @@ nav ul li input {
 	margin-right: 20px;
 }
 
-.right-nav{
+.right-nav-container{
 	float: right;
+
 }
 
 #location-search{
@@ -170,11 +173,25 @@ nav ul li input {
 	background-size: 100% auto;
 }
 
+li.profile{
+	position: relative;
+	padding-left: 50px;
+}
+
+nav .circle{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 0;
+	top: -5px;
+	border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+
 /* SLIDESHOW */
 
 .slider-container-mini{
-	// width:100%;
-	// height:200px;
 	background-color:rgba(0,0,0,0.9);
 	overflow: hidden;
 	position: relative;
@@ -555,7 +572,7 @@ video{
 .main-form-collection{
 	position: relative; 
   float: left;
-	min-width: 750px;
+	min-width: 600px;
 }
 
 .main-form-collection > input{

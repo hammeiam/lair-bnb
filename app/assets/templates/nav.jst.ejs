@@ -1,19 +1,33 @@
 <ul>
-  <li class="left-nav"><a href="/#search/"><span class="logo"></span></a></li>
+  <li class="left-nav"><a href="/#/"><span class="logo"></span></a></li>
   <li class="left-nav">
   	<div class="lairbnb-form-group">
 	  	<span class="glyphicon glyphicon-search input-icon"></span>
 	  	<input type="text" class="location" name="location" id="location-search" placeholder="Where To? eg 'New York City'" value="<%= locationField %>">
   	</div>
   </li>
-	<li class="right-nav">
-		<% if(!!user){ %>
-			<p>I exists!</p>
+  
+	<div class="right-nav-container">
+		<% if(!!currentUser){ %>
+			<li class="profile">
+				<a href="#/users/<%= currentUser.id %>">
+					<div class="circle">
+						<img src="<%= currentUser.get(['profile_image_url']) %>" class="profile-img"/>
+					</div>
+					<span><%= currentUser.escape(['first_name']) %></span>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" id="logout">Log Out</a>
+			</li>
 		<% } else { %>
-		<p>I don't exist</p>
-		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			<p>I don't exist</p>
+			<p><a href="#myModal" data-toggle="modal">Modalize Me Cap'n!</a></p>
+	</div>
+	
+		<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Launch demo modal
-</button>
+</button> -->
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
