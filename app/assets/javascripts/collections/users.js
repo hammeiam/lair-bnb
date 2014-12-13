@@ -44,17 +44,21 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
       type: "POST",
       data: userData,
       success: function(resp){
-        if(resp['success']){
+        if(!!resp['success']){
+          debugger
+          $('#signInModal').modal('hide');
+          // addresses a bug with some browsers & bootstrap
+          $('body').removeClass('modal-open');
           var id = parseInt(resp['success'], 10);
           var currentUser = new LairBnB.Models.User({ id: id });
           var existingUser = LairBnB.users.findWhere({ id: id });
           if(!!existingUser){
-            // LairBnB.users.reset(currentUser);
             existingUser.set({ logged_in: true });
+            existingUser.fetch();
           } else {
             LairBnB.users.add(currentUser);
+            currentUser.fetch();
           };
-          currentUser.fetch();
         } else {
           resp['errors'].forEach(function(message){
             var options = {

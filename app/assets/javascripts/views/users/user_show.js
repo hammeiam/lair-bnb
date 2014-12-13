@@ -5,10 +5,30 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
     });
     this.addSubview('#nav-container', navView);
 
-		this.listenTo(this.model, 'sync change', this.render);
+		this.listenTo(this.model, 'sync', this.render);
+		this.listenTo(this.model, 'sync', this.this_sync);
+		this.listenTo(this.model, 'add', this.this_add);
+		this.listenTo(this.model, 'change', this.this_change);
+		this.listenTo(this.model, 'reset', this.this_reset);
+		this.listenTo(this.model, 'remove', this.this_remove);
 	},
 
 	template: JST['users/show'],
+	this_sync: function(){
+		console.log('sync')
+	},
+	this_add: function(){
+		console.log('add')
+	},
+	this_change: function(){
+		console.log('change')
+	},
+	this_reset: function(){
+		console.log('reset')
+	},
+	this_remove: function(){
+		console.log('remove')
+	},
 
 	events: {
 		'change input.location': 'submitNewSearch',
@@ -16,6 +36,7 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
 	},
 
 	render: function(){
+		console.log('usershow rendered')
 		var content = this.template({
 			user: this.model
 		});

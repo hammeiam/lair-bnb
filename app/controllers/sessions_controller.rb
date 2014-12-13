@@ -17,7 +17,9 @@ class SessionsController < ApplicationController
       errors = []
       errors << "E-mail can't be blank" if params[:session][:email].empty?
       errors << "Password can't be blank" if params[:session][:password].empty?
-      errors << "Invalid Credentials, please try again" unless params[:session][:email] || params[:session][:password]
+      if params[:session][:email].present? && params[:session][:password].present?
+        errors << "Invalid Credentials, please try again" 
+      end
       render json: { errors: errors }
     end
   end

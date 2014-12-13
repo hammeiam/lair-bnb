@@ -8,7 +8,7 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	initialize: function(options){
 		this.locationField = options.locationField;
-		this.listenTo(LairBnB.users, 'sync add remove change reset', this.render)
+		this.listenTo(LairBnB.users, 'sync add remove change reset', this.render);
 	},
 
 	events: {
@@ -18,10 +18,6 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	initSearch: function(){
 		var input = this.$('#location-search');
-		// if(this.query){
-		// 	input.val(decodeLocationUrl(this.query));
-		// }
-		
   	autocomplete = new google.maps.places.Autocomplete(input[0], {types: ['geocode']});
   	var that = this;
   	google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -40,8 +36,6 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		LairBnB.users.signIn(userData);
 	},
 
-	
-
 	render: function(){
 		var content = this.template({
 			locationField: this.locationField,
@@ -49,7 +43,17 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		});
   	this.$el.html(content);
   	this.initSearch();
+  	this.focusModals();
   	return this;
+	},
+
+	focusModals: function(){
+		$('#signInModal').on('shown.bs.modal', function () {
+	    $('#signInEmail').focus();
+		});
+		$('#signUpModal').on('shown.bs.modal', function () {
+	    $('#signUpFirstName').focus();
+		})
 	},
 
 	updateSearchLocation: function(locationObj){
