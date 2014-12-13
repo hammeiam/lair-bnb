@@ -8,11 +8,12 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	initialize: function(options){
 		this.locationField = options.locationField;
-		this.listenTo(LairBnB.users, 'sync add remove change', this.render)
+		this.listenTo(LairBnB.users, 'sync add remove change reset', this.render)
 	},
 
 	events: {
-		'click #logout': 'logout'
+		'click #signOut': 'signOut',
+		'submit form#signIn': 'signIn'
 	},
 
 	initSearch: function(){
@@ -29,8 +30,14 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
   	});
 	},
 
-	logout: function(){
-		LairBnB.users.logout();
+	signOut: function(){
+		LairBnB.users.signOut();
+	},
+
+	signIn: function(event){
+		event.preventDefault();
+		var userData = $(event.currentTarget).serializeJSON();
+		LairBnB.users.signIn(userData);
 	},
 
 	

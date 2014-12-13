@@ -11,10 +11,14 @@ class SessionsController < ApplicationController
     
     if @user
       login(@user)  
-      redirect_to user_url(@user)
+      # redirect_to user_url(@user)
+      render json: { success: @user.id }
     else
-      flash[:errors] = "Invalid Credentials, please try again"
-      redirect_to new_session_url
+      errors = []
+      errors << "E-mail can't be blank" if params[:session][:email].empty?
+      errors << "Password can't be blank" if params[:session][:password].empty?
+      errors << "Invalid Credentials, please try again" unless params[:session][:email] || params[:session][:password]
+      render json: { errors: errors }
     end
   end
   

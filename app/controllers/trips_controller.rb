@@ -7,7 +7,7 @@ class TripsController < ApplicationController
 		@trip = Trip.new(trip_params)
 		@trip.guest_id = current_user.id if current_user
 		if @trip.save
-			render json: {success: 'Reservation request placed'}
+			render json: { success: 'Reservation request placed' }
 		else
 			render json: { errors: @trip.errors.full_messages }
 		end

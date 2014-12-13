@@ -21,9 +21,7 @@ LairBnB.Views.Home = Backbone.CompositeView.extend({
 	  // $(document).tooltip({
 	  // 	position: { my: "left top+15", at: "left bottom", collision: "flipfit" }
 	  // });
-	$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  	this.$('[data-toggle="tooltip"]').tooltip();
 		return this;
 	},
 

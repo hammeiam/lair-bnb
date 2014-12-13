@@ -16,21 +16,57 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
   	return model;
   },
 
-  logout: function(){
+  signOut: function(){
     var currentUser = this.currentUser();
+    var options = {};
     if(!!currentUser){
       $.ajax({
         url: "/session",
         type: "DELETE",
         success: function(resp){
-          currentUser.set( {logged_in: false });
+          currentUser.set( { logged_in: false });
           currentUser.fetch();
-          showAlert('alert-success', 'Successfully Logged Out')
+          options['alertClass'] = 'alert-success';
+          options['alertMessage'] = 'Successfully Logged Out';
+          showAlert(options)
         }
       });
     } else {
-      showAlert('alert-warning', 'You are already signed out!')
+      options['alertClass'] = 'alert-warning';
+      options['alertMessage'] = 'You are already signed out!';
+      showAlert(options);
     }
+  },
+
+  signIn: function(userData){
+    $.ajax({
+      url: "/session",
+      type: "POST",
+      data: userData,
+      success: function(resp){
+        if(resp['success']){
+          var id = parseInt(resp['success'], 10);
+          var currentUser = new LairBnB.Models.User({ id: id });
+          var existingUser = LairBnB.users.findWhere({ id: id });
+          if(!!existingUser){
+            // LairBnB.users.reset(currentUser);
+            existingUser.set({ logged_in: true });
+          } else {
+            LairBnB.users.add(currentUser);
+          };
+          currentUser.fetch();
+        } else {
+          resp['errors'].forEach(function(message){
+            var options = {
+              alertClass: 'alert-warning',
+              alertMessage: message,
+              alertLocation: '#alerts-container-modal'
+            };
+            showAlert(options);
+          });
+        };
+      }
+    });
   },
 
   currentUser: function(){
