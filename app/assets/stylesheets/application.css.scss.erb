@@ -57,6 +57,10 @@ input[type=text], input[type=password], select {
 	padding: 0 5px;
 }
 
+.blue{
+	background-color: #3498db !important;
+}
+
 #alerts-container{
 	position: fixed;
 	z-index: 100;
@@ -343,6 +347,9 @@ button#guest-signin:focus{
 
 .profile-img{
 	width:100%;
+	min-height: 100%;
+	background-image: url(<%= asset_path 'default-user-image.png' %>);
+	background-size: 100% auto;
 }
 
 // Lair Reservation Form //

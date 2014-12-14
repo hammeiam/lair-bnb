@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 		@user = User.new
 		# temporary hack until I get json forms working
 		respond_to do |format|
-			format.html { render :show }
+			format.html { render :new }
 			format.json do
 				render 'new.html.erb', {
       :content_type => 'text/html',
@@ -17,10 +17,9 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			login(@user)
-			redirect_to user_url(@user)
+			render json: { success: @user.id }
 		else
-			flash.now[:errors] = @user.errors.full_messages
-			render :new
+			render json: { errors: @user.errors.full_messages }
 		end
 	end
 

@@ -14,7 +14,8 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	events: {
 		'click #signOut': 'signOut',
 		'submit form#signIn': 'signIn',
-		'click button#guest-signin': 'guestSignIn'
+		'click button#guest-signin': 'guestSignIn',
+		'submit form#signUp': 'signUp'
 	},
 
 	initSearch: function(){
@@ -44,6 +45,12 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		setTimeout(function(){
 			$('#signIn').submit();
 		}, 1000);
+	},
+
+	signUp: function(event){
+		event.preventDefault();
+		var userData = $(event.currentTarget).serializeJSON();
+		LairBnB.users.signUp(userData);
 	},
 
 	render: function(){

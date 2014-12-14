@@ -63,13 +63,39 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
             var options = {
               alertClass: 'alert-warning',
               alertMessage: message,
-              alertLocation: '#alerts-container-modal'
+              alertLocation: '#sign-in-alerts-container-modal'
             };
             showAlert(options);
           });
         };
       }
     });
+  },
+
+  signUp: function(userData){
+    var newUser = new LairBnB.Models.User(userData);
+    newUser.save({}, {
+      success: function(model, resp){
+        if(!!resp['success']){
+          $('#signInModal').modal('hide');
+          // addresses a bug with some browsers & bootstrap
+          $('body').removeClass('modal-open');
+          LairBnB.users.add(newUser);
+          newUser.fetch();
+          var id = resp['success'];
+          Backbone.history.navigate('/users/' + id, { trigger: true })
+        } else{
+          resp['errors'].forEach(function(message){
+            var options = {
+              alertClass: 'alert-warning',
+              alertMessage: message,
+              alertLocation: '#sign-up-alerts-container-modal'
+            };
+            showAlert(options);
+          });
+        };
+      }
+    })
   },
 
   currentUser: function(){
