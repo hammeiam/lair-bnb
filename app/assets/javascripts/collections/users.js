@@ -28,7 +28,7 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
           currentUser.fetch();
           options['alertClass'] = 'alert-success';
           options['alertMessage'] = 'Successfully Logged Out';
-          showAlert(options)
+          showAlert(options);
         }
       });
     } else {
@@ -45,17 +45,16 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
       data: userData,
       success: function(resp){
         if(!!resp['success']){
-          debugger
           $('#signInModal').modal('hide');
           // addresses a bug with some browsers & bootstrap
           $('body').removeClass('modal-open');
           var id = parseInt(resp['success'], 10);
-          var currentUser = new LairBnB.Models.User({ id: id });
-          var existingUser = LairBnB.users.findWhere({ id: id });
           if(!!existingUser){
+            var existingUser = LairBnB.users.findWhere({ id: id });
             existingUser.set({ logged_in: true });
             existingUser.fetch();
           } else {
+            var currentUser = new LairBnB.Models.User({ id: id });
             LairBnB.users.add(currentUser);
             currentUser.fetch();
           };

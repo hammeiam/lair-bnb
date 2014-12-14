@@ -13,7 +13,8 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 
 	events: {
 		'click #signOut': 'signOut',
-		'submit form#signIn': 'signIn'
+		'submit form#signIn': 'signIn',
+		'click button#guest-signin': 'guestSignIn'
 	},
 
 	initSearch: function(){
@@ -34,6 +35,15 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		event.preventDefault();
 		var userData = $(event.currentTarget).serializeJSON();
 		LairBnB.users.signIn(userData);
+	},
+
+	guestSignIn: function(event){
+		event.preventDefault();
+		$('#signInEmail').val('bwayne@aol.com');
+		$('#signInPassword').val('password');
+		setTimeout(function(){
+			$('#signIn').submit();
+		}, 1000);
 	},
 
 	render: function(){
