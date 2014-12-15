@@ -62,7 +62,8 @@ function initDatePicker(view, dates) {
 			dates = [];
 		}
 		// var array = ["2014-12-14","2014-12-15","2014-12-16"]; this is the correct format.
-		var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		// var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		var string = jQuery.datepicker.formatDate('mm/dd/yy', date);
       return [ dates.indexOf(string) == -1 ]
   };
 

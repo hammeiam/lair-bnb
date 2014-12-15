@@ -8,7 +8,9 @@ end
 if current_user && @user.id == current_user.id
 	json.logged_in true
 	json.trips @user.trips do |trip|
-		json.(trip, :id, :guest_id, :lair_id, :check_in_date, :check_out_date, :approval_status)
+		json.(trip, :id, :guest_id, :lair_id, :approval_status)
+		json.check_in_date trip.check_in_date.strftime('%m/%d/%Y')
+		json.check_out_date trip.check_out_date.strftime('%m/%d/%Y')
 		json.trip_lair do |lair|
 			json.(trip.lair, :id, :title, :city, :state)
 			json.lair_image_url trip.lair.images.first.filepicker_url
@@ -16,7 +18,9 @@ if current_user && @user.id == current_user.id
 		
 	end
 	json.reservations @user.reservations do |reservation|
-		json.(reservation, :id, :approval_status, :check_in_date, :check_out_date, :num_guests)
+		json.(reservation, :id, :approval_status, :num_guests)
+		json.check_in_date reservation.check_in_date.strftime('%m/%d/%Y')
+		json.check_out_date reservation.check_out_date.strftime('%m/%d/%Y')
 		
 		json.lair do |lair|
 			json.(reservation.lair, :id, :title, :city, :state)

@@ -17,6 +17,13 @@ class TripsController < ApplicationController
 	end
 
 	def update
+		@trip = Trip.find(params[:id])
+
+		if @trip.update(trip_params)
+			render json: { success: @trip.id }
+		else
+			render json: { errors: @trip.errors.full_messages }
+		end
 	end
 
 	def destroy
@@ -25,6 +32,6 @@ class TripsController < ApplicationController
 	end
 
 	def trip_params
-		params.require(:trip).permit(:guest_id, :lair_id, :check_in_date, :check_out_date, :num_guests)
+		params.require(:trip).permit(:guest_id, :lair_id, :check_in_date, :check_out_date, :num_guests, :approval_status)
 	end
 end

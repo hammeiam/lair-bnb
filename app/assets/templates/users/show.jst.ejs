@@ -20,6 +20,7 @@
 	<div class="container-fluid">
 	  <div class="page-container">
 	  <% if(user.get(['logged_in'])){ %>
+
 			  <div class="row panel-body">
 			    <div class="col-xs-12">
 			    <h2>Pending Reservations</h2>
@@ -38,13 +39,14 @@
 			
 			  <div class="row panel-body">
 			    <div class="col-xs-12">
-			    <h2>Approved</h2>
+			    <h2>Approved Reservations</h2>
 			    </div>
 			    <div class="col-xs-12">
 				    <% var approved = user.get(['reservations']).filter(function(el){ return el.approval_status === 'approved' }) %>
 				    <% if(approved.length > 0){ %>
+				    	<div id="approved-reservations-container"></div>
 				    <% } else { %>
-				    no approved reservations
+				    	<p>No approved reservations</p>
 			    	<% } %>
 			    </div>
 		  	</div>

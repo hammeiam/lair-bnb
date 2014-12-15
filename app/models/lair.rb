@@ -63,8 +63,6 @@ class Lair < ActiveRecord::Base
 		end
 		a = search_options[:check_out_date]
 
-		# byebug
-
 		if result.count == 0
 			return Lair.all.page(search_options[:page])
 		else
@@ -83,7 +81,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def unavailable_dates_strings
-		unavailable_dates.map{ |date| date.to_s }
+		unavailable_dates.map{ |date| date.to_formatted_s(:month_day_year) }
 	end
 
 	def image_urls=(image_params)

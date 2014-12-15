@@ -5,9 +5,13 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
     });
     var pendingView = new LairBnB.Views.TripsIndex({
     	collection: this.model.pendingReservations()
-    })
+    });
+    var approvedView = new LairBnB.Views.TripsIndex({
+    	collection: this.model.approvedReservations()
+    });
     this.addSubview('#nav-container', navView);
     this.addSubview('#pending-reservations-container', pendingView);
+		this.addSubview('#approved-reservations-container', approvedView);
 		this.listenTo(this.model, 'sync', this.render);
 	},
 
