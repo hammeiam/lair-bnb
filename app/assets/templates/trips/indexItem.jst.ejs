@@ -1,0 +1,30 @@
+<div class="trip-subsection">
+	<p><strong><%= lair.title %></strong></p>
+</div>
+<div class="trip-subsection">
+	<p><strong>Guest</strong>
+	<br>
+	<a href="#/users/<%= guest.id %>"><%= guest.first_name %> <%= guest.last_name %></p>
+	<div class="circle center">
+		<img src="<%= guest.guest_image_url %>" class="profile-img" />
+	</div>
+	</a>
+</div>
+<div class="trip-subsection">
+	<p><strong>Check In Date:</strong>
+	<br> 
+	<%= new Date(reservation.escape(['check_in_date'])).toDateString() %></p>
+</div>
+<div class="trip-subsection">
+	<p><strong>Check Out Date:</strong>
+	<br> 
+	<%= new Date(reservation.escape(['check_out_date'])).toDateString() %></p>
+</div>
+<div class="trip-subsection-last">
+	<div class="col-xs-6">
+		<button class="btn green">Approve</button>
+	</div>
+	<div class="col-xs-6">
+		<button class="btn">Deny</button>
+	</div>
+</div>

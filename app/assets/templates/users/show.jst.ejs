@@ -22,37 +22,16 @@
 	  <% if(user.get(['logged_in'])){ %>
 			  <div class="row panel-body">
 			    <div class="col-xs-12">
-			    <h2>Pending</h2>
+			    <h2>Pending Reservations</h2>
 			    </div>
-			    <div class="col-xs-12">
+			    <div class="col-xs-12" >
 			    	<% var pending = user.get(['reservations']).filter(function(el){ return el.approval_status === 'pending' }) %>
+			    	<% var pending = user.pendingReservations(); %>
 			    	<% if(pending.length > 0){ %>
-			    		<ul class="lairs-list">
-								<% $.each(pending, function(i, res){ %>
-					    		<li class="lair-result col-xs-2 col-md-4">
-					    			<div class="center">
-					    				<div class="circle">
-					    					<img src="<%= res.guest.guest_image_url %>" class="profile-img" />
-						    			</div>
-						    			<p><a href="#/users/<%= res.guest.id %>"><%= res.guest.first_name %> <%= res.guest.last_name %></a></p>
-						    			<p><%= res.title %></p>
-						    			<p>Check In: <%= res.check_in_date %></p>
-						    			<p>Check Out: <%= res.check_out_date %></p>
-						    			<p>Status: <%= res.approval_status %></p>
-					    			</div> 
-					    			
-					    			<% if(res.approval_status === 'pending'){ %>
-					    				<div class="col-xs-12"><button class="btn pagination">Approve</button></div>
-					    				<div class="col-xs-12"><button class="btn pagination">Reject</button></div>
-					    			<% } %>
-
-					    			
-					    			
-					    		</li>
-					    	<% }) %>
-					    </ul>
+			    	<div id="pending-reservations-container"></div>
+			    		
 			    	<% } else { %>
-			    		no pending reservations
+			    		<p>No pending reservations</p>
 			    	<% } %>
 			    </div>
 			  </div>

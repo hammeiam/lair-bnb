@@ -16,8 +16,11 @@ if current_user && @user.id == current_user.id
 		
 	end
 	json.reservations @user.reservations do |reservation|
-		json.(reservation, :approval_status, :check_in_date, :check_out_date, :num_guests)
-		json.(reservation.lair, :id, :title, :city, :state)
+		json.(reservation, :id, :approval_status, :check_in_date, :check_out_date, :num_guests)
+		
+		json.lair do |lair|
+			json.(reservation.lair, :id, :title, :city, :state)
+		end
 		
 		
 		json.guest do |guest|

@@ -61,6 +61,24 @@ input[type=text], input[type=password], select {
 	background-color: #3498db !important;
 }
 
+// .green{
+// 	background-color: #2ecc71 !important;
+// }
+
+button.green{
+	background-color: #27ae60;
+}
+
+button.green:hover{
+	color: white;
+	background: lighten(#27ae60, 5%)
+}
+
+button.green:focus{
+	color: white;
+	background: darken(#27ae60, 5%)
+}
+
 #alerts-container{
 	position: fixed;
 	z-index: 100;
@@ -695,27 +713,23 @@ button.last{
 }
 
 .center{
-	width: 150px;
-	text-align: center;
 	margin: 0 auto;
 }
 
-// ul.lairs-list{
-// 	display: -webkit-flex;
-//   display: -ms-flexbox;
-//   display: flex;
+.trip-subsection{
+	border-bottom: 1px solid lightgrey;
+	text-align: center;
+	padding: 5px 0;
+	display: inline-block;
+	width: 100%;
+}
 
-//   -webkit-flex-wrap: wrap;
-//   -ms-flex-wrap: wrap;
-//   flex-wrap: wrap;
-// }
-
-// ul.lairs-list li{
-// 	 display: -webkit-flex;
-//         display: -ms-flexbox;
-//         display: flex;
-// }
-
+.trip-subsection-last{
+	text-align: center;
+	padding-top: 10px;
+	display: inline-block;
+	width: 100%;
+}
 
 
 

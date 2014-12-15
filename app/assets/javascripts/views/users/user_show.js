@@ -3,7 +3,11 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
 		var navView = new LairBnB.Views.Nav({
       locationField: ''
     });
+    var pendingView = new LairBnB.Views.TripsIndex({
+    	collection: this.model.pendingReservations()
+    })
     this.addSubview('#nav-container', navView);
+    this.addSubview('#pending-reservations-container', pendingView);
 		this.listenTo(this.model, 'sync', this.render);
 	},
 
@@ -15,7 +19,7 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
 	},
 
 	render: function(){
-		console.log('usershow rendered')
+		console.log('user show rendered')
 		var content = this.template({
 			user: this.model
 		});
