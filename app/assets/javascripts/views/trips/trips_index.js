@@ -3,7 +3,7 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
   template: JST['trips/index'],
 
   initialize: function(){
-  	this.listenToOnce(this.collection, 'add remove', this.render)
+  	this.listenToOnce(this.collection, 'add remove sync', this.render)
   },
 
   render: function(){
