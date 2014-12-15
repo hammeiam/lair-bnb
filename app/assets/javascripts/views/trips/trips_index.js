@@ -2,11 +2,13 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
 
   template: JST['trips/index'],
 
-  initialize: function(){
-  	// this.listenToOnce(this.collection, 'add remove', this.render);
-    this.listenTo(this.collection, 'add', this.addTrip);
-    this.listenTo(this.collection, 'change', this.render);
-    this.listenTo(this.collection, 'sync', this.render)
+  initialize: function(options){
+    this.viewType = options['viewType']
+    // this.listenTo(this.collection, 'add', this.addTrip);
+    this.listenTo(this.collection, 'localUpdate', this.render);
+    this.viewCollection = new LairBnB.Collections.Trips([])
+    this.listenTo(this.viewCollection, 'sync', this.render);
+
     this.listenTo(this.collection, 'sync', this.this_sync);
     this.listenTo(this.collection, 'add', this.this_add);
     this.listenTo(this.collection, 'change', this.this_change);
@@ -33,9 +35,12 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
   render: function(){
     debugger
   	console.log('trips index rendered')
+    var viewType = this.viewType
+    var models = this.collection.where({approval_status: viewType});
+    this.viewCollection.set(models)
   	var content = this.template();
   	this.$el.html(content);
-  	this.collection.each(this.addTrip.bind(this));
+  	this.viewCollection.each(this.addTrip.bind(this));
   	// this.attachSubviews();
   	return this;
   },

@@ -4,15 +4,18 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
       locationField: ''
     });
     var pendingView = new LairBnB.Views.TripsIndex({
-    	collection: this.model.pendingReservations()
+    	collection: this.model.reservationsCollection(),
+    	viewType: 'pending'
     });
     var approvedView = new LairBnB.Views.TripsIndex({
-    	collection: this.model.approvedReservations()
+    	collection: this.model.reservationsCollection(),
+    	viewType: 'approved'
     });
     this.addSubview('#nav-container', navView);
     this.addSubview('#pending-reservations-container', pendingView);
 		this.addSubview('#approved-reservations-container', approvedView);
 		this.listenTo(this.model, 'sync', this.render);
+		this.listenTo(this.model, 'sync', this.triggerEvent)
 	},
 
 	template: JST['users/show'],
@@ -20,6 +23,10 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
 	events: {
 		'change input.location': 'submitNewSearch',
 		'keypress input.location': 'checkForEnterSubmit'
+	},
+
+	triggerEvent: function(){
+		this.model.reservationsCollection().trigger('localUpdate')
 	},
 
 	render: function(){
