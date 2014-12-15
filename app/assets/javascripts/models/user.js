@@ -16,13 +16,17 @@ LairBnB.Models.User = Backbone.Model.extend({
 	},
 	pendingReservations: function(){
 		if(!this._pending_reservations){
-			this._pending_reservations = new LairBnB.Collections.Trips([]);
+			this._pending_reservations = new LairBnB.Collections.Trips([],{
+				user: this
+			});
 		}
 		return this._pending_reservations;
 	},
 	approvedReservations: function(){
 		if(!this._approvedReservations){
-			this._approvedReservations = new LairBnB.Collections.Trips([]);
+			this._approvedReservations = new LairBnB.Collections.Trips([], {
+				user: this
+			});
 		}
 		return this._approvedReservations;
 	}
