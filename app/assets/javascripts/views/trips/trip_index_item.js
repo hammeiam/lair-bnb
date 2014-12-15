@@ -55,12 +55,14 @@ this_remove: function(){
       showAlert(options);
       return;
     }
+    var that = this;
     this.model.save({ approval_status: action},{
       success: function(resp){
         if(!!resp.get(['success'])){
           options['alertClass'] = 'alert-success';
           options['alertMessage'] = 'Reservation ' + action;
           showAlert(options);
+          that.model.collection.trigger('sync');
         } else {
           $.each(resp.get(['errors']), function(idx, message){
             options['alertClass'] = 'alert-danger';
@@ -68,6 +70,7 @@ this_remove: function(){
             showAlert(options);
           });
         }
+
       }
     })
   }

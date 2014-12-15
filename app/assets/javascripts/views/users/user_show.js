@@ -5,17 +5,17 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
     });
     var pendingView = new LairBnB.Views.TripsIndex({
     	collection: this.model.reservationsCollection(),
-    	viewType: 'pending'
+    	reservationType: 'pending'
     });
     var approvedView = new LairBnB.Views.TripsIndex({
     	collection: this.model.reservationsCollection(),
-    	viewType: 'approved'
+    	reservationType: 'approved'
     });
     this.addSubview('#nav-container', navView);
     this.addSubview('#pending-reservations-container', pendingView);
 		this.addSubview('#approved-reservations-container', approvedView);
 		this.listenTo(this.model, 'sync', this.render);
-		this.listenTo(this.model, 'sync', this.triggerEvent)
+		this.listenTo(this.model, 'sync', this.triggerEvent);
 	},
 
 	template: JST['users/show'],

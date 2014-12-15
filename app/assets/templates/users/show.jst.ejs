@@ -26,15 +26,11 @@
 			    <h2>Pending Reservations</h2>
 			    </div>
 			    <div class="col-xs-12" >
+
 			   
-			    	<% var pending = user.get(['reservations']).filter(function(el){ return el.approval_status === 'pending' }) %>
-			    	
-			    	<% if(pending.length > 0){ %>
 			    	<div id="pending-reservations-container"></div>
 			    		
-			    	<% } else { %>
-			    		<p>No pending reservations</p>
-			    	<% } %>
+			    
 			    </div>
 			  </div>
 			
