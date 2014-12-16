@@ -1,0 +1,1 @@
+json.partial! 'trips/show', trip: @trip

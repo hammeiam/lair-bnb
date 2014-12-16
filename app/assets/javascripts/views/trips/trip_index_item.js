@@ -3,7 +3,6 @@ LairBnB.Views.TripIndexItem = Backbone.View.extend({
   template: JST['trips/indexItem'],
 
   initialize: function(){
-    // this.listenTo(this.model, 'sync', this.this_sync);
   },
 
   events: {

@@ -1,0 +1,1 @@
+json.partial! partial: 'trips/show', collection: @trips, as: :trip

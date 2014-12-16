@@ -2,7 +2,7 @@ LairBnB.Models.User = Backbone.Model.extend({
 	urlRoot: '/users',
 	parse: function(resp){
 		if(resp.reservations){
-			this.reservationsCollection().set(resp.reservations)
+			// this.reservationsCollection().set(resp.reservations)
 		} 
 		return resp;
 	},
