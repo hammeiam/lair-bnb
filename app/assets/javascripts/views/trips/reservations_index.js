@@ -1,19 +1,24 @@
-LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
+LairBnB.Views.ReservationsIndex = Backbone.CompositeView.extend({
 
-  template: JST['trips/tripsIndex'],
+  template: JST['trips/reservationsIndex'],
 
   initialize: function(options){
+    this.reservationType = options['reservationType'];
     this.user = options['user'];
     this.listenTo(this.collection, 'sync', this.render);
   },
 
   render: function(){
     var userId = this.user.id;
+    var reservationType = this.reservationType;
+    debugger
     var models = this.collection.filter(function(model){ 
-        return model.get(['guest']).id === userId;
+        return model.get(['approval_status']) === reservationType && 
+        model.get(['guest']).id !== userId;
       });
   	var content = this.template({
-      trips: models,
+      reservations: models,
+      reservationType: this.reservationType
     });
   	this.$el.html(content);
     var that = this;
@@ -24,9 +29,10 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
   },
 
   addTrip: function(trip){
-  	var view = new LairBnB.Views.TripsIndexItem({
+  	var view = new LairBnB.Views.ReservationsIndexItem({
   		model: trip
   	});
   	this.addSubview('.trips-list', view);
   },
+
 });

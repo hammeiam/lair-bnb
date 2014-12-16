@@ -29,7 +29,9 @@ class TripsController < ApplicationController
 	end
 
 	def index
-		@trips = User.find(params[:user_id]).trips.includes({ guest: :profile_image }, { lair: :images })
+		user_trips = User.find(params[:user_id]).trips.includes({ guest: :profile_image }, { lair: :images })
+		user_reservations = User.find(params[:user_id]).reservations.includes({ guest: :profile_image }, { lair: :images })
+		@trips = user_trips + user_reservations
 	end
 
 	def trip_params

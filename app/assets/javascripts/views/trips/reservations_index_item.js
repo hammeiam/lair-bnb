@@ -1,6 +1,6 @@
-LairBnB.Views.TripIndexItem = Backbone.View.extend({
+LairBnB.Views.ReservationsIndexItem = Backbone.View.extend({
 
-  template: JST['trips/indexItem'],
+  template: JST['trips/reservationsIndexItem'],
 
   initialize: function(){
   },
@@ -9,11 +9,9 @@ LairBnB.Views.TripIndexItem = Backbone.View.extend({
     'click button': 'handleClick'
   },
 
-  // tagName: 'li',
   className: 'lair-result col-xs-3',
 
   render: function(){
-    console.log('trip rendered')
   	var content = this.template({
       reservation: this.model,
       lair: this.model.get(['lair']),

@@ -15,22 +15,23 @@
 	<br> 
 	<%= new Date(reservation.escape(['check_in_date'])).toDateString() %></p>
 </div>
+
 <% if(reservation.escape(['approval_status']) === 'pending'){ %>
-<div class="trip-subsection">
+	<div class="trip-subsection">
 <% } else { %>
-<div class="trip-subsection-last">
+	<div class="trip-subsection-last">
 <% } %>
 	<p><strong>Check Out Date:</strong>
 	<br> 
 	<%= new Date(reservation.escape(['check_out_date'])).toDateString() %></p>
 </div>
 <% if(reservation.escape(['approval_status']) === 'pending'){ %>
-<div class="trip-subsection-last">
-	<div class="col-xs-6">
-		<button class="btn green" data-action="approved">Approve</button>
+	<div class="trip-subsection-last">
+		<div class="col-xs-6">
+			<button class="btn green" data-action="approved">Approve</button>
+		</div>
+		<div class="col-xs-6">
+			<button class="btn" data-action="denied">Deny</button>
+		</div>
 	</div>
-	<div class="col-xs-6">
-		<button class="btn" data-action="denied">Deny</button>
-	</div>
-</div>
 <% } %>
