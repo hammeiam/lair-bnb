@@ -709,6 +709,8 @@ button.last{
 	.lair-result{
 		border: 1px solid lightgrey;
 		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
 		padding: 15px;
 		margin: 10px;
 	}
@@ -723,6 +725,10 @@ button.last{
 	text-align: center;
 	padding: 5px 0;
 	display: inline-block;
+	width: 100%;
+}
+
+.trip-subsection img{
 	width: 100%;
 }
 
@@ -743,7 +749,10 @@ button.last{
 	font-size: 60px;
 	width: 75px;
 	opacity: 0.6;
-	}
+	transition: opacity 0.5s, background 0.5s;
+	-webkit-transition:opacity 0.5s, background 0.5s; /* For Safari 3.1 to 6.0 */
+    
+}
 
 .left-trip-arrow{
 	@extend .carousel-lr-button-container;
@@ -760,4 +769,26 @@ button.last{
 	border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+}
+
+.trip_status{
+	text-transform: capitalize;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.pending{
+	@extend .trip_status;
+	background-color: rgba(243, 156, 18, 0.2);
+}
+
+.denied{
+	@extend .trip_status;
+	background-color: rgba(192, 57, 43, 0.2);
+}
+
+.approved{
+	@extend .trip_status;
+	background-color: rgba(39, 174, 96, 0.2);
 }

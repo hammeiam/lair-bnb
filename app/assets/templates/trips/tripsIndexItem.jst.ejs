@@ -1,0 +1,25 @@
+<div class="trip-subsection">
+	<p><strong><a href="#/lairs/<%= lair.id %>"><%= lair.title %></a></strong>
+	<br>
+	<%= lair.city %>, <%= lair.state %></p>
+	<a href="#/lairs/<%= lair.id %>">
+		<img src="<%= lair.lair_image_url %>/convert?w=300&h=175&fit=crop" />
+	</a>
+</div>
+<div class="trip-subsection">
+	<p><strong>Check In Date:</strong>
+	<br> 
+	<%= new Date(trip.escape(['check_in_date'])).toDateString() %></p>
+</div>
+
+<div class="trip-subsection-last">
+	<p><strong>Check Out Date:</strong>
+	<br> 
+	<%= new Date(trip.escape(['check_out_date'])).toDateString() %></p>
+</div>
+
+<div class="trip-subsection-last <%= trip.escape(['approval_status']) %>">
+	<p><strong>Status:</strong>
+	<br> 
+	<%= trip.escape(['approval_status']) %></p>
+</div>

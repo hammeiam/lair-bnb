@@ -11,7 +11,6 @@ LairBnB.Views.ReservationsIndex = Backbone.CompositeView.extend({
   render: function(){
     var userId = this.user.id;
     var reservationType = this.reservationType;
-    debugger
     var models = this.collection.filter(function(model){ 
         return model.get(['approval_status']) === reservationType && 
         model.get(['guest']).id !== userId;

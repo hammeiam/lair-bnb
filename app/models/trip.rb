@@ -15,7 +15,7 @@
 
 class Trip < ActiveRecord::Base
 	validates :check_in_date, :check_out_date, :num_guests, presence: true
-	validate :no_overlapping_trips
+	validate :no_overlapping_trips, :not_own_lair
 	before_validation :convert_dates, on: :create
 	after_validation :remove_overlaps
 
@@ -34,6 +34,12 @@ class Trip < ActiveRecord::Base
 			if check_out.is_a?(String) && !check_in.empty?
 				self.check_out_date = Date.strptime(check_out, '%m/%d/%Y')
 			end
+		end
+	end
+
+	def not_own_lair
+		if User.find(self.guest_id).owned_lairs.pluck(:id).include? self.lair_id
+			errors[:base] << "You can't book your own lair, try exploring a bit"
 		end
 	end
 
