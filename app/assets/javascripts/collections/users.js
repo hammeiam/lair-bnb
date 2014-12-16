@@ -59,6 +59,7 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
             LairBnB.users.add(currentUser);
             currentUser.fetch();
           };
+          Backbone.history.navigate('#/users/' + id, { trigger: true });
         } else {
           resp['errors'].forEach(function(message){
             var options = {

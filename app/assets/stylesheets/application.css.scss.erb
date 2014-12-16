@@ -13,6 +13,7 @@
  *= require jquery.nouislider.min.css
  *= require jquery.nouislider.pips.min.css
  *= require jquery-ui/datepicker
+ *= require jquery-ui.min.css
  *= require_tree .
  *= require_self
  */
@@ -742,7 +743,7 @@ button.last{
 	display: inline-block;
 	width: 100%;
 }
-.carousel-lr-button-container{
+.trips-carousel-lr-button-container{
 	color: white;
 	position: absolute;
 	text-shadow: 0 0 10px rgba(0,0,0,0.8);
@@ -755,31 +756,27 @@ button.last{
 	opacity: 0.6;
 	transition: opacity 0.5s, background 0.5s;
 	-webkit-transition:opacity 0.5s, background 0.5s; /* For Safari 3.1 to 6.0 */
-    
+	border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
 }
 
 .left-trip-arrow{
-	@extend .carousel-lr-button-container;
+	@extend .trips-carousel-lr-button-container;
 	left:0;
 }
 .right-trip-arrow{
-	@extend .carousel-lr-button-container;
+	@extend .trips-carousel-lr-button-container;
 	right:0;
 }
 
 .left-trip-arrow:hover, .right-trip-arrow:hover{
 	opacity: 1;
 	background: rgba(0, 0, 0, 0.2);
-	border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
 }
 
 .trip_status{
 	text-transform: capitalize;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
 }
 
 .pending{
