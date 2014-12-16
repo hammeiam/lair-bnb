@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
 	def show
-		@trip = Trip.find(params[:id])
+		@trip = Trip.includes({ guest: :profile_image }, { lair: :images }).find(params[:id])
 	end
 
 	def create
@@ -29,7 +29,7 @@ class TripsController < ApplicationController
 	end
 
 	def index
-		@trips = User.find(params[:user_id]).trips
+		@trips = User.find(params[:user_id]).trips.includes({ guest: :profile_image }, { lair: :images })
 	end
 
 	def trip_params

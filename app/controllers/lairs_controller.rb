@@ -15,7 +15,7 @@ class LairsController < ApplicationController
 	end	
 
 	def show
-		@lair = Lair.includes(:images, { owner: :profile_image }).find(params[:id])
+		@lair = Lair.includes(:images, :trips, { owner: :profile_image }).find(params[:id])
 	end
 
 	def edit

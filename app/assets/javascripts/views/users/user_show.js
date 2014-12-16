@@ -16,8 +16,9 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
     this.addSubview('#nav-container', navView);
     this.addSubview('#pending-reservations-container', pendingView);
 		this.addSubview('#approved-reservations-container', approvedView);
+		
 		this.listenTo(this.model, 'sync', this.render);
-		this.listenTo(this.model, 'sync', this.triggerEvent);
+		// this.listenTo(this.model, 'sync', this.triggerEvent);
 	},
 
 	template: JST['users/show'],

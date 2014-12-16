@@ -37,12 +37,14 @@ LairBnB.Views.TripIndexItem = Backbone.View.extend({
     }
     var that = this;
     this.model.save({ approval_status: action },{
+      wait: true,
       success: function(resp){
         if(!!resp.get(['success'])){
           options['alertClass'] = 'alert-success';
           options['alertMessage'] = 'Reservation ' + action;
           showAlert(options);
-          that.model.collection.trigger('sync');
+          // that.model.collection.trigger('sync');
+          that.model.collection.fetch();
         } else {
           $.each(resp.get(['errors']), function(idx, message){
             options['alertClass'] = 'alert-danger';

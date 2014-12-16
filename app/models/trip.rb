@@ -17,7 +17,7 @@ class Trip < ActiveRecord::Base
 	validates :check_in_date, :check_out_date, :num_guests, presence: true
 	validate :no_overlapping_trips
 	before_validation :convert_dates, on: :create
-	after_save :remove_overlaps
+	after_validation :remove_overlaps
 
 	belongs_to :guest,
 	  class_name: 'User',

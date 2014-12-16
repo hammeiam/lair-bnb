@@ -39,12 +39,9 @@
 			    <h2>Approved Reservations</h2>
 			    </div>
 			    <div class="col-xs-12">
-				    <% var approved = user.get(['reservations']).filter(function(el){ return el.approval_status === 'approved' }) %>
-				    <% if(approved.length > 0){ %>
+
 				    	<div id="approved-reservations-container"></div>
-				    <% } else { %>
-				    	<p>No approved reservations</p>
-			    	<% } %>
+
 			    </div>
 		  	</div>
 
