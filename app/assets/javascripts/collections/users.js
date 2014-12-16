@@ -49,8 +49,9 @@ LairBnB.Collections.Users = Backbone.Collection.extend({
           // addresses a bug with some browsers & bootstrap
           $('body').removeClass('modal-open');
           var id = parseInt(resp['success'], 10);
+          var existingUser = LairBnB.users.findWhere({ id: id });
           if(!!existingUser){
-            var existingUser = LairBnB.users.findWhere({ id: id });
+            
             existingUser.set({ logged_in: true });
             existingUser.fetch();
           } else {

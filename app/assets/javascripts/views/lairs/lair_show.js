@@ -44,14 +44,20 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 	submitReservation: function(event){
 		event.preventDefault();
 		var that = this;
+		var options = {};
 		var $form = $(event.currentTarget);
 		var formData = $form.serializeJSON();
 		formData['trip']['lair_id'] = this.model.id;
+		if( !LairBnB.users.currentUser() ){
+			options['alertClass'] = 'alert-danger';
+			options['alertMessage'] = 'You must sign in before making a reservation';
+			showAlert(options);
+			return;
+		}
 		var newReservation = new LairBnB.Models.Trip(formData['trip']);
 		newReservation.save({}, {
 			success: function(resp){
 				var $alerts = $('#alerts-container');
-				var options = {};
 				if(!!resp.get(['success'])){
 					options['alertClass'] = 'alert-success';
 					options['alertMessage'] = 'Reservation Requested!';
