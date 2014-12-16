@@ -4,32 +4,13 @@ LairBnB.Views.TripIndexItem = Backbone.View.extend({
 
   initialize: function(){
     // this.listenTo(this.model, 'sync', this.this_sync);
-this.listenTo(this.model, 'add', this.this_add);
-this.listenTo(this.model, 'change', this.this_change);
-this.listenTo(this.model, 'reset', this.this_reset);
-this.listenTo(this.model, 'remove', this.this_remove);
   },
 
   events: {
     'click button': 'handleClick'
   },
-  this_sync: function(){
-  console.log('model sync ' + this.model.id)
-},
-this_add: function(){
-  console.log('model add ' + this.model.id)
-},
-this_change: function(){
-  console.log('model change ' + this.model.id)
-},
-this_reset: function(){
-  console.log('model reset ' + this.model.id)
-},
-this_remove: function(){
-  console.log('model remove ' + this.model.id)
-},
 
-  tagName: 'li',
+  // tagName: 'li',
   className: 'lair-result col-xs-3',
 
   render: function(){
@@ -56,7 +37,7 @@ this_remove: function(){
       return;
     }
     var that = this;
-    this.model.save({ approval_status: action},{
+    this.model.save({ approval_status: action },{
       success: function(resp){
         if(!!resp.get(['success'])){
           options['alertClass'] = 'alert-success';

@@ -1,8 +1,4 @@
 class TripsController < ApplicationController
-	def new
-		@trip = Trip.new
-	end
-
 	def create
 		@trip = Trip.new(trip_params)
 		@trip.guest_id = current_user.id if current_user
@@ -13,13 +9,10 @@ class TripsController < ApplicationController
 		end
 	end
 
-	def edit
-	end
-
 	def update
 		@trip = Trip.find(params[:id])
 
-		if @trip.update(trip_params)
+		if @trip.update(approval_status: trip_params[:approval_status])
 			render json: { success: @trip.id }
 		else
 			render json: { errors: @trip.errors.full_messages }
@@ -29,6 +22,10 @@ class TripsController < ApplicationController
 	def destroy
 		@trip = Trip.find(params[:id])
 		@trip.destroy
+	end
+
+	def index
+		@trips = User.find(params[:user_id]).trips
 	end
 
 	def trip_params

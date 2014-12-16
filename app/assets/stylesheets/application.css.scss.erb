@@ -730,6 +730,32 @@ button.last{
 	display: inline-block;
 	width: 100%;
 }
+.carousel-lr-button-container{
+	color: white;
+	position: absolute;
+	text-shadow: 0 0 10px rgba(0,0,0,0.8);
+	z-index: 10;
+	height: 100%;
+	background: rgba(0,0,0,0);
+	border: none;
+	font-size: 60px;
+	width: 75px;
+	opacity: 0.6;
+	}
 
+.left-trip-arrow{
+	@extend .carousel-lr-button-container;
+	left:0;
+}
+.right-trip-arrow{
+	@extend .carousel-lr-button-container;
+	right:0;
+}
 
-
+.left-trip-arrow:hover, .right-trip-arrow:hover{
+	opacity: 1;
+	background: rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}

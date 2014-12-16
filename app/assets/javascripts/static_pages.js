@@ -107,6 +107,7 @@ function fillFields(params, view){
 };
 
 function initImageCarousel(view, size){
+	// size is 'mini' or 'main'
 	view.$('.lazy').slick({
     lazyLoad: 'ondemand',
     slidesToShow: 1,
@@ -115,6 +116,15 @@ function initImageCarousel(view, size){
     nextArrow: '<button type="button" class="right-' + size + ' glyphicon glyphicon-chevron-right"></button>'
   });
 };
+
+function initTripsCarousel(view, containerSelector){
+	view.$(containerSelector).slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    prevArrow: '<button type="button" class="left-trip-arrow glyphicon glyphicon-chevron-left"></button>',
+    nextArrow: '<button type="button" class="right-trip-arrow glyphicon glyphicon-chevron-right"></button>'
+  });
+}
 
 function showAlert(userOptions){
 	// alertClasses are 'alert-success', 'alert-info', 'alert-warning', and 'alert-danger'

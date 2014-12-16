@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 	root to: 'static_pages#home'
-	resources :lairs
-	resources :trips, :defaults => { :format => :json }
+	resources :lairs, :defaults => { :format => :json }
+	resources :trips, only: [:create, :update, :destroy], :defaults => { :format => :json }
   resource :session, only: [:new, :create, :destroy]
-  resources :users
+  resources :users, :defaults => { :format => :json } do
+  	resources :trips, only: [:index], :defaults => { :format => :json }
+  end
 end

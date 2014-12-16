@@ -6,7 +6,9 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
     this.reservationType = options['reservationType']
     this.listenTo(this.collection, 'localUpdate', this.render);
     this.listenTo(this.collection, 'sync', this.render);
-    this.viewCollection = new LairBnB.Collections.Trips([])
+    this.viewCollection = new LairBnB.Collections.Trips([],{
+      comparator: 'check_in_date'
+    })
     this.listenTo(this.viewCollection, 'sync', this.render);
   },
 
@@ -19,6 +21,7 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
     });
   	this.$el.html(content);
   	this.viewCollection.each(this.addTrip.bind(this));
+    initTripsCarousel(this,'.trips-list');
   	// this.attachSubviews();
   	return this;
   },
@@ -27,7 +30,7 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
   	var view = new LairBnB.Views.TripIndexItem({
   		model: trip
   	});
-  	this.addSubview('#trips-list', view);
+  	this.addSubview('.trips-list', view);
   },
 
 });

@@ -14,40 +14,55 @@
 #
 
 class Trip < ActiveRecord::Base
-	validates :check_in_date, :check_out_date, :num_guests, presence: true, allow_blank: false
+	validates :check_in_date, :check_out_date, :num_guests, presence: true
 	validate :no_overlapping_trips
-	before_validation :convert_dates
+	before_validation :convert_dates, on: :create
+	after_save :remove_overlaps
 
 	belongs_to :guest,
-	class_name: 'User',
-	foreign_key: :guest_id
+	  class_name: 'User',
+	  foreign_key: :guest_id
 
 	belongs_to :lair
 
 	def convert_dates
-		check_in, check_out = @attributes['check_in_date'], @attributes['check_out_date']
-		if check_in.is_a?(String) && !check_in.empty?
-			self.check_in_date = Date.strptime(check_in, '%m/%d/%Y')
-		end
-		if check_out.is_a?(String) && !check_in.empty?
-			self.check_out_date = Date.strptime(check_out, '%m/%d/%Y')
+		unless persisted?
+			check_in, check_out = @attributes['check_in_date'], @attributes['check_out_date']
+			if check_in.is_a?(String) && !check_in.empty?
+				self.check_in_date = Date.strptime(check_in, '%m/%d/%Y')
+			end
+			if check_out.is_a?(String) && !check_in.empty?
+				self.check_out_date = Date.strptime(check_out, '%m/%d/%Y')
+			end
 		end
 	end
 
-	def no_overlapping_trips
-		if !!self.check_in_date && !!self.check_out_date
-		  if Trip.where("
+	def overlapping_trips
+		Trip.where("
 				trips.lair_id = :lair_id AND
-				trips.approval_status = 'approved' AND
 				(trips.check_in_date BETWEEN :new_check_in AND :new_check_out
 				OR trips.check_out_date BETWEEN :new_check_in AND :new_check_out)",
 				{ lair_id: self.lair_id, new_check_in: self.check_in_date, 
 					new_check_out: self.check_out_date })
-			  .count() > 0
-				errors[:base] << "This lair is already reserved for some of those dates!"
+	end
+
+	def no_overlapping_trips
+		if self.approval_status != 'denied'
+			if !!self.check_in_date && !!self.check_out_date
+			  if overlapping_trips.select { |trip| trip.approval_status == 'approved' }.count() > 0 
+					errors[:base] << "This lair is already reserved for some of those dates!"
+				end
 			end
 		end
+	end
 
+	def remove_overlaps
+		if self.approval_status == 'approved'
+			self.overlapping_trips.select{|trip| trip.approval_status == 'pending' }.each do |trip|
+				trip.approval_status = 'denied'
+				trip.save
+			end
+		end
 	end
 
 		# Trip.find_by_sql("
