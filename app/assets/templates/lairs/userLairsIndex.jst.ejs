@@ -1,0 +1,10 @@
+<% if(lairs.length > 0){ %>
+	<div class="my-lairs-list"></div>
+<% } else { %>
+	<% if(user.get(['logged_in'])){ %>
+		<p>You don't have any lairs</p>
+	<% } else{ %>
+		<p>No lairs to display</p>
+	<% } %>
+<% } %>
+

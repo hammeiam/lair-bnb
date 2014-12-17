@@ -2,10 +2,6 @@ LairBnB.Views.TripsIndexItem = Backbone.View.extend({
 
   template: JST['trips/tripsIndexItem'],
 
-  events: {
-    'click button': 'handleClick'
-  },
-
   className: 'lair-result col-xs-3',
 
   render: function(){
