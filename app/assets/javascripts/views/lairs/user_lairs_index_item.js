@@ -6,7 +6,7 @@ LairBnB.Views.UserLairsIndexItem = Backbone.View.extend({
 
   template: JST['lairs/userLairsIndexItem'],
 
-  className: 'lair-result col-xs-3',
+  className: 'lair-result col-xs-4',
 
   render: function(){
   	var content = this.template({
