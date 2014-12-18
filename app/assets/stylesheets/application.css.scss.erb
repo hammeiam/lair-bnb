@@ -635,8 +635,8 @@ button.pagination {
 
 video{
 	position: absolute;
-	bottom: 0;
-	width: 100%;
+	bottom: -90px;
+	width: 105%;
 	overflow: hidden;
 	min-width: 1050px;
 }
@@ -762,6 +762,15 @@ button.last{
 
 .center{
 	margin: 0 auto;
+}
+
+.image-container-small{
+	padding-bottom: 56.25%;
+	height: 0;
+	background-image:  url(<%= asset_path 'preloader-10-small.gif' %>);
+	background-size: 32px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .trip-subsection{
