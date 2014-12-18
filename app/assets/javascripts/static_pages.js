@@ -109,7 +109,7 @@ function fillFields(params, view){
 function initImageCarousel(view, size){
 	// size is 'mini' or 'main'
 	view.$('.lazy').slick({
-    lazyLoad: 'ondemand',
+    // lazyLoad: 'ondemand',
     slidesToShow: 1,
     slidesToScroll: 1,
     prevArrow: '<button type="button" class="left-' + size + ' glyphicon glyphicon-chevron-left"></button>',

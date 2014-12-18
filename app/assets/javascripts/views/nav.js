@@ -44,7 +44,7 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		$('#signInPassword').val('password');
 		setTimeout(function(){
 			$('#signIn').submit();
-		}, 1000);
+		}, 700);
 	},
 
 	signUp: function(event){

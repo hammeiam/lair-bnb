@@ -1,11 +1,11 @@
-<div class="slider-container-mini">
+<div class="slider-container-mini" >
   <div class="result-price dollar-value"><%= lair.escape('rate') %></div>
   <div class="lazy">
     <% var images =  lair.get(['images']) %>
     <% if(!!images){ %>
       <% $.each(images, function(idx, image){ %>
           <div class="media-cover" >
-            <img data-lazy="<%= image.image_url %>/convert?w=510&h=300&fit=crop"/>
+            <img data-lazy="<%= image.image_url %>/convert?w=535&h=300&fit=crop"/>
           </div>
       <% }) %>
     <% } %>
