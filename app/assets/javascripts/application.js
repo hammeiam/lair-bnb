@@ -21,7 +21,6 @@
 //= require jquery.slick
 //= require jquery-ui/datepicker
 //= require jquery-dateFormat.min.js
-//= require responsive-placeholder-images.js
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models
