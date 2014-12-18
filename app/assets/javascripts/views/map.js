@@ -3,7 +3,7 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
 
   initialize: function() {
   	window.view = this;
-    this.listenTo(LairBnB.lairs, 'sync', this.renderMarkers);
+    this.listenTo(LairBnB.lairs, 'sync', this.renderAndAttachMarkers);
     this.markers = [];
   },
 
@@ -28,7 +28,7 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     // });
   },
 
-  renderMarkers: function(){
+  renderAndAttachMarkers: function(){
     this.removeMarkers();
     var that = this;
     var mapBounds = new google.maps.LatLngBounds();
@@ -37,8 +37,10 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
       var lng = lair.escape('longitude');
       // var markerView = new LairBnB.Views.IndexItem(lair);
       var latlng = new google.maps.LatLng(lat, lng);
-      that.addMarker(latlng);
       mapBounds.extend(latlng);
+      var marker = that.addMarker(latlng);
+      marker.lair = lair;
+      lair.marker = marker;
 
     })
     this.map.fitBounds(mapBounds);
@@ -57,6 +59,16 @@ LairBnB.Views.Map = Backbone.CompositeView.extend({
     });
     marker.setMap(map);
     this.markers.push(marker);
+    google.maps.event.addListener(marker, 'mouseover', function(){
+      // marker.$lairView.fadeOut(300).fadeIn(200);
+      marker.$lairView.prepend(function(){
+        return $('<div class="overlay">').fadeIn()
+        .fadeOut(400, function(){
+          this.remove();
+        });
+      });
+    })
+    return marker;
   },
 
   removeMarkers: function(){

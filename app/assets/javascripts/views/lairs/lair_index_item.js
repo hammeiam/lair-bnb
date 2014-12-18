@@ -1,6 +1,7 @@
 LairBnB.Views.LairIndexItem = Backbone.View.extend({
 	initialize: function(){
-		this.listenTo(this.model, 'sync', this.render)
+		this.listenTo(this.model, 'sync', this.render);
+	
 	},
 	
 	template: JST['lairs/indexItem'],
@@ -15,30 +16,28 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 			owner: this.model.get(['owner'])
 		});
 		this.$el.html(content);
-
 		initImageCarousel(this, 'mini');
-
 		this.$('.lazy').slickGoTo(0);
-		this.imagesLoaded();
-		// initImagePlaceholders(this);
+		this.attachHoverAction();
 		return this;
 	},
 
-	imagesLoaded: function(){
-		var view = this;
-		var $image = this.$("img:first");
-		$image.load(function(){
-			view.$('.slider-container-mini').removeClass('is-loading').addClass('is-loaded');
-		})
-		// if(!!image){
-		// 	image.one("load", function() {
-  // 		view.$('.slider-container-mini').removeClass('is-loading').addClass('is-loaded');
-		// }).each(function() {
-		//   if(this.complete) {
-		//   	$(this).load();
-		//   };
-		// });
-		// }
+	attachHoverAction: function(){
+		var that = this;
+		this.$el.hover(that.toggleBounce.bind(that), that.toggleBounce.bind(that));
+		if(this.model.marker){
+			this.model.marker.$lairView = this.$el;
+		}
 		
+	},
+
+	toggleBounce: function() {
+		console.log('hover')
+		var marker = this.model.marker;
+	  if (marker.getAnimation() != null) {
+	    marker.setAnimation(null);
+	  } else {
+	    marker.setAnimation(google.maps.Animation.BOUNCE);
+	  }
 	}
 })

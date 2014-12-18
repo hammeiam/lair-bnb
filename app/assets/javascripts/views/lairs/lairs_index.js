@@ -13,8 +13,6 @@ LairBnB.Views.LairsIndex = Backbone.CompositeView.extend({
   	});
   	this.$el.html(content);
   	LairBnB.lairs.each(this.addLair.bind(this));
-  	// this.attachSubviews();
-    // initImagePlaceholders(this);
     this.addButtons();
   	return this;
   },
