@@ -7,7 +7,8 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		'': 'home',
 		'lairs/:lairId': 'lairShowAction',
 		'search/(:locationQuery)': 'mainShowAction',
-		'users/:userId': 'userShowAction'
+		'users/:userId': 'userShowAction',
+		'*notFound': 'notFound'
 	},
 
 	home: function(){
@@ -43,6 +44,16 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 			model: user
 		});
 		this._swapView(view);
+	},
+
+	notFound: function(){
+		var view = new LairBnB.Views.Home();
+		this._swapView(view);
+		showAlert({
+			alertClass: 'alert-danger',
+			alertMessage: 'Page not found'
+		})
+		Backbone.history.navigate('', { trigger: false })
 	},
 
 	_swapView: function (view) {

@@ -1,7 +1,6 @@
 LairBnB.Views.LairIndexItem = Backbone.View.extend({
 	initialize: function(){
 		this.listenTo(this.model, 'sync', this.render);
-	
 	},
 	
 	template: JST['lairs/indexItem'],
@@ -32,7 +31,6 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 	},
 
 	toggleBounce: function() {
-		console.log('hover')
 		var marker = this.model.marker;
 	  if (marker.getAnimation() != null) {
 	    marker.setAnimation(null);

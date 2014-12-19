@@ -26,3 +26,9 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+lair-bnb is a web application built with Ruby on Rails, PostgreSQL, Backbone.js, Google Maps API v3, Twitter Bootstrap and jQuery, and is modeled on air-bnb.com's feel and functionality.
+
+Features: 
+* Google Maps integration
+* Server-side searching and pagination
+* 

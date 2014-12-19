@@ -10,13 +10,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		# if current_user.id == params[:id]
-		@user = User.includes(
-			:profile_image, 
-			owned_lairs: :images
-			# reservations: [:lair, { guest: :profile_image }], 
-			# trips: { lair: :images }
-		).find(params[:id])
+		@user = User.includes(:profile_image, owned_lairs: :images).find(params[:id])
 	end
 
 	def user_params

@@ -24,6 +24,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 
   events: {
     'change #sidebar-container input': 'handleUpdate',
+    'change input#location-search': 'handleUpdate',
     'change #slider': 'handleUpdate',
     'select #guests': 'handleUpdate',
     'click .pagination': 'handleUpdate'

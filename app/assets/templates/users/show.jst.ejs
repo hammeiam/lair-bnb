@@ -11,7 +11,7 @@
 	    	</div>
 	    	<div class="col-xs-10"> 
 	    	<!-- owner lairs (slideshow?) -->
-		    	<% if(user.escape(['logged_in'])){ %>
+		    	<% if(user.get(['logged_in'])){ %>
 		    		<h2>Hi <%= user.escape(['first_name']) %>!</h2>
 		    		<h4>How's it going today?</h4>
 			    <% } else { %>
@@ -24,7 +24,7 @@
 	<div class="container-fluid">
 	  <div class="page-container">
 
-	  <% if(user.escape(['logged_in'])){ %>
+	  <% if(user.get(['logged_in'])){ %>
 
 		  <div class="row panel-body">
 		    <div class="col-xs-12">
@@ -57,7 +57,7 @@
 
 	  	<div class="row panel-body">
 		    <div class="col-xs-12">
-		    <% if(user.escape(['logged_in'])){ %>
+		    <% if(user.get(['logged_in'])){ %>
 		    	<h2>Your Lairs</h2>
 		    <% } else { %>
 		    <h2><%= user.escape(['first_name']) %>'s Lairs</h2>

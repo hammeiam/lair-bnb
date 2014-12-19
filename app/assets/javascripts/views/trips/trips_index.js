@@ -8,6 +8,7 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
   },
 
   render: function(){
+    debugger
     var userId = this.user.id;
     var models = this.collection.filter(function(model){ 
         return model.get(['guest']).id === userId;

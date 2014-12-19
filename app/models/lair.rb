@@ -52,19 +52,21 @@ class Lair < ActiveRecord::Base
 
 		if symbolized_input_options.keys.length == 1 && symbolized_input_options[:location]
 			result = Rails.cache.fetch("#{search_options[:location]}_lair_results", :expires_in => 5.minutes) do
-				Lair.near(search_options[:location], 50).where(lair_type: search_options[:lair_type],
-				rate: search_options[:price_min]..search_options[:price_max])
+				Lair.near(search_options[:location], 50)
+				.where(lair_type: search_options[:lair_type],
+					rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 			end
 		elsif search_options[:location]
-			result = Lair.near(search_options[:location], 50).where(lair_type: search_options[:lair_type],
+			result = Lair.near(search_options[:location], 50)
+			.where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
-				.where('max_guests >= ?', search_options[:max_guests])
-				.page(search_options[:page])
+			.where('max_guests >= ?', search_options[:max_guests])
+			.page(search_options[:page])
 		else
 			result = Lair.where(lair_type: search_options[:lair_type],
-				rate: search_options[:price_min]..search_options[:price_max])
+					rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 		end

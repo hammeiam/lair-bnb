@@ -20,7 +20,6 @@ LairBnB.Views.UserLairsIndex = Backbone.CompositeView.extend({
 	},
 
 	addLair: function(lair){
-		console.log('collection changed')
   	var view = new LairBnB.Views.UserLairsIndexItem({
   		model: lair,
   		user: this.user
