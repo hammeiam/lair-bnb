@@ -12,7 +12,7 @@
 			<li class="profile">
 				<a href="#/users/<%= currentUser.id %>">
 					<div class="circle">
-						<img src="<%= currentUser.get(['profile_image_url']) %>" class="profile-img"/>
+						<img src="<%= currentUser.escape(['profile_image_url']) %>" class="profile-img"/>
 					</div>
 					<span><%= currentUser.escape(['first_name']) %></span>
 				</a>

@@ -55,6 +55,7 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'annotate'
 	gem 'seed_dump'
+	gem 'bullet'
 end
 
 group :production do

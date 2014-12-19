@@ -47,11 +47,18 @@ class Lair < ActiveRecord::Base
 			price_max: 9999,
 			max_guests: 1
 		}
+		symbolized_input_options = input_options.symbolize_keys
+		search_options = default_options.merge(symbolized_input_options)
 
-		search_options = default_options.merge(input_options.symbolize_keys)
-
-		if search_options[:location]
-			result = Lair.near(search_options[:location], 100).where(lair_type: search_options[:lair_type],
+		if symbolized_input_options.keys.length == 1 && symbolized_input_options[:location]
+			result = Rails.cache.fetch("#{search_options[:location]}_lair_results", :expires_in => 5.minutes) do
+				Lair.near(search_options[:location], 50).where(lair_type: search_options[:lair_type],
+				rate: search_options[:price_min]..search_options[:price_max])
+				.where('max_guests >= ?', search_options[:max_guests])
+				.page(search_options[:page])
+			end
+		elsif search_options[:location]
+			result = Lair.near(search_options[:location], 50).where(lair_type: search_options[:lair_type],
 				rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
@@ -61,10 +68,12 @@ class Lair < ActiveRecord::Base
 				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 		end
-		a = search_options[:check_out_date]
+		# a = search_options[:check_out_date]
 
 		if result.count == 0
-			return Lair.all.page(search_options[:page])
+			Rails.cache.fetch("all_lairs_paginated", :expires_in => 5.minutes) do
+				Lair.all.page(search_options[:page])
+			end
 		else
 			return result
 		end

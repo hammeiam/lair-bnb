@@ -6,16 +6,16 @@
 	    	<div class="col-xs-2"> 
 	    	<!-- bio info, pic -->
 		    	<div class="circle">
-		    		<img src="<%= user.get(['profile_image_url']) %>" class="profile-img"/>
+		    		<img src="<%= user.escape(['profile_image_url']) %>" class="profile-img"/>
 		    	</div>
 	    	</div>
 	    	<div class="col-xs-10"> 
 	    	<!-- owner lairs (slideshow?) -->
-		    	<% if(user.get(['logged_in'])){ %>
-		    		<h2>Hi <%= user.get(['first_name']) %>!</h2>
+		    	<% if(user.escape(['logged_in'])){ %>
+		    		<h2>Hi <%= user.escape(['first_name']) %>!</h2>
 		    		<h4>How's it going today?</h4>
 			    <% } else { %>
-			    	<h1><%= user.get(['first_name']) %> <%= user.get(['last_name'])%></h1>
+			    	<h1><%= user.escape(['first_name']) %> <%= user.escape(['last_name'])%></h1>
 			    <% } %>
 	    	</div>
 	    </div>
@@ -24,7 +24,7 @@
 	<div class="container-fluid">
 	  <div class="page-container">
 
-	  <% if(user.get(['logged_in'])){ %>
+	  <% if(user.escape(['logged_in'])){ %>
 
 		  <div class="row panel-body">
 		    <div class="col-xs-12">
@@ -57,10 +57,10 @@
 
 	  	<div class="row panel-body">
 		    <div class="col-xs-12">
-		    <% if(user.get(['logged_in'])){ %>
+		    <% if(user.escape(['logged_in'])){ %>
 		    	<h2>Your Lairs</h2>
 		    <% } else { %>
-		    <h2><%= user.get(['first_name']) %>'s Lairs</h2>
+		    <h2><%= user.escape(['first_name']) %>'s Lairs</h2>
 		    <% } %>
 		    </div>
 		    <div class="col-xs-12">
