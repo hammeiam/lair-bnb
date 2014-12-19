@@ -15,8 +15,8 @@
 class User < ActiveRecord::Base
 	attr_reader :password
 
-	has_many :owned_lairs, class_name: 'Lair', foreign_key: :owner_id
-	has_many :trips, foreign_key: :guest_id
+	has_many :owned_lairs, class_name: 'Lair', foreign_key: :owner_id, dependent: :destroy
+	has_many :trips, foreign_key: :guest_id, dependent: :destroy
 	has_many :visited_lairs, through: :trips, source: :lair
 	has_many :reservations, through: :owned_lairs, source: :trips
 	has_one  :profile_image, as: :imageable, class_name: 'Image', dependent: :destroy
