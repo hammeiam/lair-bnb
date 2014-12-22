@@ -23,7 +23,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 	},
 
   events: {
-    'change #sidebar-container input': 'handleUpdate',
+    'change input.date-filter': 'handleUpdate',
     'change input#location-search': 'handleUpdate',
     'change #slider': 'handleUpdate',
     'change #guests': 'handleUpdate',
@@ -45,9 +45,16 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
   },
 
   handleUpdate: function(event){
-    // prevent default, update url, update filterparams, fetch collection
     event.preventDefault();
     var $field = $(event.currentTarget);
+    debugger
+    // if it's a date and either but not both are empty, ignore it
+    var checkIn = $('#check-in-date');
+    var checkOut = $('#check-out-date');
+    if($field.attr('class').indexOf('date-filter') >= 0 && 
+      ((!checkIn.val() || !checkOut.val()) && !(!checkIn.val() && !checkOut.val()))){
+      return;
+    }
     var inputHash = this.inputParser($field);
     this.updateViewVariables(inputHash);
     this.updateURI();
@@ -79,10 +86,13 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
       } else if (val === 'next' && (lairsSeen < LairBnB.lairs.total_entries)) {
         output['page'] = currentPage + 1;
       };
+
+    } else if(key === 'check_in_date' || key === 'check_out_date'){
+      output['check_in_date'] = $('#check-in-date').val();
+      output['check_out_date'] = $('#check-out-date').val();
     } else if (!!key) {
       output[key] = $field.val();
     };
-    debugger
     return output; 
   },
 

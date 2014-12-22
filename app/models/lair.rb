@@ -48,7 +48,7 @@ class Lair < ActiveRecord::Base
 		}
 		symbolized_input_options = input_options.symbolize_keys
 		search_options = default_options.merge(symbolized_input_options)
-		if search_options[:check_in_date] && search_options[:check_in_date]
+		if search_options[:check_in_date] && search_options[:check_out_date]
 			search_options[:check_in_date] = Date.strptime(search_options[:check_in_date], '%m/%d/%Y')
 			search_options[:check_out_date] = Date.strptime(search_options[:check_out_date], '%m/%d/%Y')
 		end

@@ -43,6 +43,9 @@ function initDatePicker(view, dates) {
     beforeShowDay: restrictDates,
     onClose: function( selectedDate ) {
       view.$( "#check-out-date" ).datepicker( "option", "minDate", selectedDate );
+      if(!view.$('#check-out-date').val() && view.$('#check-in-date').val()){
+      	view.$('#check-out-date').focus();
+      }
     }
   });
   view.$( "#check-out-date" ).datepicker({
@@ -52,6 +55,9 @@ function initDatePicker(view, dates) {
     beforeShowDay: restrictDates,
     onClose: function( selectedDate ) {
       view.$( "#check-in-date" ).datepicker( "option", "maxDate", selectedDate );
+      if(!view.$('#check-in-date').val() && view.$('#check-out-date').val()){
+      	view.$('#check-in-date').focus();
+      }
     }
   });
 };
