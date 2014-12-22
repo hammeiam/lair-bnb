@@ -5,6 +5,7 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
   initialize: function(options){
     this.user = options['user'];
     this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'sync', this.synced);
   },
 
   render: function(){
@@ -21,6 +22,10 @@ LairBnB.Views.TripsIndex = Backbone.CompositeView.extend({
     initTripsCarousel(this,'.trips-list');
   	// this.attachSubviews();
   	return this;
+  },
+
+  synced: function(){
+    console.log('synced')
   },
 
   addTrip: function(trip){

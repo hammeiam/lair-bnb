@@ -90,6 +90,7 @@ function initTripsCarousel(view, containerSelector){
 	view.$(containerSelector).slick({
     slidesToShow: 3,
     slidesToScroll: 1,
+    onInit: this.show,
     prevArrow: '<button type="button" class="left-trip-arrow glyphicon glyphicon-chevron-left"></button>',
     nextArrow: '<button type="button" class="right-trip-arrow glyphicon glyphicon-chevron-right"></button>'
   });

@@ -15,8 +15,9 @@ LairBnB.Views.Home = Backbone.CompositeView.extend({
 		var content = this.template();
 		this.$el.html(content);
 		this.initSearch();
-  	this.$('[data-toggle="tooltip"]').tooltip();
+  	
   	this.attachSubviews();
+  	this.$('[data-toggle="tooltip"]').tooltip();
 		return this;
 	},
 

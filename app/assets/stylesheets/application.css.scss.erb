@@ -105,6 +105,14 @@ button.green:focus{
 	padding: 0;
 }
 
+.center{
+	margin: 0 auto;
+}
+
+.t-center{
+	text-align: center;
+}
+
 .v-center{
 	position: relative;
   top: 50%;
@@ -200,7 +208,9 @@ nav ul li input {
 
 .right-nav-container{
 	float: right;
-
+	li {
+		padding-top: 5px;
+	}
 }
 
 #location-search{
@@ -429,6 +439,7 @@ button#guest-signin:focus{
 	-moz-border-radius: 50px;
 	border: 3px solid white;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .profile-img{
@@ -782,9 +793,13 @@ button.last{
 	border-bottom-left-radius: 0;
 }
 
-// USER PAGE //
+/// USER PAGE ///
+.trips-list{
+	width: 1020px;
+}
 .user-show-wrapper{
 	.lair-result{
+		// width: 320px;
 		border: 1px solid lightgrey;
 		border-radius: 5px;
 		-webkit-border-radius: 5px;
@@ -792,10 +807,6 @@ button.last{
 		padding: 15px;
 		margin: 10px;
 	}
-}
-
-.center{
-	margin: 0 auto;
 }
 
 .image-container-small{

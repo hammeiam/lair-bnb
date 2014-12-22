@@ -43,7 +43,9 @@ LairBnB.Views.UserShow = Backbone.CompositeView.extend({
 			user: this.model
 		});
 		this.$el.html(content);
+		
 		this.model.tripsCollection().fetch();
+
 		this.attachSubviews();
 		return this;
 	},

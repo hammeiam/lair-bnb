@@ -12,7 +12,7 @@ LairBnB.Views.ReservationsIndex = Backbone.CompositeView.extend({
     var userId = this.user.id;
     var reservationType = this.reservationType;
     var models = this.collection.filter(function(model){ 
-        return model.escape(['approval_status']) === reservationType && 
+        return model.get(['approval_status']) === reservationType && 
         model.get(['guest']).id !== userId;
       });
   	var content = this.template({
@@ -23,6 +23,7 @@ LairBnB.Views.ReservationsIndex = Backbone.CompositeView.extend({
     var that = this;
     _.each(models, this.addTrip.bind(that));
     initTripsCarousel(this,'.trips-list');
+
   	// this.attachSubviews();
   	return this;
   },
