@@ -6,6 +6,7 @@ Main Functionality:
 * Filter search results by available dates, price range, or listing type
 * Submit reservation requests to listings
 * Review and approve/deny reservations made to your listings
+* Search parameters are added to the URI so you can share with your friends
 
 Additional Features:
 * Google Maps integration

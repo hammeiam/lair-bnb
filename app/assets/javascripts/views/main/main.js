@@ -26,7 +26,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     'change #sidebar-container input': 'handleUpdate',
     'change input#location-search': 'handleUpdate',
     'change #slider': 'handleUpdate',
-    'select #guests': 'handleUpdate',
+    'change #guests': 'handleUpdate',
     'click .pagination': 'handleUpdate'
   },
 
@@ -82,7 +82,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     } else if (!!key) {
       output[key] = $field.val();
     };
-
+    debugger
     return output; 
   },
 

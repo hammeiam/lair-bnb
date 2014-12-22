@@ -63,8 +63,6 @@ class Lair < ActiveRecord::Base
 				.where(lair_type: search_options[:lair_type],
 					rate: search_options[:price_min]..search_options[:price_max])
 				.where('max_guests >= ?', search_options[:max_guests])
-				.joins(:trips)
-				.where('trips.check_in_date > ? OR trips.check_out_date < ?', search_options[:check_out_date],  search_options[:check_in_date]  )
 				.page(search_options[:page])
 				# .where('trips.check_out_date < ?', search_options[:check_in_date] )
 				
