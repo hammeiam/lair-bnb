@@ -129,22 +129,6 @@ button.green:focus{
 	@extend .full-width-height;
 }
 
-.lairbnb-nav{
-	height: 45px;
-	padding: 5px 20px;
-	background: white;
-	border-bottom: 1px solid lightgrey;
-}
-#nav-container{
-	height: 45px;
-	display: block;
-	width: 100%;
-}
-
-#nav-container:after{
-	clear:both;
-}
-
 .inner-wrapper{
 	width: 100%;
 	position: absolute;
@@ -153,6 +137,46 @@ button.green:focus{
 }
 
 // nav //
+
+
+#nav-container, #nav-container-home{
+	height: 45px;
+	display: block;
+	width: 100%;
+}
+
+#nav-container:after, #nav-container-home{
+	clear:both;
+}
+#nav-container{
+	a {
+		color: #434D56;
+	}
+}
+
+#nav-container-home{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	a {
+		color: white;
+	}
+}
+
+.lairbnb-nav{
+	height: 45px;
+	padding: 5px 20px;
+	background: white;
+	border-bottom: 1px solid lightgrey;
+}
+
+.lairbnb-nav-home{
+	height: 45px;
+	padding: 5px 20px;
+	background: transparent;
+}
+
 nav ul{
 	margin: 0;
 	padding: 0;
@@ -193,11 +217,21 @@ nav ul li input {
 }
 
 .logo{
-	width: 120px;
+	width: 100px;
 	height: 35px;
 	display: block;
-	background-image: url(<%= asset_path 'lairbnb-main-logo.png' %>);
 	background-size: 100% auto;
+	background-repeat: none;
+}
+
+.logo-red{
+	@extend .logo;
+	background-image: url(<%= asset_path 'lairbnb-logo-red.png' %>);
+}
+
+.logo-white{
+	@extend .logo;
+	background-image: url(<%= asset_path 'lairbnb-logo-white.png' %>);
 }
 
 li.profile{

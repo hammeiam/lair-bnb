@@ -1,9 +1,7 @@
 LairBnB.Views.Home = Backbone.CompositeView.extend({
 	initialize: function(){
-		var navView = new LairBnB.Views.Nav({
-			locationField:''
-		});
-    this.addSubview('#nav-container', navView);
+		var navView = new LairBnB.Views.HomeNav();
+    this.addSubview('#nav-container-home', navView);
 	},
 	className: 'front-page',
 
@@ -16,12 +14,9 @@ LairBnB.Views.Home = Backbone.CompositeView.extend({
 	render: function(){
 		var content = this.template();
 		this.$el.html(content);
-		initDatePicker(this);
 		this.initSearch();
-	  // $(document).tooltip({
-	  // 	position: { my: "left top+15", at: "left bottom", collision: "flipfit" }
-	  // });
   	this.$('[data-toggle="tooltip"]').tooltip();
+  	this.attachSubviews();
 		return this;
 	},
 

@@ -40,7 +40,6 @@ class Lair < ActiveRecord::Base
 	def self.search(input_options = {})
 		# add checkin & checkout search. Also see if near is lazy
 		default_options = {
-			location: nil,
 			page: 1,
 			lair_type: ['underground', 'fortress', 'office'],
 			price_min: 10,
@@ -49,21 +48,26 @@ class Lair < ActiveRecord::Base
 		}
 		symbolized_input_options = input_options.symbolize_keys
 		search_options = default_options.merge(symbolized_input_options)
+		if search_options[:check_in_date] && search_options[:check_in_date]
+			search_options[:check_in_date] = Date.strptime(search_options[:check_in_date], '%m/%d/%Y')
+			search_options[:check_out_date] = Date.strptime(search_options[:check_out_date], '%m/%d/%Y')
+		end
 
 		if symbolized_input_options.keys.length == 1 && symbolized_input_options[:location]
-			result = Rails.cache.fetch("#{search_options[:location]}_lair_results", :expires_in => 5.minutes) do
+			result = Rails.cache.fetch("#{search_options[:location]}_lair_results", :expires_in => 60.minutes) do
 				Lair.near(search_options[:location], 50)
-				.where(lair_type: search_options[:lair_type],
-					rate: search_options[:price_min]..search_options[:price_max])
-				.where('max_guests >= ?', search_options[:max_guests])
 				.page(search_options[:page])
 			end
 		elsif search_options[:location]
 			result = Lair.near(search_options[:location], 50)
-			.where(lair_type: search_options[:lair_type],
-				rate: search_options[:price_min]..search_options[:price_max])
-			.where('max_guests >= ?', search_options[:max_guests])
-			.page(search_options[:page])
+				.where(lair_type: search_options[:lair_type],
+					rate: search_options[:price_min]..search_options[:price_max])
+				.where('max_guests >= ?', search_options[:max_guests])
+				.joins(:trips)
+				.where('trips.check_in_date > ? OR trips.check_out_date < ?', search_options[:check_out_date],  search_options[:check_in_date]  )
+				.page(search_options[:page])
+				# .where('trips.check_out_date < ?', search_options[:check_in_date] )
+				
 		else
 			result = Lair.where(lair_type: search_options[:lair_type],
 					rate: search_options[:price_min]..search_options[:price_max])

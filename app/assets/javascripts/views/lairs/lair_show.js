@@ -54,6 +54,12 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 			showAlert(options);
 			return;
 		}
+		if( !formData['trip']['check_in_date'] || !formData['trip']['check_out_date']){
+			options['alertClass'] = 'alert-danger';
+			options['alertMessage'] = 'Both check in and check out dates are required';
+			showAlert(options);
+			return;
+		}
 		var newReservation = new LairBnB.Models.Trip(formData['trip']);
 		newReservation.save({}, {
 			success: function(resp){
