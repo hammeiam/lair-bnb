@@ -23,6 +23,7 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
 	},
 
   events: {
+    'change .filter-input-item': 'handleUpdate',
     'change input.date-filter': 'handleUpdate',
     'change input#location-search': 'handleUpdate',
     'change #slider': 'handleUpdate',
@@ -47,7 +48,6 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
   handleUpdate: function(event){
     event.preventDefault();
     var $field = $(event.currentTarget);
-    debugger
     // if it's a date and either but not both are empty, ignore it
     var checkIn = $('#check-in-date');
     var checkOut = $('#check-out-date');

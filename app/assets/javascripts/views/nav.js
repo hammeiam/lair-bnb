@@ -61,6 +61,7 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
   	this.$el.html(content);
   	this.initSearch();
   	this.focusModals();
+  	this.$('[data-toggle="tooltip"]').tooltip();
   	return this;
 	},
 

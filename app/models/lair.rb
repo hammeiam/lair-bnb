@@ -46,40 +46,73 @@ class Lair < ActiveRecord::Base
 			price_max: 9999,
 			max_guests: 1
 		}
-		symbolized_input_options = input_options.symbolize_keys
-		search_options = default_options.merge(symbolized_input_options)
-		if search_options[:check_in_date] && search_options[:check_out_date]
-			search_options[:check_in_date] = Date.strptime(search_options[:check_in_date], '%m/%d/%Y')
-			search_options[:check_out_date] = Date.strptime(search_options[:check_out_date], '%m/%d/%Y')
-		end
+		@@symbolized_input_options = input_options.symbolize_keys
+		# search_options = default_options.merge(symbolized_input_options)
+		# if search_options[:check_in_date] && search_options[:check_out_date]
+		# 	search_options[:check_in_date] = Date.strptime(search_options[:check_in_date], '%m/%d/%Y')
+		# 	search_options[:check_out_date] = Date.strptime(search_options[:check_out_date], '%m/%d/%Y')
+		# end
+		Lair.location_filter
+			.price_min_filter
+			.price_max_filter
+			.max_guests_filter
+			.lair_type_filter
+			.page_filter
+	end
 
-		if symbolized_input_options.keys.length == 1 && symbolized_input_options[:location]
-			result = Rails.cache.fetch("#{search_options[:location]}_lair_results", :expires_in => 60.minutes) do
-				Lair.near(search_options[:location], 50)
-				.page(search_options[:page])
-			end
-		elsif search_options[:location]
-			result = Lair.near(search_options[:location], 50)
-				.where(lair_type: search_options[:lair_type],
-					rate: search_options[:price_min]..search_options[:price_max])
-				.where('max_guests >= ?', search_options[:max_guests])
-				.page(search_options[:page])
-				# .where('trips.check_out_date < ?', search_options[:check_in_date] )
-				
+	def self.location_filter
+		location = @@symbolized_input_options[:location]
+		if !!location
+			self.near(location, 50)
 		else
-			result = Lair.where(lair_type: search_options[:lair_type],
-					rate: search_options[:price_min]..search_options[:price_max])
-				.where('max_guests >= ?', search_options[:max_guests])
-				.page(search_options[:page])
+			all
 		end
-		# a = search_options[:check_out_date]
+	end
 
-		if result.count == 0
-			Rails.cache.fetch("all_lairs_paginated", :expires_in => 5.minutes) do
-				Lair.all.page(search_options[:page])
-			end
+	def self.price_min_filter
+		price_min = @@symbolized_input_options[:price_min]
+		if !!price_min
+			self.where('rate >= ?', Integer(price_min))
 		else
-			return result
+			all
+		end
+	end
+
+	def self.price_max_filter
+		price_max = @@symbolized_input_options[:price_max]
+		if !!price_max && Integer(price_max) < 1000
+			self.where('rate <= ?', Integer(price_max))
+		else
+			all
+		end
+	end
+
+	def self.lair_type_filter
+		lair_types = @@symbolized_input_options[:lair_type]
+		if !!lair_types && lair_types.class == Array
+			self.where('lair_type IN (?)', lair_types)
+		else
+			all
+		end
+	end
+
+	def self.max_guests_filter
+		max_guests = @@symbolized_input_options[:max_guests]
+		if !!max_guests
+			byebug
+			self.where('max_guests >= ?', Integer(max_guests))
+		else
+			all
+		end
+	end
+
+	def self.page_filter
+		# should be the last in sequence
+		page = @@symbolized_input_options[:page]
+		if !!page
+			self.page(page)
+		else
+			self.page(1)
 		end
 	end
 
