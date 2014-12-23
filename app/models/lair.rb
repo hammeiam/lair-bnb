@@ -100,7 +100,6 @@ class Lair < ActiveRecord::Base
 	def self.max_guests_filter
 		max_guests = @@symbolized_input_options[:max_guests]
 		if !!max_guests
-			byebug
 			self.where('max_guests >= ?', Integer(max_guests))
 		else
 			all
