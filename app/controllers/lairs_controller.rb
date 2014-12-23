@@ -6,19 +6,16 @@ class LairsController < ApplicationController
 
 	def create
 		@lair = Lair.new(lair_params)
+		@lair.owner_id = current_user.id if current_user
 		if @lair.save
-			redirect_to lair_url(@lair)
+			render json: { success: @lair.id }
 		else
-			flash.now[:errors] = @lair.errors.full_messages
-			render :new
+			render json: { errors: @lair.errors.full_messages }
 		end
 	end	
 
 	def show
 		@lair = Lair.includes(:images, :trips, { owner: :profile_image }).find(params[:id])
-	end
-
-	def edit
 	end
 
 	def update

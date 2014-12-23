@@ -8,7 +8,7 @@ LairBnB.Views.Home = Backbone.CompositeView.extend({
 	template: JST['home'],
 
 	events: {
-		'submit form': 'handleSubmit'
+		'submit form.main-form-collection': 'handleSubmit'
 	},
 
 	render: function(){
