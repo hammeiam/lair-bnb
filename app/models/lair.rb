@@ -113,9 +113,9 @@ class Lair < ActiveRecord::Base
 		if check_in_date && check_out_date
 			check_in_date = Date.strptime(check_in_date, '%m/%d/%Y')
 			check_out_date = Date.strptime(check_out_date, '%m/%d/%Y')
-			self.find_by_sql(
+			a = self.find_by_sql([
 				"SELECT 
-					*
+					l1.id
 				FROM 
 					lairs l1
 				LEFT OUTER JOIN 
@@ -140,7 +140,8 @@ class Lair < ActiveRecord::Base
 									(:check_in_date > t2.check_out_date 
 										AND 
 											:check_out_date > t2.check_out_date)));", 
-			{ check_in_date: check_in_date, check_out_date: check_out_date })
+			{ check_in_date: check_in_date, check_out_date: check_out_date }]).map{|x| x.id }
+			Lair.where('id IN (?)', a)
 		else
 			all
 		end
