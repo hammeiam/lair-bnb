@@ -2,6 +2,9 @@ LairBnB.Views.HomeNav = Backbone.CompositeView.extend({
 	tagName: 'nav',
 	className: 'lairbnb-nav-home',
 	template: JST['nav/homeNav'],
+	signInModal: JST['modals/signIn'],
+	signUpModal: JST['modals/signUp'],
+	newLairModal: JST['modals/newLair'],
 	attributes: {
 		'role': 'navigation'
 	},
@@ -33,7 +36,7 @@ LairBnB.Views.HomeNav = Backbone.CompositeView.extend({
 		$('#signInPassword').val('password');
 		setTimeout(function(){
 			$('#signIn').submit();
-		}, 700);
+		}, 500);
 	},
 
 	signUp: function(event){
@@ -46,7 +49,11 @@ LairBnB.Views.HomeNav = Backbone.CompositeView.extend({
 		var content = this.template({
 			currentUser: LairBnB.users.currentUser()
 		});
+  	var signInModal = this.signInModal();
+		var signUpModal = this.signUpModal();
+		var newLairModal = this.newLairModal();
   	this.$el.html(content);
+  	this.$el.append(signInModal, signUpModal, newLairModal);
   	this.focusModals();
   	this.$('[data-toggle="tooltip"]').tooltip();
   	return this;

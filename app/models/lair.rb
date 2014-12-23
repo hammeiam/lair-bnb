@@ -38,20 +38,8 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.search(input_options = {})
-		# add checkin & checkout search. Also see if near is lazy
-		default_options = {
-			page: 1,
-			lair_type: ['underground', 'fortress', 'office'],
-			price_min: 10,
-			price_max: 9999,
-			max_guests: 1
-		}
 		@@symbolized_input_options = input_options.symbolize_keys
-		# search_options = default_options.merge(symbolized_input_options)
-		# if search_options[:check_in_date] && search_options[:check_out_date]
-		# 	search_options[:check_in_date] = Date.strptime(search_options[:check_in_date], '%m/%d/%Y')
-		# 	search_options[:check_out_date] = Date.strptime(search_options[:check_out_date], '%m/%d/%Y')
-		# end
+
 		Lair.location_filter
 			.price_min_filter
 			.price_max_filter
@@ -112,7 +100,7 @@ class Lair < ActiveRecord::Base
 		if check_in_date && check_out_date
 			check_in_date = Date.strptime(check_in_date, '%m/%d/%Y')
 			check_out_date = Date.strptime(check_out_date, '%m/%d/%Y')
-			a = self.find_by_sql([
+			query_results = self.find_by_sql([
 				"SELECT 
 					l1.id
 				FROM 
@@ -139,8 +127,8 @@ class Lair < ActiveRecord::Base
 									(:check_in_date > t2.check_out_date 
 										AND 
 											:check_out_date > t2.check_out_date)));", 
-			{ check_in_date: check_in_date, check_out_date: check_out_date }]).map{|x| x.id }
-			Lair.where('id IN (?)', a)
+			{ check_in_date: check_in_date, check_out_date: check_out_date }]).map{|el| el.id }
+			Lair.where('id IN (?)', query_results)
 		else
 			all
 		end
