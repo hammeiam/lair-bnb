@@ -57,6 +57,7 @@ class Lair < ActiveRecord::Base
 			.price_max_filter
 			.max_guests_filter
 			.lair_type_filter
+			.date_filter
 			.page_filter
 	end
 
@@ -101,6 +102,45 @@ class Lair < ActiveRecord::Base
 		if !!max_guests
 			byebug
 			self.where('max_guests >= ?', Integer(max_guests))
+		else
+			all
+		end
+	end
+
+	def self.date_filter
+		check_in_date = @@symbolized_input_options[:check_in_date]
+		check_out_date = @@symbolized_input_options[:check_out_date]
+		if check_in_date && check_out_date
+			check_in_date = Date.strptime(check_in_date, '%m/%d/%Y')
+			check_out_date = Date.strptime(check_out_date, '%m/%d/%Y')
+			self.find_by_sql(
+				"SELECT 
+					*
+				FROM 
+					lairs l1
+				LEFT OUTER JOIN 
+					trips t1
+				ON 
+					l1.id = t1.lair_id
+				GROUP BY 
+					l1.id 
+				HAVING 
+					COUNT(t1.id) = 
+						(SELECT 
+							COUNT(t2.id)
+						FROM 
+							trips t2
+						WHERE 
+							t2.lair_id = l1.id 
+							AND
+								((:check_in_date < t2.check_in_date 
+									AND 
+									:check_out_date < t2.check_in_date) 
+								OR 
+									(:check_in_date > t2.check_out_date 
+										AND 
+											:check_out_date > t2.check_out_date)));", 
+			{ check_in_date: check_in_date, check_out_date: check_out_date })
 		else
 			all
 		end
