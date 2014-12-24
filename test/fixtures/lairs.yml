@@ -12,7 +12,7 @@
 #  street_address :string(255)      not null
 #  city           :string(255)      not null
 #  state          :string(255)      not null
-#  country        :string(255)      not null
+#  country        :string(255)      default("USA"), not null
 #  latitude       :float            not null
 #  longitude      :float            not null
 #  created_at     :datetime
