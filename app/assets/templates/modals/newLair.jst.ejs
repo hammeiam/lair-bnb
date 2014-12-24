@@ -8,7 +8,7 @@
 	aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-    <div id="new-lair-alerts-container-modal"></div>
+    	<div id="new-lair-alerts-container-modal"></div>
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">
@@ -17,77 +17,128 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Create New Lair</h4>
       </div>
-      <form id="create-new-lair" role="form">
+      	<form id="create-new-lair" class="form-horizontal" role="form">
 	      <div class="modal-body">
+	        
 	       	<div class="form-group">
-	       	  <label for='title'>Title</label>
-  					<input id='title' 
-  					type='text' 
-  					name='lair[title]'
-  					placeholder='Title'>
+	       	  <label for='title' class='control-label col-xs-3'>Title</label>
+	       	  <div class="controls col-xs-9">
+	  					<input id='title' 
+	  					type='text' 
+	  					name='lair[title]'
+	  					placeholder='Title'
+	  					class="form-control">
+  					</div>
 				  </div>
 				  
 				  <div class="form-group">
-	       	  <label for='description'>Description</label>
-  					<input id='description' 
-  					type='text' 
-  					name='lair[description]'
-  					placeholder='Description'>
+	       	  <label for='description' class='control-label col-xs-3'>Description</label>
+	       	  <div class="controls col-xs-9">
+	  					<textarea name='lair[description]'
+	  					placeholder='Description'
+	  					class="form-control"
+	  					rows="4"></textarea>
+  					</div>
 				  </div>
 
 				  <div class="form-group">
-	       	  <label for='rate'>Rate</label>
-  					<input id='rate' 
-  					type='number' 
-  					name='lair[rate]'
-  					placeholder='Rate'>
+	       	  <label for='rate' class='control-label col-xs-3'>Rate</label>
+	       	  <div class="controls col-xs-9">
+		       	  <div class="input-group">
+			       	  <span class="input-group-addon">$</span>
+		  					<input id='rate' 
+		  					type='number' 
+		  					name='lair[rate]'
+		  					min='10'
+		  					step='10'
+		  					placeholder='Rate'
+		  					class="form-control">
+		  				</div>
+  					</div>
 				  </div>
 
 				  <div class="form-group">
-	       	 <label for='max_guests'>Maximum Number of Guests</label>
-  					<input id='max_guests' 
-  					type='number' 
-  					name='lair[max_guests]'
-  					placeholder='Maximum Number of Guests'>
+	       	  <label for='max_guests' class='control-label col-xs-3'>Guests</label>
+  					<div class="controls col-xs-9">
+	  					<input id='max_guests' 
+	  					type='number' 
+	  					min='1'
+	  					name='lair[max_guests]'
+	  					placeholder='Max # of Guests'
+	  					class="form-control">
+  					</div>
 				  </div>
 
 				  <div class="form-group">
-		       	<label for="lair_type">Lair Type</label>
-	    			<input type="radio" name="lair[lair_type]" value="underground">Underground
-	   				<input type="radio" name="lair[lair_type]" value="fortress">Fortress
-	    			<input type="radio" name="lair[lair_type]" value="office">Office
+		       	<label for="lair_type" class='control-label col-xs-3'>Lair Type</label>
+		       	<div class="controls col-xs-9">
+		       		<div class="col-xs-4">
+		       			<input type="radio" name="lair[lair_type]" value="underground">Underground
+		       		</div>
+		       		<div class="col-xs-4">
+		   					<input type="radio" name="lair[lair_type]" value="fortress">Fortress
+		       		</div>
+		       		<div class="col-xs-4">
+		       			<input type="radio" name="lair[lair_type]" value="office">Office
+		       		</div>
+						</div>
 				  </div>
 
 				  <div class="form-group">
-		        <label for="room_type">Room Type</label>
-				    <input type="radio" name="lair[room_type]" value="entire-hq">Entire HQ
-				    <input type="radio" name="lair[room_type]" value="private-room">Private
-				    <input type="radio" name="lair[room_type]" value="shared-room">Shared
+		        <label for="room_type" class='control-label col-xs-3'>Room Type</label>
+		        <div class="controls col-xs-9">
+			        <div class="col-xs-4">
+			        	<input type="radio" name="lair[room_type]" value="entire-hq">Entire HQ
+			        </div>
+			        <div class="col-xs-4">
+			        	<input type="radio" name="lair[room_type]" value="private-room">Private
+			        </div>
+			        <div class="col-xs-4">
+			        	<input type="radio" name="lair[room_type]" value="shared-room">Shared
+			        </div>
+				    </div>
 				  </div>
 
 				  <div class="form-group">
-		        <label for='street_address'>street_address</label>
-  					<input id='street_address' type='text' name='lair[street_address]'>
+		        <label for='street_address' class='col-xs-3 control-label'> Street Address</label>
+		        <div class="col-xs-9">
+	  					<input id='street_address' 
+	  					type='text' 
+	  					name='lair[street_address]'
+	  					placeholder='Street Address'
+	  					class="form-control">
+	  				</div>
 					</div>
 					<div class="form-group">
-  					<label for='city'>city</label>
-  					<input id='city' type='text' name='lair[city]'>
+  					<label for='city' class='col-xs-3 control-label'>City</label>
+  					<div class="col-xs-9">
+  						<input id='city' 
+  						type='text' 
+  						name='lair[city]' 
+  						placeholder='City'
+  						class="form-control">
+  					</div>
 					</div>
 					<div class="form-group">
-  					<label for='state'>state</label>
-					  <input id='state' type='text' name='lair[state]'>
-				  </div>
-				  <div class="form-group">
-					  <label for='country'>country</label>
-					  <input id='country' type='text' name='lair[country]'>
+  					<label for='state' class='col-xs-3 control-label'>State</label>
+  					<div class="col-xs-9">
+					  	<input id='state' 
+					  	type='text' 
+					  	name='lair[state]' 
+					  	placeholder='State'
+					  	class="form-control">
+					  </div>
 				  </div>
 
 				  <div class="form-group">
-				  	<label for='images'>Images</label>
+				  	<label for='images' class='col-xs-3 control-label'>Images</label>
+				  	<div class="col-xs-3">
 					  <input type="filepicker" 
 					    id="images"
 					    name="lair[image_urls]"
-					    data-fp-option-multiple="true">
+					    data-fp-option-multiple="true"
+					    data-fp-class="btn blue">
+					    </div>
 				  </div>
 	       
 	      </div>
@@ -100,3 +151,6 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  filepicker.constructWidget($("#newLairModal input[type='filepicker']"));
+</script>

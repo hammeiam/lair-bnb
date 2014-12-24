@@ -51,7 +51,12 @@ input[type="checkbox"], input[type="radio"] {
 	-webkit-appearance: none;
 }
 
-input[type=text], input[type=password], select {
+#newLairModal input[type="radio"]{
+	-webkit-appearance: radio;
+	height: 13px;
+}
+
+input[type=text], input[type=password], select, input[type=number], textarea {
 	border: 1px solid lightgrey;
 	border-radius: 2px;
 	height: 32px;
@@ -479,20 +484,35 @@ button#guest-signin:focus{
 	}
 }
 
-.btn{
+.btn-std{
 	color: white;
 	background: #c0392b;
-	padding: 5px 20%;
 	width: 100%;
+}
+
+.btn-sm{
+	@extend .btn-std;
+	padding: 8px 15px;
+	height: auto;
+	border: none;
+}
+
+a.btn-sm {
+	text-decoration: none;
+}
+
+.btn{
+	@extend .btn-std;
+	padding: 5px 20%;
 	height: 45px;
 }
 
-.btn:hover{
+.btn:hover, .btn-sm:hover{
 	color: white;
 	background: lighten(#c0392b, 5%)
 }
 
-.btn:focus{
+.btn:focus, .btn-sm:focus{
 	color: white;
 	background: darken(#c0392b, 5%)
 }

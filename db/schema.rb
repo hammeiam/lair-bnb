@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141205092131) do
+ActiveRecord::Schema.define(version: 20141223230136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,21 +28,21 @@ ActiveRecord::Schema.define(version: 20141205092131) do
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
 
   create_table "lairs", force: true do |t|
-    t.string   "title",          null: false
-    t.text     "description",    null: false
-    t.integer  "rate",           null: false
-    t.integer  "owner_id",       null: false
-    t.string   "lair_type",      null: false
-    t.string   "room_type",      null: false
-    t.string   "street_address", null: false
-    t.string   "city",           null: false
-    t.string   "state",          null: false
-    t.string   "country",        null: false
-    t.float    "latitude",       null: false
-    t.float    "longitude",      null: false
+    t.string   "title",                          null: false
+    t.text     "description",                    null: false
+    t.integer  "rate",                           null: false
+    t.integer  "owner_id",                       null: false
+    t.string   "lair_type",                      null: false
+    t.string   "room_type",                      null: false
+    t.string   "street_address",                 null: false
+    t.string   "city",                           null: false
+    t.string   "state",                          null: false
+    t.string   "country",        default: "USA", null: false
+    t.float    "latitude",                       null: false
+    t.float    "longitude",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "max_guests",     null: false
+    t.integer  "max_guests",                     null: false
   end
 
   add_index "lairs", ["lair_type"], name: "index_lairs_on_lair_type", using: :btree

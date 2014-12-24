@@ -62,8 +62,9 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		});
 		var signInModal = this.signInModal();
 		var signUpModal = this.signUpModal();
+		var newLairModal = this.newLairModal();
   	this.$el.html(content);
-  	this.$el.append(signInModal, signUpModal);
+  	this.$el.append(signInModal, signUpModal, newLairModal);
   	this.initSearch();
   	this.focusModals();
   	this.$('[data-toggle="tooltip"]').tooltip();
