@@ -5,6 +5,7 @@ LairBnB.Views.HomeNav = Backbone.CompositeView.extend({
 	signInModal: JST['modals/signIn'],
 	signUpModal: JST['modals/signUp'],
 	newLairModal: JST['modals/newLair'],
+	
 	attributes: {
 		'role': 'navigation'
 	},
@@ -34,7 +35,7 @@ LairBnB.Views.HomeNav = Backbone.CompositeView.extend({
           LairBnB.lairs.add(newLair);
           newLair.fetch();
           var id = resp['success'];
-          Backbone.history.navigate('/lairs/' + id, { trigger: true })
+          Backbone.history.navigate('#/lairs/' + id, { trigger: true })
         } else{
           resp['errors'].forEach(function(message){
             var options = {

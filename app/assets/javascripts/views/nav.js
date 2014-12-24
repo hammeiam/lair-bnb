@@ -4,6 +4,8 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 	template: JST['nav'],
 	signInModal: JST['modals/signIn'],
 	signUpModal: JST['modals/signUp'],
+	newLairModal: JST['modals/newLair'],
+
 	attributes: {
 		'role': 'navigation'
 	},
@@ -17,7 +19,8 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		'click #signOut': 'signOut',
 		'submit form#signIn': 'signIn',
 		'click button#guest-signin': 'guestSignIn',
-		'submit form#signUp': 'signUp'
+		'submit form#signUp': 'signUp',
+		'submit form#create-new-lair': 'createNewLair'
 	},
 
 	initSearch: function(){
@@ -86,5 +89,33 @@ LairBnB.Views.Nav = Backbone.CompositeView.extend({
 		$('#location-search').html(locationStr).trigger('change');
 		// var encodedLocation = urlEncodeLocation(locationStr);
 		// this.router.navigate(encodedLocation, { trigger: false })
-	}
+	},
+
+	createNewLair: function(event){
+		event.preventDefault();
+		var lairData = $(event.currentTarget).serializeJSON();
+		var newLair = new LairBnB.Models.Lair(lairData);
+		newLair.save({}, {
+      success: function(model, resp){
+        if(!!resp['success']){
+          $('#newLairModal').modal('hide');
+          // addresses a bug with some browsers & bootstrap
+          $('body').removeClass('modal-open');
+          LairBnB.lairs.add(newLair);
+          newLair.fetch();
+          var id = resp['success'];
+          Backbone.history.navigate('#/lairs/' + id, { trigger: true })
+        } else{
+          resp['errors'].forEach(function(message){
+            var options = {
+              alertClass: 'alert-warning',
+              alertMessage: message,
+              alertLocation: '#new-lair-alerts-container-modal'
+            };
+            showAlert(options);
+          });
+        };
+      }
+    })
+	},
 });
