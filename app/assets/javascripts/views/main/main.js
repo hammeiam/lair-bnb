@@ -93,6 +93,11 @@ LairBnB.Views.Main = Backbone.CompositeView.extend({
     } else if (!!key) {
       output[key] = $field.val();
     };
+
+    if(key !== 'pagination'){
+      output['page'] = 1;
+    };
+    
     return output; 
   },
 

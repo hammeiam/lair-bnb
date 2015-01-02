@@ -126,7 +126,7 @@ class Lair < ActiveRecord::Base
 								OR 
 									(:check_in_date > t2.check_out_date 
 										AND 
-											:check_out_date > t2.check_out_date)));", 
+										:check_out_date > t2.check_out_date)));", 
 			{ check_in_date: check_in_date, check_out_date: check_out_date }]).map{|el| el.id }
 			Lair.where('id IN (?)', query_results)
 		else
