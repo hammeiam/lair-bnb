@@ -25,6 +25,7 @@ LairBnB.Views.LairShow = Backbone.CompositeView.extend({
 		this.attachSubviews();
 		initImageCarousel(this,'main');
 		initDatePicker(this, this.model.escape(['unavailable_dates']));
+		$('[data-toggle="tooltip"]').tooltip();
 		return this;
 	},
 
