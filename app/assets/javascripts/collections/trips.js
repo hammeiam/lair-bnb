@@ -5,6 +5,7 @@ LairBnB.Collections.Trips = Backbone.Collection.extend({
 	url: function(){
 		return '/users/' + this.user.id + '/trips'
 	},
-  model: LairBnB.Models.Trip
+  model: LairBnB.Models.Trip,
+  comparator: 'check_in_date'
 
 });
