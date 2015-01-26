@@ -17,7 +17,10 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 		this.$el.html(content);
 		initImageCarousel(this, 'mini');
 		this.$('.lazy').slickGoTo(0);
-		this.attachHoverAction();
+		var that = this;
+		// addresses an issue whereby a mouse is hovering over an Item as it loads,
+		// and the map pin continues bouncing when not hovering
+		setTimeout(that.attachHoverAction.bind(that), 1000);
 		return this;
 	},
 
@@ -27,7 +30,6 @@ LairBnB.Views.LairIndexItem = Backbone.View.extend({
 		if(this.model.marker){
 			this.model.marker.$lairView = this.$el;
 		}
-		
 	},
 
 	toggleBounce: function() {

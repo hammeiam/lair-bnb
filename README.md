@@ -17,8 +17,18 @@ View it live at http://lair-bnb.com
 * Backbone.js communicating with a RESTful json API
 * Image, listing, and reservation carousels
 * Hand-rolled authentication via Rails
-* Handy alerts throughout the site for errors and events
 * Polymorphic 'Imageable' associations 
+* Handy alerts throughout the site for errors and events, all created with a single flexible function. Alert calls can be as simple as `showAlert()` or as detailed as:
+```
+showAlert({
+	// uses Bootstrap's alert classes
+	alertClass: 'alert-danger',
+	// customize the message or pass in a server response
+	alertMessage: 'Page not found',
+	// maybe you want to show alerts in a modal instead of the whole page
+	alertLocation: '#modal-alerts-container'
+})
+```
 * Modular model-level filtering, eg:
 ```
 def self.max_guests_filter
