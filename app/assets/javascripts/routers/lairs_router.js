@@ -13,7 +13,7 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 
 	home: function(){
 		var view = new LairBnB.Views.Home();
-		this._swapView(view);
+		this._swapView(view, 'Home');
 	},
 
 	lairShowAction: function(lairId){
@@ -21,7 +21,7 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		var view = new LairBnB.Views.LairShow({
 			model: lair
 		})
-		this._swapView(view);
+		this._swapView(view, 'Lair: ' + lairId);
 	},
 
 	mainShowAction: function(locationQuery, params){
@@ -30,7 +30,7 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 			router: this,
 			params: params
 		});
-		this._swapView(view);
+		this._swapView(view, 'Search');
 	},
 
 	userShowAction: function(userId){
@@ -43,12 +43,12 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		var view = new LairBnB.Views.UserShow({	
 			model: user
 		});
-		this._swapView(view);
+		this._swapView(view, 'User: ' + userId);
 	},
 
 	notFound: function(){
 		var view = new LairBnB.Views.Home();
-		this._swapView(view);
+		this._swapView(view, '404');
 		showAlert({
 			alertClass: 'alert-danger',
 			alertMessage: 'Page not found'
@@ -56,11 +56,27 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		Backbone.history.navigate('', { trigger: false })
 	},
 
-	_swapView: function (view) {
+	_swapView: function (viewm, title) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
-  }
+    this.trackPageview(title);
+  },
+
+  trackPageview: function (title){
+  	if(!!window.ga){
+	    var url = Backbone.history.getFragment();
+	    //prepend slash
+	    if (!/^\//.test(url) && url != ""){
+	      url = "/" + url;
+	    };
+	    // _gaq.push(['_trackPageview', url]);
+	    ga('send', 'pageview', {
+			  'page': url,
+			  'title': title
+			});
+	  };
+   }
 
 
 });
