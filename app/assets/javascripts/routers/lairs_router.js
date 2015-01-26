@@ -56,7 +56,7 @@ LairBnB.Routers.Lairs = Backbone.Router.extend({
 		Backbone.history.navigate('', { trigger: false })
 	},
 
-	_swapView: function (viewm, title) {
+	_swapView: function (view, title) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
     this.$rootEl.html(view.render().$el);
