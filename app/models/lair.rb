@@ -38,7 +38,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.search(input_options = {})
-		@@symbolized_input_options = input_options.symbolize_keys
+		@symbolized_input_options = input_options.symbolize_keys
 
 		Lair.location_filter
 			.price_min_filter
@@ -50,7 +50,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.location_filter
-		location = @@symbolized_input_options[:location]
+		location = @symbolized_input_options[:location]
 		if !!location
 			self.near(location, 50)
 		else
@@ -59,7 +59,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.price_min_filter
-		price_min = @@symbolized_input_options[:price_min]
+		price_min = @symbolized_input_options[:price_min]
 		if !!price_min
 			self.where('rate >= ?', Integer(price_min))
 		else
@@ -68,7 +68,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.price_max_filter
-		price_max = @@symbolized_input_options[:price_max]
+		price_max = @symbolized_input_options[:price_max]
 		if !!price_max && Integer(price_max) < 1000
 			self.where('rate <= ?', Integer(price_max))
 		else
@@ -77,7 +77,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.lair_type_filter
-		lair_types = @@symbolized_input_options[:lair_type]
+		lair_types = @symbolized_input_options[:lair_type]
 		if !!lair_types && lair_types.class == Array
 			self.where('lair_type IN (?)', lair_types)
 		else
@@ -86,7 +86,7 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.max_guests_filter
-		max_guests = @@symbolized_input_options[:max_guests]
+		max_guests = @symbolized_input_options[:max_guests]
 		if !!max_guests
 			self.where('max_guests >= ?', Integer(max_guests))
 		else
@@ -95,8 +95,8 @@ class Lair < ActiveRecord::Base
 	end
 
 	def self.date_filter
-		check_in_date = @@symbolized_input_options[:check_in_date]
-		check_out_date = @@symbolized_input_options[:check_out_date]
+		check_in_date = @symbolized_input_options[:check_in_date]
+		check_out_date = @symbolized_input_options[:check_out_date]
 		if check_in_date && check_out_date
 			check_in_date = Date.strptime(check_in_date, '%m/%d/%Y')
 			check_out_date = Date.strptime(check_out_date, '%m/%d/%Y')
@@ -136,7 +136,7 @@ class Lair < ActiveRecord::Base
 
 	def self.page_filter
 		# should be the last in sequence
-		page = @@symbolized_input_options[:page]
+		page = @symbolized_input_options[:page]
 		if !!page
 			self.page(page)
 		else

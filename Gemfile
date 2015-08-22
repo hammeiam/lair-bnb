@@ -37,7 +37,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
