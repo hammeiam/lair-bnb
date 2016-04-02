@@ -4,8 +4,10 @@
 	<%= lair.get(['city']) %>, <%= lair.get(['state']) %></p>
 	<a href="#/lairs/<%= lair.id %>">
 	<div class="image-container-small">
+		<% if lair.get(['lair_image_url']) %>
 		<img src="<%= lair.get(['lair_image_url']) %>/convert?w=300&h=170&fit=crop" />
+		<% end %>
 	</div>
-		
+
 	</a>
 </div>
